@@ -1,0 +1,30 @@
+[submodule "vim"]
+	path = vim
+	url = https://github.com/vim/vim.git
+[submodule "contrib/autofmt"]
+	path = contrib/autofmt
+	url = https://github.com/vim-jp/autofmt.git
+[submodule "contrib/go-vim"]
+	path = contrib/go-vim
+	url = https://github.com/vim-jp/go-vim.git
+[submodule "contrib/lang-ja"]
+	path = contrib/lang-ja
+	url = https://github.com/vim-jp/lang-ja.git
+[submodule "contrib/libiconv2"]
+	path = contrib/libiconv2
+	url = https://github.com/koron/libiconv.git
+[submodule "contrib/libXpm-win32"]
+	path = contrib/libXpm-win32
+	url = https://github.com/koron/libXpm-win32.git
+[submodule "contrib/luajit-2.0"]
+	path = contrib/luajit-2.0
+	url = http://luajit.org/git/luajit-2.0.git
+[submodule "contrib/vimdoc-ja"]
+	path = contrib/vimdoc-ja
+	url = https://github.com/vim-jp/vimdoc-ja.git
+[submodule "contrib/vimproc"]
+	path = contrib/vimproc
+	url = https://github.com/Shougo/vimproc.git
+[submodule "contrib/gettext"]
+	path = contrib/gettext
+	url = https://github.com/koron/gettext.git

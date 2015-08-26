@@ -9,7 +9,7 @@
     $ make install
     ```
 
-3. Checkout [vim-kaoriya](https://github.com/koron/vim-kaoriya) and 
+3. Checkout [vim-kaoriya](https://github.com/koron/vim-kaoriya) and submodules.
 
     ```
     $ git clone https://github.com/koron/vim-kaoriya.git
@@ -26,3 +26,4 @@
     $ git config guilt.patchesdir ../patches
     ```
 
+(WIP)

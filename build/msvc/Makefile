@@ -86,13 +86,15 @@ contrib: $(INSTALL_DIR)\bin\iconv.dll $(INSTALL_DIR)\bin\intl.dll \
 	$(INSTALL_DIR)\lib\libXpm.lib \
 	$(INSTALL_DIR)\bin\$(VIMPROC_DLL) $(INSTALL_DIR)\bin\lua51.dll
 
-build: iconv-build gettext-build xpm-build
+build: iconv-build gettext-build xpm-build vimproc-build luajit-build
 
-install: iconv-install gettext-install xpm-install
+install: iconv-install gettext-install xpm-install vimproc-install \
+	luajit-install
 
-clean: iconv-clean gettext-clean xpm-clean
+clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-install
 
-distclean: iconv-distclean gettext-distclean xpm-distclean
+distclean: iconv-distclean gettext-distclean xpm-distclean vimproc-distclean \
+	luajit-distclean
 
 ### ICONV
 

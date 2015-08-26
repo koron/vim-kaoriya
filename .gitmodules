@@ -28,3 +28,6 @@
 [submodule "contrib/gettext"]
 	path = contrib/gettext
 	url = https://github.com/koron/gettext.git
+[submodule "patches"]
+	path = patches
+	url = https://github.com/koron/vim-kaoriya-patches.git

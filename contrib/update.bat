@@ -1,0 +1,52 @@
+@ECHO OFF
+
+SET BASE_DIR=%~dp0
+SET DATE_VER=%date:~-10,4%-%date:~-5,2%-%date:~-2,2%
+SET LOG_FILE=%BASE_DIR%%DATE_VER%.log
+
+CALL :GIT_UPDATE vimdoc-ja %BASE_DIR%vimdoc-ja
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
+CALL :GIT_UPDATE vimproc %BASE_DIR%vimproc
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
+CALL :GIT_UPDATE LuaJIT %BASE_DIR%luajit-2.0
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
+CALL :GIT_UPDATE go-vim %BASE_DIR%go-vim
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
+
+CALL :GIT_UPDATE libXpm-win32 %BASE_DIR%libXpm-win32
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
+CALL :GIT_UPDATE libiconv2 %BASE_DIR%libiconv2
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
+
+GOTO :SUCCESS
+
+
+REM ========================================================================
+REM SUB ROUTINES
+
+:GIT_UPDATE
+CD %2
+git fetch -fp
+IF %ERRORLEVEL% NEQ 0 GOTO :GIT_UPDATE_END
+git diff --quiet ..@{u}
+IF %ERRORLEVEL% EQU 0 GOTO :GIT_UPDATE_END
+ECHO %1: found updates.
+ECHO --------
+git merge --ff --ff-only @{u}
+ECHO --------
+IF %ERRORLEVEL% NEQ 0 GOTO :GIT_UPDATE_END
+git log -n 1 --date=short --format="%1 (%%ad %%h)" >> %LOG_FILE%
+:GIT_UPDATE_END
+EXIT /B %ERRORLEVEL%
+
+:SUCCESS
+ECHO ========
+ECHO SUCCEEDED: %~nx0
+PAUSE
+EXIT /B 0
+
+:FAILURE
+ECHO ========
+ECHO FAILED: %~nx0
+PAUSE
+EXIT /B %ERRORLEVEL%

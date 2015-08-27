@@ -4,35 +4,22 @@ SET DATE_VER=%date:~-10,4%%date:~-5,2%%date:~-2,2%
 SET CURDIR=%~dp0
 SET VIMDIR=%~dp0..\..\vim
 
-REM Update vim sourse.
-CD "%VIMDIR%"
-hg qpop -a
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-hg pull -u
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-CD "%CURDIR%"
-
 REM Build and test pure vim.
+CD "%VIMDIR%"
+git checkout master
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CALL :TEST_RUN %CURDIR%target\test-%DATE_VER%-plain.log
 IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 
-REM Apply kaoriya patches.
-CD "%VIMDIR%"
-hg qpush -a
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-CD "%CURDIR%"
-
 REM Build and test +kaoriya vim.
+CD "%VIMDIR%"
+git checkout guilt/master
+IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CALL :TEST_RUN %CURDIR%target\test-%DATE_VER%-kaoriya.log
 IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 
-REM Revert kaoriya patches
-CD "%VIMDIR%"
-hg qpop -a
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-CD "%CURDIR%"
-
 REM Test end.
+CD "%CURDIR%"
 
 :SUCCESS
 ECHO ----

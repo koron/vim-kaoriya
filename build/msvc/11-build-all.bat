@@ -9,9 +9,7 @@ SET SNAPZIP_W64=vim74-kaoriya-win64-snapshot-%DATE_VER%.zip
 
 REM Apply all patches.
 CD "%VIMDIR%"
-hg qpop -a
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-hg qpush -a
+git checkout guilt/master
 IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CD "%CURDIR%"
 
@@ -44,7 +42,7 @@ START CMD /C "tools\msvc-nmake.bat" amd64 build-release-core
 
 REM Revert all patches.
 CD "%VIMDIR%"
-hg qpop -a
+git checkout master
 CD "%CURDIR%"
 
 :SUCCESS

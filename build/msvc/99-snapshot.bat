@@ -9,11 +9,7 @@ SET SNAPZIP_W64=vim74-kaoriya-win64-snapshot-%DATE_VER%.zip
 
 REM Update vim sourse and apply all patches.
 CD "%VIMDIR%"
-hg qpop -a
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-hg pull -u
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-hg qpush -a
+git checkout guilt/master
 IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CD "%CURDIR%"
 
@@ -34,7 +30,7 @@ IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 
 REM Revert all patches.
 CD "%VIMDIR%"
-hg qpop -a
+git checkout master
 CD "%CURDIR%"
 
 REM Upload zip files.

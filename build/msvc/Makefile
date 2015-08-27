@@ -275,7 +275,7 @@ vim-patch-install:
 	IF NOT EXIST "$(VIM_PATCH_DIR)" MD "$(VIM_PATCH_DIR)"
 	cd "$(VIM_DIR)"
 	-DEL /F /Q "$(VIM_PATCH_DIR)\*"
-	-$(COPY) ".hg\patches" "$(VIM_PATCH_DIR)" *.diff series
+	-$(COPY) "..\patches\master" "$(VIM_PATCH_DIR)" *.diff series
 	cd "$(BUILD_DIR)"
 
 ### DISTRIBUTION

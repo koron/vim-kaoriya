@@ -2,7 +2,7 @@
 "
 " hz_ja.vim - Convert character between HANKAKU and ZENKAKU
 "
-" Last Change: 06-Feb-2006.
+" Last Change: 27-Aug-2015.
 " Written By:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " Commands:
@@ -141,7 +141,7 @@ function! s:HzjaConvertVisual(target)
   let save_regtype = getregtype('"')
   normal! gvy
   call setreg('"', HzjaConvert(@", a:target), getregtype('"'))
-  normal! gvp
+  normal! gv""p
   call setreg('"', save_regcont, save_regtype)
 endfunction
 

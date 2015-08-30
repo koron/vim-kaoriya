@@ -295,11 +295,11 @@ build-dist:
 	IF NOT EXIST "$(VIM_DIST_DIR)\switches\enabled" MKDIR "$(VIM_DIST_DIR)\switches\enabled"
 	-DEL /F /Q "$(VIM_DIST_DIR)\switches\enabled\*.vim"
 # Plugin - vimdoc-ja
-	-$(COPY) /E "$(CONTRIB_DIR)\vimdoc-ja" "$(VIM_DIST_DIR)\plugins\vimdoc-ja" /XD .git
+	-$(COPY) /E "$(CONTRIB_DIR)\vimdoc-ja" "$(VIM_DIST_DIR)\plugins\vimdoc-ja" /XD .git /XF .git*
 	"$(INSTALL_DIR)\bin\vim.exe" -n -u NONE -U NONE --noplugin \
 		-c "helptags $(VIM_DIST_DIR)\plugins\vimdoc-ja\doc | quit"
 # Plugin - autofmt
-	-$(COPY) /E "$(CONTRIB_DIR)\autofmt" "$(VIM_DIST_DIR)\plugins\autofmt" /XD .git
+	-$(COPY) /E "$(CONTRIB_DIR)\autofmt" "$(VIM_DIST_DIR)\plugins\autofmt" /XD .git /XF .git*
 # Plugin - vimproc
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\doc" \
 		"$(VIM_DIST_DIR)\plugins\vimproc\doc"
@@ -316,7 +316,7 @@ build-dist:
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload\vimproc" \
 		"$(VIM_DIST_DIR)\plugins\vimproc\autoload\vimproc"
 # Plugin - golang
-	-$(COPY) /E "$(CONTRIB_DIR)\go-vim" "$(VIM_DIST_DIR)\plugins\golang" /XD .git
+	-$(COPY) /E "$(CONTRIB_DIR)\go-vim" "$(VIM_DIST_DIR)\plugins\golang" /XD .git /XF .git*
 # Vim and other executable and resource files.
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \

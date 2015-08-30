@@ -1,9 +1,9 @@
                    Vim version 7.4 香り屋版 導入マニュアル
 
-                                                         Version: 1.7.6
+                                                         Version: 1.8
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 30-Mar-2014.
+                                                     Last Change: 30-Aug-2015.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -71,7 +71,7 @@ Vimの拡張機能について
   Perl(ActivePerl)との連携
     注意: PerlをインストールしなくてもVimは使用できます。
 
-    ActiveState社により公開されているActivePerl 5.18をインストールすることで、
+    ActiveState社により公開されているActivePerl 5.20をインストールすることで、
     Perlインターフェースを使用することができます。ActivePerlをインストールして
     いない場合は、Perlインターフェースは自動的に無効となります。Perlインター
     フェースの詳細については":help perl"としてVim付属のマニュアルを参照してく
@@ -165,29 +165,18 @@ Vimの拡張機能について
 
     以下のレポジトリでは同パッチの最新版を公開しています。
 
-    - vim-kaoriya-patches: +kaoriyaパッチのMercurial Queue
-      https://bitbucket.org/koron/vim-kaoriya-patches
+    - vim-kaoriya-patches: +kaoriyaパッチ
+      https://github.com/koron/vim-kaoriya-patches
 
     patchフォルダ及びvim-kaoriya-patches内の名前がXで始まるパッチは非常に実験
     的なものであり公開版には適用されていません。興味のある方だけ御覧ください。
 
-  Mercurial レポジトリ
-    bitbucket.orgにて2つのレポジトリを公開しています。
+  gitによるソースとパッチの入手方法
+    香り屋版のソースコード(及びパッチ)をgithubレポジトリから取得するには以下の
+    サイトを参考にしてください。
 
     - vim-kaoriya: ビルド用スクリプト他
-      https://bitbucket.org/koron/vim-kaoriya
-    - vim-kaoriya-patches: +kaoriyaパッチのMercurial Queue
-      https://bitbucket.org/koron/vim-kaoriya-patches
-
-  Mercurialによるソースとパッチの入手方法
-    香り屋版のソースコード(及びパッチ)をMercurialレポジトリから取得するには以
-    下のようにしてください。
-
-      $ hg qclone https://code.google.com/p/vim/ \
-        -p https://bitbucket.org/koron/vim-kaoriya-patches
-      $ cd vim
-      $ hg qselect -n
-      $ hg qpush -a
+      https://github.com/koron/vim-kaoriya
 
 既知の問題点
   * qkcの-njフラグでコンバートしたJISファイルは開けない(iconv.dll)
@@ -211,6 +200,7 @@ Vimの拡張機能について
 
   - Vim本家
       http://www.vim.org/
+      https://github.com/vim/vim
   - Vimの日本コミュニティvim-jp
       http://vim-jp.org/
       https://github.com/vim-jp/issues/issues (バグ報告、機能要望)

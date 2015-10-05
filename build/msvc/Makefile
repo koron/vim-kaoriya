@@ -300,6 +300,8 @@ build-dist:
 		-c "helptags $(VIM_DIST_DIR)\plugins\vimdoc-ja\doc | quit"
 # Plugin - autofmt
 	-$(COPY) /E "$(CONTRIB_DIR)\autofmt" "$(VIM_DIST_DIR)\plugins\autofmt" /XD .git /XF .git*
+	"$(INSTALL_DIR)\bin\vim.exe" -n -u NONE -U NONE --noplugin \
+		-c "helptags $(VIM_DIST_DIR)\plugins\autofmt\doc | quit"
 # Plugin - vimproc
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\doc" \
 		"$(VIM_DIST_DIR)\plugins\vimproc\doc"

@@ -184,7 +184,7 @@ vimproc-build:
 	cd "$(BUILD_DIR)"
 
 vimproc-install: vimproc-build
-	-$(COPY) "$(VIMPROC_DIR)\autoload" "$(INSTALL_DIR)\bin" \
+	-$(COPY) "$(VIMPROC_DIR)\lib" "$(INSTALL_DIR)\bin" \
 		$(VIMPROC_DLL)
 
 vimproc-clean:
@@ -313,7 +313,7 @@ build-dist:
 		"$(VIM_DIST_DIR)\plugins\vimproc\autoload" \
 		vimproc.vim
 	-$(COPY) "$(INSTALL_DIR)\bin" \
-		"$(VIM_DIST_DIR)\plugins\vimproc\autoload" \
+		"$(VIM_DIST_DIR)\plugins\vimproc\lib" \
 		$(VIMPROC_DLL)
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload\vimproc" \
 		"$(VIM_DIST_DIR)\plugins\vimproc\autoload\vimproc"

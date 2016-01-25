@@ -70,6 +70,9 @@ XPM=..\..\build\msvc\target\install-x64
 XPM=..\..\build\msvc\target\install-x32
 !endif
 
+# +channel feature for non-GUI
+CHANNEL=yes
+
 !ifndef DEBUG
 DEBUG=no
 !endif

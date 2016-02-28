@@ -26,13 +26,13 @@ PERL = D:\Perl\Perl-5.22.1-32
 DYNAMIC_PYTHON=yes
 PYTHON_VER=27
 DYNAMIC_PYTHON3=yes
-PYTHON3_VER=34
+PYTHON3_VER=35
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 PYTHON  = D:\Python\Python27
-PYTHON3 = D:\Python\Python34
+PYTHON3 = D:\Python\Python35
 !else
 PYTHON  = D:\Python\Python27-x86
-PYTHON3 = D:\Python\Python34-x86
+PYTHON3 = D:\Python\Python35-32
 !endif
 !endif
 

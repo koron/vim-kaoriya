@@ -6,6 +6,9 @@
     * LuaJIT (2016-02-26 18f6aa9)
     * vimdoc-ja (2016-02-28 39f235d)
     * vimproc (2016-02-16 78cbb5c)
+  * Šù’m‚Ì–â‘è
+    * test_channel.vim ‚ª¸”s‚µ‚Ä‚¢‚Ü‚·
+    * test_json.vim ‚ª¸”s‚µ‚Ä‚¢‚Ü‚·
 
 === 20160124‚Ì•ÏX“_ ===
 

@@ -3,7 +3,7 @@
                                                          Version: 1.8
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 28-Feb-2016.
+                                                     Last Change: 29-Feb-2016.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -126,7 +126,7 @@ Vimの拡張機能について
   Rubyとの連携
     注意: RubyをインストールしなくてもVimは使用できます。
 
-    Ruby 2.0.0をインストールするとRubyインターフェースを利用できます。Rubyをイ
+    Ruby 2.2.4をインストールするとRubyインターフェースを利用できます。Rubyをイ
     ンストールしていない場合はRubyインターフェースは自動的に無効となります。
     Rubyインターフェースの詳細については":help ruby"としてVim付属のマニュアル
     を参照してください。

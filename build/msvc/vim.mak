@@ -49,17 +49,17 @@ LUA= ..\..\build\msvc\target\install-x32\include\lua
 
 # RubyÇÃê›íË.
 !if !defined(DISABLE_IF) && !defined(DISABLE_RUBY)
-RUBY_VER=20
-RUBY_VER_LONG=2.0.0
+RUBY_VER=22
+RUBY_VER_LONG=2.2.0
 DYNAMIC_RUBY=yes
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-RUBY = D:\Ruby\ruby-2.0.0-p451-x64-mswin64
+RUBY = D:\Ruby\ruby-2.2.4-x64-mswin64
 RUBY_PLATFORM=x64-mswin64_100
-RUBY_INSTALL_NAME=x64-msvcrt-ruby200
+RUBY_INSTALL_NAME=x64-msvcrt-ruby220
 !else
-RUBY = D:\Ruby\ruby-2.0.0-p451-i386-mswin32
+RUBY = D:\Ruby\ruby-2.2.4-i386-mswin32
 RUBY_PLATFORM=i386-mswin32_100
-RUBY_INSTALL_NAME=msvcrt-ruby200
+RUBY_INSTALL_NAME=msvcrt-ruby220
 !endif
 !endif
 

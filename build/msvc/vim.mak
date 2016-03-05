@@ -13,11 +13,11 @@ DIRECTX=yes
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes
-PERL_VER=520
+PERL_VER=522
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-PERL = D:\Perl\Perl-5.20.1-64
+PERL = D:\Perl\Perl-5.22.1-64
 !else
-PERL = D:\Perl\Perl-5.20.1-32
+PERL = D:\Perl\Perl-5.22.1-32
 !endif
 !endif
 
@@ -26,13 +26,13 @@ PERL = D:\Perl\Perl-5.20.1-32
 DYNAMIC_PYTHON=yes
 PYTHON_VER=27
 DYNAMIC_PYTHON3=yes
-PYTHON3_VER=34
+PYTHON3_VER=35
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 PYTHON  = D:\Python\Python27
-PYTHON3 = D:\Python\Python34
+PYTHON3 = D:\Python\Python35
 !else
 PYTHON  = D:\Python\Python27-x86
-PYTHON3 = D:\Python\Python34-x86
+PYTHON3 = D:\Python\Python35-32
 !endif
 !endif
 
@@ -49,17 +49,17 @@ LUA= ..\..\build\msvc\target\install-x32\include\lua
 
 # RubyÇÃê›íË.
 !if !defined(DISABLE_IF) && !defined(DISABLE_RUBY)
-RUBY_VER=20
-RUBY_VER_LONG=2.0.0
+RUBY_VER=22
+RUBY_VER_LONG=2.2.0
 DYNAMIC_RUBY=yes
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-RUBY = D:\Ruby\ruby-2.0.0-p451-x64-mswin64
+RUBY = D:\Ruby\ruby-2.2.4-x64-mswin64
 RUBY_PLATFORM=x64-mswin64_100
-RUBY_INSTALL_NAME=x64-msvcrt-ruby200
+RUBY_INSTALL_NAME=x64-msvcrt-ruby220
 !else
-RUBY = D:\Ruby\ruby-2.0.0-p451-i386-mswin32
+RUBY = D:\Ruby\ruby-2.2.4-i386-mswin32
 RUBY_PLATFORM=i386-mswin32_100
-RUBY_INSTALL_NAME=msvcrt-ruby200
+RUBY_INSTALL_NAME=msvcrt-ruby220
 !endif
 !endif
 

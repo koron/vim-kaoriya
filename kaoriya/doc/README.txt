@@ -3,7 +3,7 @@
                                                          Version: 1.8
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 30-Aug-2015.
+                                                     Last Change: 29-Feb-2016.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -71,7 +71,7 @@ Vimの拡張機能について
   Perl(ActivePerl)との連携
     注意: PerlをインストールしなくてもVimは使用できます。
 
-    ActiveState社により公開されているActivePerl 5.20をインストールすることで、
+    ActiveState社により公開されているActivePerl 5.22をインストールすることで、
     Perlインターフェースを使用することができます。ActivePerlをインストールして
     いない場合は、Perlインターフェースは自動的に無効となります。Perlインター
     フェースの詳細については":help perl"としてVim付属のマニュアルを参照してく
@@ -98,10 +98,20 @@ Vimの拡張機能について
     - Python.org
         http://www.python.org/
 
+    Python 2.7.11 を利用する場合には、Python 2.7.11のバグを回避するために、管
+    理者として以下のコマンドを実行する必要があります。
+
+    - 32ビット版
+      reg copy HKLM\SOFTWARE\Python\PythonCore\2.7 HKLM\SOFTWARE\Python\PythonCore\2.7-32 /s /reg:32
+    - 64ビット版
+      reg copy HKLM\SOFTWARE\Python\PythonCore\2.7 HKLM\SOFTWARE\Python\PythonCore\2.7-32 /s /reg:64
+
+    参照: https://github.com/vim-jp/issues/issues/843#issuecomment-189205350
+
   Python3との連携
     注意: Python3をインストールしなくてもVimは使用できます。
 
-    Python.orgにより公開されているPython 3.4をインストールすることで、Pythonイ
+    Python.orgにより公開されているPython 3.5をインストールすることで、Pythonイ
     ンターフェースを使用することができます。Pythonをインストールしていない場合
     は、Pythonインターフェースは自動的に無効となります。Pythonインターフェース
     の詳細については":help python3"としてVim付属のマニュアルを参照してくださ
@@ -116,7 +126,7 @@ Vimの拡張機能について
   Rubyとの連携
     注意: RubyをインストールしなくてもVimは使用できます。
 
-    Ruby 2.0.0をインストールするとRubyインターフェースを利用できます。Rubyをイ
+    Ruby 2.2.4をインストールするとRubyインターフェースを利用できます。Rubyをイ
     ンストールしていない場合はRubyインターフェースは自動的に無効となります。
     Rubyインターフェースの詳細については":help ruby"としてVim付属のマニュアル
     を参照してください。

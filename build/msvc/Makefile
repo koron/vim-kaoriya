@@ -227,6 +227,7 @@ vim-build:
 vim-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak clean
+	- if exist vim.lib del vim.lib
 	cd "$(BUILD_DIR)"
 
 vimd-build:
@@ -237,6 +238,7 @@ vimd-build:
 vimd-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak DEBUG=yes clean
+	- if exist vimd.lib del vimd.lib
 	cd "$(BUILD_DIR)"
 
 gvim-build:
@@ -247,6 +249,7 @@ gvim-build:
 gvim-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes clean
+	- if exist gvim.lib del gvim.lib
 	cd "$(BUILD_DIR)"
 
 gvimd-build:
@@ -257,6 +260,7 @@ gvimd-build:
 gvimd-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes DEBUG=yes clean
+	- if exist gvimd.lib del gvimd.lib
 	cd "$(BUILD_DIR)"
 
 vim-install: vim-build gvim-build

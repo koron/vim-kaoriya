@@ -3,7 +3,7 @@
 " dicwin.vim - Dictionary window
 "
 " Maintainer:	MURAOKA Taro <koron.kaoriya@gmail.com>
-" Last Change:	26-Dec-2012.
+" Last Change:	08-Mar-2016.
 " Commands:	<C-k><C-k>  Search word under cursor.
 "		<C-k>/	    Search prompted word.
 "		<C-k>c	    Close dictionary window.
@@ -92,8 +92,8 @@ endfunction
 
 function! s:DicWinLeave()
   setlocal nowrap
-  normal! zt
   2 wincmd _
+  normal! zt
 endfunction
 
 function! s:DicWinUnload()

@@ -23,6 +23,7 @@ GETTEXT_DIR	= $(CONTRIB_DIR)\gettext
 VIMPROC_DIR	= $(CONTRIB_DIR)\vimproc
 VIMPROC_DLL	= vimproc_$(WINDOWS_CPUTYPE).dll
 LUAJIT_DIR	= $(CONTRIB_DIR)\luajit-2.0
+LANGJA_DIR	= $(CONTRIB_DIR)\lang-ja
 VIM_DIR		= ..\..\vim
 VIM_INSTALL_DIR	= $(INSTALL_DIR)\share\vim\runtime
 VIM_PATCH_DIR	= $(INSTALL_DIR)\share\vim\patch
@@ -81,6 +82,7 @@ archive-pre:
 	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
 	$(MAKE) vim-clean gvim-clean vim-install
 	$(MAKE) vim-mo-install vim-patch-install
+	$(MAKE) langja-install
 
 contrib: $(INSTALL_DIR)\bin\iconv.dll $(INSTALL_DIR)\bin\intl.dll \
 	$(INSTALL_DIR)\lib\libXpm.lib \
@@ -216,6 +218,28 @@ luajit-install: luajit-build
 luajit-clean:
 
 luajit-distclean: luajit-clean
+
+### lang-ja
+
+langja-install:
+	IF NOT EXIST "$(VIM_INSTALL_DIR)" MD "$(VIM_INSTALL_DIR)"
+	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES" \
+		MD "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES"
+	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES" \
+		MD "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES"
+	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES" \
+		MD "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES"
+	IF NOT EXIST "$(VIM_INSTALL_DIR)\doc" MD "$(VIM_INSTALL_DIR)\doc"
+	IF NOT EXIST "$(VIM_INSTALL_DIR)\tutor" MD "$(VIM_INSTALL_DIR)\tutor"
+	cd "$(LANGJA_DIR)"
+	make test
+	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo" 
+	-COPY src\po\ja.euc-jp.mo "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES\vim.mo" 
+	-COPY src\po\ja.sjis.mo "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES\vim.mo" 
+	-$(COPY) "runtime\lang" "$(VIM_INSTALL_DIR)\lang" menu_ja*.vim
+	-$(COPY) "runtime\doc" "$(VIM_INSTALL_DIR)\doc" *.UTF-8.1
+	-$(COPY) "runtime\tutor" "$(VIM_INSTALL_DIR)\tutor" tutor.ja.*
+	cd "$(BUILD_DIR)"
 
 ### VIM
 
@@ -358,6 +382,7 @@ build-release-pre:
 	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
 	$(MAKE) vim-clean gvim-clean vim-install
 	$(MAKE) vim-mo-install vim-patch-install
+	$(MAKE) langja-install
 	$(MAKE) build-dist
 
 build-release-core:
@@ -388,6 +413,7 @@ snapshot-archive:
 	xpm-build xpm-install xpm-clean xpm-distclean \
 	vimproc-build vimproc-install vimproc-clean vimproc-distclean \
 	luajit-build luajit-install luajit-clean luajit-distclean \
+	langja-install \
 	vim-build vim-clean vimd-build vimd-clean \
 	gvim-build gvim-clean gvimd-build gvimd-clean \
 	vim-install vim-mo-install vim-patch-install \

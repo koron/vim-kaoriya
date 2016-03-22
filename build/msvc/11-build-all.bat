@@ -42,7 +42,7 @@ START CMD /C "tools\msvc-nmake.bat" amd64 build-release-core
 
 REM Revert all patches.
 CD "%VIMDIR%"
-git checkout master
+REM git checkout master
 CD "%CURDIR%"
 
 :SUCCESS

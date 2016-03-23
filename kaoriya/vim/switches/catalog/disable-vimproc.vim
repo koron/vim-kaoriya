@@ -1,4 +1,4 @@
 scriptencoding utf-8
-" Disable vimproc help files.
+" Disable bundled vimproc.
 "
 " 同梱された vimproc を無効化します。

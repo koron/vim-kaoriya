@@ -1,4 +1,4 @@
-VIM_VER		= 7.4.1635
-PATCHSET_VER	= 20160322
+VIM_VER		= 7.4.1639
+PATCHSET_VER	= 20160323
 
 # vim:set ts=8 sts=8 sw=8 tw=0 noet ft=make:

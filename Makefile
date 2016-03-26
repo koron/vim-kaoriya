@@ -1,9 +1,9 @@
 include VERSION
 
 DISTDIR=dist
-CORE=vim-$(VERSION_VIM)+kaoriya-$(VERSION_KAORIYA)
+CORE=vim-$(VIM_VER)+kaoriya-$(PATCHSET_VER)
 CORE_TARGET=$(DISTDIR)/$(CORE).tar.bz2
-PATCH=vim-kaoriya-patches-$(VERSION_KAORIYA)
+PATCH=vim-kaoriya-patches-$(PATCHSET_VER)
 PATCH_TARGET=$(DISTDIR)/$(PATCH).tar.bz2
 PATCH_TMPDIR=$(PATCH_TARGET:.tar.bz2=)
 

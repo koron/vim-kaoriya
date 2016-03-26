@@ -6,7 +6,7 @@
 	url = https://github.com/vim-jp/autofmt.git
 [submodule "contrib/go-vim"]
 	path = contrib/go-vim
-	url = https://github.com/vim-jp/go-vim.git
+	url = https://github.com/vim-jp/vim-go-extra.git
 [submodule "contrib/lang-ja"]
 	path = contrib/lang-ja
 	url = https://github.com/vim-jp/lang-ja.git

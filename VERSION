@@ -1,2 +1,4 @@
-VERSION_VIM=7.4.1016
-VERSION_KAORIYA=20160101
+VIM_VER		= 7.4.1655
+PATCHSET_VER	= 20160326
+
+# vim:set ts=8 sts=8 sw=8 tw=0 noet ft=make:

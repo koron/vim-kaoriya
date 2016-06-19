@@ -8,8 +8,10 @@
 #     DISABLE_LUA=1	Disalbe Lua interfaces
 #     DISABLE_RUBY=1	Disalbe Ruby interfaces
 
-VIM_VER		= 74-kaoriya-$(WINDOWS_CPUTYPE)
+DIST_VER	= 74-kaoriya-$(WINDOWS_CPUTYPE)
 DATE_VER	= %%date:~-10,4%%%%date:~-5,2%%%%date:~-2,2%%
+
+!include ..\..\VERSION
 
 RTDIR_NAME	= vim74
 
@@ -27,9 +29,9 @@ LANGJA_DIR	= $(CONTRIB_DIR)\lang-ja
 VIM_DIR		= ..\..\vim
 VIM_INSTALL_DIR	= $(INSTALL_DIR)\share\vim\runtime
 VIM_PATCH_DIR	= $(INSTALL_DIR)\share\vim\patch
-VIM_DIST_DIR	= $(OUTPUT_DIR)\vim$(VIM_VER)
+VIM_DIST_DIR	= $(OUTPUT_DIR)\vim$(DIST_VER)
 KAORIYA_DIR	= ..\..\kaoriya
-SNAPSHOT_DIR	= $(OUTPUT_DIR)\vim$(VIM_VER)-snapshot
+SNAPSHOT_DIR	= $(OUTPUT_DIR)\vim$(DIST_VER)-snapshot
 
 MSVCRT_DIR	= $(VCINSTALLDIR)\redist\$(MSVCRT_CPUTYPE)\$(MSVCRT_SUBDIR)
 
@@ -368,7 +370,7 @@ archive-dist: build-dist
 
 zip-dist:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(VIM_VER)-$(DATE_VER).zip vim$(VIM_VER)
+	zip -r9q vim$(DIST_VER)-$(VIM_VER)-$(DATE_VER).zip vim$(DIST_VER)
 	cd "$(BUILD_DIR)"
 
 clean-dist:
@@ -403,7 +405,7 @@ snapshot-install:
 
 snapshot-archive:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(VIM_VER)-snapshot-$(DATE_VER).zip vim$(VIM_VER)-snapshot
+	zip -r9q vim$(DIST_VER)-snapshot-$(DATE_VER).zip vim$(DIST_VER)-snapshot
 	cd "$(BUILD_DIR)"
 
 

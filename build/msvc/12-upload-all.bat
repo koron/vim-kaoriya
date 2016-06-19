@@ -1,9 +1,9 @@
 @ECHO OFF
 
-SET DATE_VER=%date:~-10,4%%date:~-5,2%%date:~-2,2%
+FOR /F "usebackq tokens=1,2 delims==	 " %%i IN ("..\..\VERSION") do SET %%i=%%j
 
-SET RELZIP_W32=vim74-kaoriya-win32-%DATE_VER%.zip
-SET RELZIP_W64=vim74-kaoriya-win64-%DATE_VER%.zip
+SET RELZIP_W32=vim74-kaoriya-win32-%VIM_VER%-%PATCHSET_VER%.zip
+SET RELZIP_W64=vim74-kaoriya-win64-%VIM_VER%-%PATCHSET_VER%.zip
 
 REM Uplaod release files to server.
 

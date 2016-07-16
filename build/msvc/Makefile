@@ -250,6 +250,11 @@ vim-build:
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak
 	cd "$(BUILD_DIR)"
 
+vim-test: vim-build
+	cd "$(VIM_DIR)\src\testdir"
+	nmake /NOLOGO /F Make_dos.mak win32 clean
+	cd "$(BUILD_DIR)"
+
 vim-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak clean

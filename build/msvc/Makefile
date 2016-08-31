@@ -298,6 +298,7 @@ vim-install: vim-build gvim-build
 	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" \
 		vim.exe gvim.exe vimrun.exe
 	-$(COPY) "$(VIM_DIR)\src\xxd" "$(INSTALL_DIR)\bin" xxd.exe
+	-$(COPY) "$(VIM_DIR)\src\tee" "$(INSTALL_DIR)\bin" tee.exe
 
 vim-mo-install:
 	IF NOT EXIST "$(VIM_INSTALL_DIR)" MD "$(VIM_INSTALL_DIR)"
@@ -357,8 +358,8 @@ build-dist:
 # Vim and other executable and resource files.
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
-		vim.exe gvim.exe vimrun.exe xxd.exe iconv.dll intl.dll \
-		luajit.exe lua51.dll
+		vim.exe gvim.exe vimrun.exe xxd.exe tee.exe \
+		iconv.dll intl.dll luajit.exe lua51.dll
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	"$(INSTALL_DIR)\bin\vim.exe" -n -u NONE -U NONE --noplugin \

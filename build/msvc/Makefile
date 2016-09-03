@@ -100,6 +100,11 @@ clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-install
 distclean: iconv-distclean gettext-distclean xpm-distclean vimproc-distclean \
 	luajit-distclean
 
+version-interfaces:
+	@..\..\vim\src\vim.exe -e -s --noplugins -c "source tools/version-interfaces.vim"
+	@cat version-interfaces.out
+	@rm -f version-interfaces.out
+
 ### ICONV
 
 iconv-build:

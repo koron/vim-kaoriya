@@ -95,15 +95,21 @@ build: iconv-build gettext-build xpm-build vimproc-build luajit-build
 install: iconv-install gettext-install xpm-install vimproc-install \
 	luajit-install
 
-clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-install
+clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-clean \
+	version-clean
 
 distclean: iconv-distclean gettext-distclean xpm-distclean vimproc-distclean \
 	luajit-distclean
 
+version: version-interfaces
+
 version-interfaces:
-	@..\..\vim\src\vim.exe -e -s --noplugins -c "source tools/version-interfaces.vim"
+	-@..\..\vim\src\vim.exe -e -s --noplugins -c "source tools/version-interfaces.vim"
 	@cat version-interfaces.out
 	@rm -f version-interfaces.out
+
+version-clean:
+	rm -f version-interfaces.out
 
 ### ICONV
 

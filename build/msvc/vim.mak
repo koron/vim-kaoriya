@@ -13,11 +13,11 @@ DIRECTX=yes
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes
-PERL_VER=522
+PERL_VER=524
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-PERL = D:\Perl\Perl-5.22.1-64
+PERL = D:\Perl\Perl-5.24.0-64
 !else
-PERL = D:\Perl\Perl-5.22.1-32
+PERL = D:\Perl\Perl-5.24.0-32
 !endif
 !endif
 

@@ -95,10 +95,21 @@ build: iconv-build gettext-build xpm-build vimproc-build luajit-build
 install: iconv-install gettext-install xpm-install vimproc-install \
 	luajit-install
 
-clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-install
+clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-clean \
+	version-clean
 
 distclean: iconv-distclean gettext-distclean xpm-distclean vimproc-distclean \
 	luajit-distclean
+
+version: version-interfaces
+
+version-interfaces:
+	-@..\..\vim\src\vim.exe -e -s --noplugins -c "source tools/version-interfaces.vim"
+	@cat version-interfaces.out
+	@rm -f version-interfaces.out
+
+version-clean:
+	rm -f version-interfaces.out
 
 ### ICONV
 
@@ -250,6 +261,11 @@ vim-build:
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak
 	cd "$(BUILD_DIR)"
 
+vim-test: vim-build
+	cd "$(VIM_DIR)\src\testdir"
+	nmake /NOLOGO /F Make_dos.mak win32 clean
+	cd "$(BUILD_DIR)"
+
 vim-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak clean
@@ -293,6 +309,7 @@ vim-install: vim-build gvim-build
 	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" \
 		vim.exe gvim.exe vimrun.exe
 	-$(COPY) "$(VIM_DIR)\src\xxd" "$(INSTALL_DIR)\bin" xxd.exe
+	-$(COPY) "$(VIM_DIR)\src\tee" "$(INSTALL_DIR)\bin" tee.exe
 
 vim-mo-install:
 	IF NOT EXIST "$(VIM_INSTALL_DIR)" MD "$(VIM_INSTALL_DIR)"
@@ -352,8 +369,8 @@ build-dist:
 # Vim and other executable and resource files.
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
-		vim.exe gvim.exe vimrun.exe xxd.exe iconv.dll intl.dll \
-		luajit.exe lua51.dll
+		vim.exe gvim.exe vimrun.exe xxd.exe tee.exe \
+		iconv.dll intl.dll luajit.exe lua51.dll
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	"$(INSTALL_DIR)\bin\vim.exe" -n -u NONE -U NONE --noplugin \

@@ -13,11 +13,11 @@ DIRECTX=yes
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes
-PERL_VER=522
+PERL_VER=524
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-PERL = D:\Perl\Perl-5.22.1-64
+PERL = D:\Perl\Perl-5.24.0-64
 !else
-PERL = D:\Perl\Perl-5.22.1-32
+PERL = D:\Perl\Perl-5.24.0-32
 !endif
 !endif
 
@@ -49,17 +49,17 @@ LUA= ..\..\build\msvc\target\install-x32\include\lua
 
 # RubyÇÃê›íË.
 !if !defined(DISABLE_IF) && !defined(DISABLE_RUBY)
-RUBY_VER=22
-RUBY_VER_LONG=2.2.0
+RUBY_VER=23
+RUBY_VER_LONG=2.3.0
 DYNAMIC_RUBY=yes
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-RUBY = D:\Ruby\ruby-2.2.4-x64-mswin64
+RUBY = D:\Ruby\ruby-2.3.1-x64-mswin64
 RUBY_PLATFORM=x64-mswin64_100
-RUBY_INSTALL_NAME=x64-msvcrt-ruby220
+RUBY_INSTALL_NAME=x64-msvcrt-ruby230
 !else
-RUBY = D:\Ruby\ruby-2.2.4-i386-mswin32
+RUBY = D:\Ruby\ruby-2.3.1-i386-mswin32
 RUBY_PLATFORM=i386-mswin32_100
-RUBY_INSTALL_NAME=msvcrt-ruby220
+RUBY_INSTALL_NAME=msvcrt-ruby230
 !endif
 !endif
 

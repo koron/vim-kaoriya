@@ -3,7 +3,7 @@
                                                          Version: 1.8.1
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 19-Jun-2016.
+                                                     Last Change: 04-Sep-2016.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -72,7 +72,7 @@ Vimの拡張機能について
   Perl(ActivePerl)との連携
     注意: PerlをインストールしなくてもVimは使用できます。
 
-    ActiveState社により公開されているActivePerl 5.22をインストールすることで、
+    ActiveState社により公開されているActivePerl 5.24をインストールすることで、
     Perlインターフェースを使用することができます。ActivePerlをインストールして
     いない場合は、Perlインターフェースは自動的に無効となります。Perlインター
     フェースの詳細については":help perl"としてVim付属のマニュアルを参照してく
@@ -127,7 +127,7 @@ Vimの拡張機能について
   Rubyとの連携
     注意: RubyをインストールしなくてもVimは使用できます。
 
-    Ruby 2.2.4をインストールするとRubyインターフェースを利用できます。Rubyをイ
+    Ruby 2.3.1をインストールするとRubyインターフェースを利用できます。Rubyをイ
     ンストールしていない場合はRubyインターフェースは自動的に無効となります。
     Rubyインターフェースの詳細については":help ruby"としてVim付属のマニュアル
     を参照してください。

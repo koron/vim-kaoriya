@@ -1,6 +1,9 @@
 @ECHO OFF
 
-SET DATE_VER=%date:~-10,4%%date:~-5,2%%date:~-2,2%
+FOR /F "usebackq tokens=1,2 delims==	 " %%i IN ("..\..\VERSION") do SET %%i=%%j
+SET RELZIP_W32=vim%VIM_VER_SHORT%-kaoriya-win32-%VIM_VER%-%PATCHSET_VER%.zip
+SET RELZIP_W64=vim%VIM_VER_SHORT%-kaoriya-win64-%VIM_VER%-%PATCHSET_VER%.zip
+
 SET CURDIR=%~dp0
 SET VIMDIR=%~dp0..\..\vim
 
@@ -11,10 +14,10 @@ IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CD "%CURDIR%"
 
 REM Clear previous releases.
-RD /S /Q "target\vim74-kaoriya-win32"
-RD /S /Q "target\vim74-kaoriya-win64"
-DEL /F "target\vim74-kaoriya-win32-%DATE_VER%.zip"
-DEL /F "target\vim74-kaoriya-win64-%DATE_VER%.zip"
+RD /S /Q "target\vim%VIM_VER_SHORT%-kaoriya-win32"
+RD /S /Q "target\vim%VIM_VER_SHORT%-kaoriya-win64"
+DEL /F "target\%RELZIP_W32%"
+DEL /F "target\%RELZIP_W64%"
 
 REM Build releases.
 CMD /C "tools\msvc-nmake.bat" x86 build-release-pre

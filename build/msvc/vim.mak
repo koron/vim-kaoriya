@@ -50,7 +50,7 @@ LUA= ..\..\build\msvc\target\install-x32\include\lua
 # RubyÇÃê›íË.
 !if !defined(DISABLE_IF) && !defined(DISABLE_RUBY)
 RUBY_VER=23
-RUBY_VER_LONG=2.3.0
+RUBY_API_VER_LONG=2.3.0
 DYNAMIC_RUBY=yes
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 RUBY = D:\Ruby\ruby-2.3.1-x64-mswin64

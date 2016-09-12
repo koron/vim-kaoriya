@@ -8,12 +8,12 @@
 #     DISABLE_LUA=1	Disalbe Lua interfaces
 #     DISABLE_RUBY=1	Disalbe Ruby interfaces
 
-DIST_VER	= 74-kaoriya-$(WINDOWS_CPUTYPE)
-DATE_VER	= %%date:~-10,4%%%%date:~-5,2%%%%date:~-2,2%%
-
 !include ..\..\VERSION
 
-RTDIR_NAME	= vim74
+DIST_VER	= $(VIM_VER_SHORT)-kaoriya-$(WINDOWS_CPUTYPE)
+DATE_VER	= %%date:~-10,4%%%%date:~-5,2%%%%date:~-2,2%%
+
+RTDIR_NAME	= vim$(VIM_VER_SHORT)
 
 BUILD_DIR	= $(MAKEDIR)
 OUTPUT_DIR	= $(MAKEDIR)\target

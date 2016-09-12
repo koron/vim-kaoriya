@@ -1,8 +1,8 @@
-## 2016/09/12 の変更点
+## 2016/09/12 縺ｮ螟画峩轤ｹ
 
-*   ベースコードを8.0.0000に更新しました
-*   contrib 更新
+*   繝吶�ｼ繧ｹ繧ｳ繝ｼ繝峨ｒ8.0.0000縺ｫ譖ｴ譁ｰ縺励∪縺励◆
+*   contrib 譖ｴ譁ｰ
     *   lang-ja (2016-09-11 4be9b93)
-*   過去の変更点(CHANGES.txt)を移動しました
+*   驕主悉縺ｮ螟画峩轤ｹ(CHANGES.txt)繧堤ｧｻ蜍輔＠縺ｾ縺励◆
 
     <https://github.com/koron/vim-kaoriya/tree/master/old/CHANGES-7.txt>

@@ -1,9 +1,9 @@
-                   Vim version 7.4 香り屋版 導入マニュアル
+                   Vim version 8.0 香り屋版 導入マニュアル
 
-                                                         Version: 1.8.1
+                                                         Version: 1.9.0
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 04-Sep-2016.
+                                                     Last Change: 12-Sep-2016.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -20,12 +20,12 @@
   いるので、解凍してシステム内の好きな場所に配置してください。
 
   32bit版
-    配布ファイル: vim74-kaoriya-win32-V.V.VVV-YYYYMMDD.zip
-    Vimプログラムフォルダ: vim74-kaoriya-win32.zip
+    配布ファイル: vim80-kaoriya-win32-V.V.VVV-YYYYMMDD.zip
+    Vimプログラムフォルダ: vim80-kaoriya-win32.zip
 
   64bit版
-    配布ファイル: vim74-kaoriya-win64-V.V.V-YYYYMMDD.zip
-    Vimプログラムフォルダ: vim74-kaoriya-win64
+    配布ファイル: vim80-kaoriya-win64-V.V.V-YYYYMMDD.zip
+    Vimプログラムフォルダ: vim80-kaoriya-win64
 
   上記のV.V.VにはベースとなったVimのバージョンがパッチ番号まで含めて入ります。
   上記のYYYYMMDDにはリリースの年月日が入ります。
@@ -217,10 +217,12 @@ Vimの拡張機能について
       https://github.com/vim-jp/issues/issues (バグ報告、機能要望)
   - vim_jp Google グループ
       http://groups.google.com/group/vim_jp/?hl=ja
-  - Vimドキュメント翻訳(vimdoc-ja)
+  - 日本語ドキュメント
       https://github.com/vim-jp/vimdoc-ja/
+      https://github.com/vim-jp/vimdoc-ja-working/
+      https://github.com/vim-jp/lang-ja/
   - 香り屋版メンテナ
-      http://www.kaoriya.net/software/vim
+      https://github.com/koron/vim-kaoriya/
       MURAOKA Taro <koron.kaoriya@gmail.com>
       Twitter @kaoriya
 

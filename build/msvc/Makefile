@@ -387,7 +387,7 @@ archive-dist: build-dist
 
 zip-dist:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(DIST_VER)-$(VIM_VER)-$(DATE_VER).zip vim$(DIST_VER)
+	zip -r9q vim$(DIST_VER)-$(VIM_VER)-$(PATCHSET_VER).zip vim$(DIST_VER)
 	cd "$(BUILD_DIR)"
 
 clean-dist:
@@ -422,7 +422,7 @@ snapshot-install:
 
 snapshot-archive:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(DIST_VER)-snapshot-$(DATE_VER).zip vim$(DIST_VER)-snapshot
+	zip -r9q vim$(DIST_VER)-snapshot-$(PATCHSET_VER).zip vim$(DIST_VER)-snapshot
 	cd "$(BUILD_DIR)"
 
 

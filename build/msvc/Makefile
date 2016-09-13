@@ -8,12 +8,12 @@
 #     DISABLE_LUA=1	Disalbe Lua interfaces
 #     DISABLE_RUBY=1	Disalbe Ruby interfaces
 
-DIST_VER	= 74-kaoriya-$(WINDOWS_CPUTYPE)
-DATE_VER	= %%date:~-10,4%%%%date:~-5,2%%%%date:~-2,2%%
-
 !include ..\..\VERSION
 
-RTDIR_NAME	= vim74
+DIST_VER	= $(VIM_VER_SHORT)-kaoriya-$(WINDOWS_CPUTYPE)
+DATE_VER	= %%date:~-10,4%%%%date:~-5,2%%%%date:~-2,2%%
+
+RTDIR_NAME	= vim$(VIM_VER_SHORT)
 
 BUILD_DIR	= $(MAKEDIR)
 OUTPUT_DIR	= $(MAKEDIR)\target
@@ -387,7 +387,7 @@ archive-dist: build-dist
 
 zip-dist:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(DIST_VER)-$(VIM_VER)-$(DATE_VER).zip vim$(DIST_VER)
+	zip -r9q vim$(DIST_VER)-$(VIM_VER)-$(PATCHSET_VER).zip vim$(DIST_VER)
 	cd "$(BUILD_DIR)"
 
 clean-dist:
@@ -422,7 +422,7 @@ snapshot-install:
 
 snapshot-archive:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(DIST_VER)-snapshot-$(DATE_VER).zip vim$(DIST_VER)-snapshot
+	zip -r9q vim$(DIST_VER)-snapshot-$(PATCHSET_VER).zip vim$(DIST_VER)-snapshot
 	cd "$(BUILD_DIR)"
 
 

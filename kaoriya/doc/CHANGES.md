@@ -5,6 +5,8 @@
     *   lang-ja (2016-09-22 8080fc7)
     *   LuaJIT (2016-10-13 3f43f09)
     *   vimdoc-ja (2016-10-14 4a43b59)
+*   既知の問題
+    *   https://github.com/vim-jp/issues/issues/970
 
 ## 2016/09/13 の変更点
 

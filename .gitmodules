@@ -31,3 +31,6 @@
 [submodule "patches"]
 	path = patches
 	url = https://github.com/koron/vim-kaoriya-patches.git
+[submodule "contrib/diffutils"]
+	path = contrib/diffutils
+	url = https://github.com/koron/diffutils.git

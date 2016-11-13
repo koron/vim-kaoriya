@@ -1,5 +1,7 @@
 ## 2016/11/XX の変更点
 
+*   contrib 追加
+    *   diffutils (2016-11-13 4a42ca2)
 *   contrib 更新
     *   LuaJIT (2016-10-20 716f2da)
     *   vimdoc-ja (2016-11-03 6b6b902)

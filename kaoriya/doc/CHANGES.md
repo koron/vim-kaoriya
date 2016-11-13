@@ -1,5 +1,6 @@
 ## 2016/11/XX の変更点
 
+*   diff.exe をバンドルするようにしました
 *   contrib 追加
     *   diffutils (2016-11-13 4a42ca2)
 *   contrib 更新

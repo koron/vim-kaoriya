@@ -21,3 +21,11 @@
 
 1.  https://www.virustotal.com/ で配布URL & zip ファイルを検査
 2.  koron/vim-kaoriya にタグを追加し、release を作成し zip を追加して公開
+
+## テストの実行方法
+
+```
+nmake rebuild-vim
+nmake vim-test
+nmake gvim-test
+```

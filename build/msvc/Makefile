@@ -115,6 +115,8 @@ version-interfaces:
 version-clean:
 	rm -f version-interfaces.out
 
+rebuild-vim: vim-clean vim-build gvim-clean gvim-build
+
 ### ICONV
 
 iconv-build:
@@ -287,7 +289,9 @@ vim-build:
 
 vim-test: vim-build
 	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_dos.mak win32 clean
+	nmake /NOLOGO /F Make_dos.mak clean
+	nmake /NOLOGO /F Make_dos.mak win32
+	nmake /NOLOGO /F Make_dos.mak clean
 	cd "$(BUILD_DIR)"
 
 vim-clean:
@@ -310,6 +314,13 @@ vimd-clean:
 gvim-build:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes
+	cd "$(BUILD_DIR)"
+
+gvim-test: gvim-build
+	cd "$(VIM_DIR)\src\testdir"
+	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim clean
+	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim gui
+	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim clean
 	cd "$(BUILD_DIR)"
 
 gvim-clean:

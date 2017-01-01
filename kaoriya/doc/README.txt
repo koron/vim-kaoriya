@@ -1,9 +1,9 @@
                    Vim version 8.0 香り屋版 導入マニュアル
 
-                                                         Version: 1.9.0
+                                                         Version: 1.9.1
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 12-Sep-2016.
+                                                     Last Change: 01-Jan-2017.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -20,7 +20,7 @@
   いるので、解凍してシステム内の好きな場所に配置してください。
 
   32bit版
-    配布ファイル: vim80-kaoriya-win32-V.V.VVV-YYYYMMDD.zip
+    配布ファイル: vim80-kaoriya-win32-V.V.V-YYYYMMDD.zip
     Vimプログラムフォルダ: vim80-kaoriya-win32.zip
 
   64bit版

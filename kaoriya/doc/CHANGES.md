@@ -3,6 +3,8 @@
 *   ベースコードを8.0.0160に更新しました
 *   contrib 更新
     *   vimdoc-ja (2017-01-07 30cc0e1)
+*   Python 2利用時に警告を出すための実験パッチを追加
+    <https://github.com/vim-jp/issues/issues/1008>
 
 ## 2017/01/01 の変更点
 

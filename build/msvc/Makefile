@@ -294,6 +294,11 @@ vim-test: vim-build
 	nmake /NOLOGO /F Make_dos.mak clean
 	cd "$(BUILD_DIR)"
 
+vim-test-clean:
+	cd "$(VIM_DIR)\src\testdir"
+	nmake /NOLOGO /F Make_dos.mak clean
+	cd "$(BUILD_DIR)"
+
 vim-clean:
 	cd "$(VIM_DIR)\src"
 	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak clean

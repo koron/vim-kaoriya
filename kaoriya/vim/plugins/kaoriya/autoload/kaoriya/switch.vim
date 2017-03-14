@@ -1,7 +1,7 @@
 scriptencoding utf-8
 " vim:set ts=8 sts=2 sw=2 tw=0 et:
 "
-" Switches by existance of files in $VIM/switches/enabled directory.
+" Switches by existence of files in $VIM/switches/enabled directory.
 "
 " (ほぼ)起動時の$VIM/switches/enabledディレクトリ下のファイルの有無を調べるス
 " イッチ.

@@ -8,7 +8,7 @@
 " Commands:
 "   :Hankaku	  Convert to HANKAKU.
 "   :Zenkaku	  Convert to ZENKAKU.
-"   :ToggleHZ	  Toggole convert between HANKAKU and ZENKAKU.
+"   :ToggleHZ	  Toggle convert between HANKAKU and ZENKAKU.
 "
 " Functions:
 "   ToHankaku(str)	Convert given string to HANKAKU.
@@ -19,7 +19,7 @@
 
 " Japanese Description:
 " ƒRƒ}ƒ“ƒh:
-"   :[raneg]Hankaku
+"   :[range]Hankaku
 "   :[range]Zenkaku
 "   :[range]ToggleHZ
 "   :[range]HzjaConvert {target}

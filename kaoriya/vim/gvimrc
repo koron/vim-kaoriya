@@ -4,7 +4,7 @@ scriptencoding utf-8
 " An example for a Japanese version gvimrc file.
 " 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim 7.4
 "
-" Last Change: 23-Mar-2016.
+" Last Change: 26-Mar-2017.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -46,7 +46,7 @@ endif
 " ユーザ優先設定($HOME/.gvimrc_first.vim)があれば読み込む。読み込んだ後に変
 " 数g:gvimrc_first_finishに非0な値が設定されていた場合には、それ以上の設定
 " ファイルの読込を中止する。
-if 0 && exists('$HOME') && filereadable($HOME . '/.gvimrc_first.vim')
+if 1 && exists('$HOME') && filereadable($HOME . '/.gvimrc_first.vim')
   unlet! g:gvimrc_first_finish
   source $HOME/.gvimrc_first.vim
   if exists('g:gvimrc_first_finish') && g:gvimrc_first_finish != 0

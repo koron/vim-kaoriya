@@ -1,8 +1,11 @@
-## 2017/01/15 の変更点
+## 2017/05/02 の変更点
 
 *   ベースコードを8.0.0187に更新しました
 *   contrib 更新
-    *   vimdoc-ja (2017-01-07 30cc0e1)
+    *   autofmt (2017-02-13 99f2b50)
+    *   lang-ja (2017-02-16 92ba192)
+    *   LuaJIT (2017-05-01 8271c643c)
+    *   vimdoc-ja (2017-04-22 8d0c593d)
 *   Python 2利用時に警告を出すための実験パッチを追加
     <https://github.com/vim-jp/issues/issues/1008>
 

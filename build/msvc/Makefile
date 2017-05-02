@@ -3,10 +3,10 @@
 # Switches:
 #
 #   DISABLE_IF=1	Disable all language interfaces
-#     DISABLE_PERL=1	Disalbe Perl interfaces
-#     DISABLE_PYTHON=1	Disalbe Python interfaces
-#     DISABLE_LUA=1	Disalbe Lua interfaces
-#     DISABLE_RUBY=1	Disalbe Ruby interfaces
+#     DISABLE_PERL=1	Disable Perl interfaces
+#     DISABLE_PYTHON=1	Disable Python interfaces
+#     DISABLE_LUA=1	Disable Lua interfaces
+#     DISABLE_RUBY=1	Disable Ruby interfaces
 
 !include ..\..\VERSION
 
@@ -291,6 +291,11 @@ vim-test: vim-build
 	cd "$(VIM_DIR)\src\testdir"
 	nmake /NOLOGO /F Make_dos.mak clean
 	nmake /NOLOGO /F Make_dos.mak win32
+	nmake /NOLOGO /F Make_dos.mak clean
+	cd "$(BUILD_DIR)"
+
+vim-test-clean:
+	cd "$(VIM_DIR)\src\testdir"
 	nmake /NOLOGO /F Make_dos.mak clean
 	cd "$(BUILD_DIR)"
 

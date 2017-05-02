@@ -1,6 +1,6 @@
 " vi:set ts=8 sts=2 sw=2 tw=0:
 "
-" cmdex.vim - Extra coomands
+" cmdex.vim - Extra commands
 "
 " Maintainer:	Muraoka Taro <koron.kaoriya@gmail.com>
 " Last Change:	19-Mar-2013.

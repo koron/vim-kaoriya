@@ -364,7 +364,7 @@ endfunction
 
 "
 " Strftime2({format} [, {time}])
-"   Enchanced version of strftime().
+"   Enhanced version of strftime().
 "
 "   strftime()のフォーマット拡張バージョン。フォーマット書式はほとんどオリジ
 "   ナルと一緒。しかし月の英語名に置換わる特別な書式 %{n}m が使用可能。{n}に

@@ -365,6 +365,48 @@ vim-patch-install:
 	-$(COPY) "..\patches\master" "$(VIM_PATCH_DIR)" *.diff series
 	cd "$(BUILD_DIR)"
 
+### PDB
+
+PDB_DIST_NAME	= vim$(DIST_VER)-pdb
+PDB_DIST_ZIP	= vim$(DIST_VER)-$(VIM_VER)-$(PATCHSET_VER)-pdb.zip
+PDB_DIST_DIR	= $(OUTPUT_DIR)\$(PDB_DIST_NAME)
+
+pdb-build: $(VIM_DIR)\src\vim.pdb $(VIM_DIR)\src\gvim.pdb
+
+pdb-install: $(INSTALL_DIR)\bin\vim.pdb $(INSTALL_DIR)\bin\gvim.pdb
+
+pdb-distdir: $(PDB_DIST_DIR)\vim.pdb $(PDB_DIST_DIR)\gvim.pdb
+
+pdb-archive: $(OUTPUT_DIR)\$(PDB_DIST_ZIP)
+
+$(VIM_DIR)\src\vim.pdb:
+	$(MAKE) vim-build
+
+$(VIM_DIR)\src\gvim.pdb:
+	$(MAKE) gvim-build
+
+$(PDB_DIST_DIR):
+	IF NOT EXIST "$(PDB_DIST_DIR)" MKDIR "$(PDB_DIST_DIR)"
+
+$(INSTALL_DIR)\bin\vim.pdb: $(VIM_DIR)\src\vim.pdb
+	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" vim.pdb
+
+$(INSTALL_DIR)\bin\gvim.pdb: $(VIM_DIR)\src\gvim.pdb
+	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" gvim.pdb
+
+$(PDB_DIST_DIR)\vim.pdb: $(INSTALL_DIR)\bin\vim.pdb
+	$(MAKE) $(PDB_DIST_DIR)
+	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" vim.pdb
+
+$(PDB_DIST_DIR)\gvim.pdb: $(INSTALL_DIR)\bin\gvim.pdb
+	$(MAKE) $(PDB_DIST_DIR)
+	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" gvim.pdb
+
+$(OUTPUT_DIR)\$(PDB_DIST_ZIP): $(PDB_DIST_DIR)\vim.pdb $(PDB_DIST_DIR)\gvim.pdb
+	cd "$(OUTPUT_DIR)"
+	zip -r9q $(PDB_DIST_ZIP) $(PDB_DIST_NAME)
+	cd "$(BUILD_DIR)"
+
 ### DISTRIBUTION
 
 build-dist:
@@ -444,11 +486,14 @@ build-release-pre:
 	$(MAKE) vim-install vim-mo-install vim-patch-install
 	$(MAKE) langja-install
 	$(MAKE) build-dist
-	$(MAKE) vim-clean gvim-clean
+	$(MAKE) pdb-distdir
 
 build-release-core:
 	$(MAKE) zip-dist
+	$(MAKE) pdb-archive
 
+build-release-post:
+	$(MAKE) vim-clean gvim-clean
 
 snapshot: snapshot-build snapshot-install snapshot-archive
 
@@ -479,6 +524,7 @@ snapshot-archive:
 	vim-build vim-clean vimd-build vimd-clean \
 	gvim-build gvim-clean gvimd-build gvimd-clean \
 	vim-install vim-mo-install vim-patch-install \
+	pdb-build pdb-install pdb-distdir pdb-archive \
 	build-dist archive-dist zip-dist clean-dist \
 	build-release-pre build-release-core \
 	snapshot

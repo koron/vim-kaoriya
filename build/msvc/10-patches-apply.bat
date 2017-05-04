@@ -1,9 +1,6 @@
 @ECHO OFF
 
-SET GUILTCMD=sh /usr/local/bin/guilt
-
-SET CURDIR=%~dp0
-SET VIMDIR=%~dp0..\..\vim
+CALL tools\command-common.bat
 
 CD "%VIMDIR%"
 %GUILTCMD% pop -a

@@ -1,17 +1,6 @@
 @ECHO OFF
 
-FOR /F "usebackq tokens=1,2 delims==	 " %%i IN ("..\..\VERSION") do SET %%i=%%j
-
-SET PREFIX=vim%VIM_VER_SHORT%
-SET SUFFIX=%VIM_VER%-%PATCHSET_VER%
-
-SET RELZIP_W32=%PREFIX%-kaoriya-win32-%SUFFIX%.zip
-SET RELZIP_W64=%PREFIX%-kaoriya-win64-%SUFFIX%.zip
-SET PDBZIP_W32=%PREFIX%-kaoriya-win32-%SUFFIX%-pdb.zip
-SET PDBZIP_W64=%PREFIX%-kaoriya-win64-%SUFFIX%-pdb.zip
-
-SET CURDIR=%~dp0
-SET VIMDIR=%~dp0..\..\vim
+CALL tools\command-common.bat
 
 REM Apply all patches.
 CD "%VIMDIR%"

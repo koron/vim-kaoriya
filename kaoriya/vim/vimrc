@@ -155,7 +155,7 @@ set formatoptions+=mM
 set nonumber
 " ルーラーを表示 (noruler:非表示)
 set ruler
-" タブや改行を表示 (list:表示)
+" タブや改行を非表示 (list:表示)
 set nolist
 " どの文字でタブや改行を表示するかを設定
 "set listchars=tab:>-,extends:<,trail:-,eol:<

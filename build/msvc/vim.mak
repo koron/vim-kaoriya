@@ -7,8 +7,11 @@ USE_MSVCRT=yes
 MIGEMO=yes
 MAP=no
 
-# DirectWrite experiment (patch-direct_write.diff)
+# DirectWrite support.
 DIRECTX=yes
+
+# Terminal support.
+TERMINAL=yes
 
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)

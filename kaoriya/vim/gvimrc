@@ -2,9 +2,9 @@ scriptencoding utf-8
 " vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 "
 " An example for a Japanese version gvimrc file.
-" 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim 7.4
+" 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim 8.0
 "
-" Last Change: 26-Mar-2017.
+" Last Change: 17-Sep-2017.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -65,6 +65,9 @@ endif
 " カラー設定:
 colorscheme morning
 
+" 端末モード関連の色設定
+highlight Terminal guifg=lightgrey guibg=grey20
+
 "---------------------------------------------------------------------------
 " フォント設定:
 "
@@ -104,12 +107,8 @@ if has('multi_byte_ime') || has('xim')
   " IME ON時のカーソルの色を設定(設定例:紫)
   highlight CursorIM guibg=Purple guifg=NONE
   " 挿入モード・検索モードでのデフォルトのIME状態設定
-  set iminsert=0 imsearch=0
-  if has('xim') && has('GUI_GTK')
-    " XIMの入力開始キーを設定:
-    " 下記の s-space はShift+Spaceの意味でkinput2+canna用設定
-    "set imactivatekey=s-space
-  endif
+  " (8.0.1114 でデフォルトになったが念のため残してある)
+  "set iminsert=0 imsearch=0
   " 挿入モードでのIME状態を記憶させない場合、次行のコメントを解除
   "inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif

@@ -67,10 +67,12 @@ RUBY_INSTALL_NAME=msvcrt-ruby230
 !endif
 
 # XPMÇÃê›íË
+!if !defined(DISABLE_XPM)
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 XPM=..\..\build\msvc\target\install-x64
 !else
 XPM=..\..\build\msvc\target\install-x32
+!endif
 !endif
 
 # +channel feature for non-GUI

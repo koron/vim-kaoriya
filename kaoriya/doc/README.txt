@@ -1,9 +1,9 @@
                    Vim version 8.0 香り屋版 導入マニュアル
 
-                                                         Version: 1.9.1
+                                                         Version: 1.9.2
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 01-Jan-2017.
+                                                     Last Change: 25-Nov-2017.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -55,11 +55,11 @@ Vimの拡張機能について
     現在のVimはctagsを同梱していません。必要とする方は以下のサイトから各自入手
     しインストールしてください。
 
-    - h_east's website (ctags日本語対応版バイナリ配布場所)
-        http://hp.vector.co.jp/authors/VA025040/
+    - Universal Ctags
+        https://ctags.io/
 
-    - ctagsオリジナルサイト
-        http://ctags.sourceforge.net/
+    - Windows 版ダウンロード
+        https://github.com/universal-ctags/ctags-win32/releases
 
   Luaとの連携
     KaoriYa版にはLua (LuaJIT)がバンドルされているので、Luaインターフェースは自

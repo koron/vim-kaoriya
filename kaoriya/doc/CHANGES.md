@@ -6,7 +6,7 @@
 *   色付き絵文字に対応しました
 *   universal ctags への案内に切り替えました
 *   contrib 更新
-    *   lang-ja (2018-05-18 06429c8)
+    *   lang-ja (2018-05-18 ed89d1d)
     *   LuaJIT (2018-04-22 a90e7795ca)
     *   vimdoc-ja (2018-03-23 3e807ea2)
     *   vimproc (2018-01-07 2300224)

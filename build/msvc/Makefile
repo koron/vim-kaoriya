@@ -328,7 +328,6 @@ vim-test: vim-build
 	cd "$(VIM_DIR)\src\testdir"
 	nmake /NOLOGO /F Make_dos.mak clean
 	nmake /NOLOGO /F Make_dos.mak win32
-	nmake /NOLOGO /F Make_dos.mak clean
 	cd "$(BUILD_DIR)"
 
 vim-test-clean:
@@ -362,6 +361,10 @@ gvim-test: gvim-build
 	cd "$(VIM_DIR)\src\testdir"
 	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim clean
 	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim gui
+	cd "$(BUILD_DIR)"
+
+gvim-test-clean:
+	cd "$(VIM_DIR)\src\testdir"
 	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim clean
 	cd "$(BUILD_DIR)"
 

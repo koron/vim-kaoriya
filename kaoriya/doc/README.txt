@@ -1,4 +1,4 @@
-                   Vim version 8.0 香り屋版 導入マニュアル
+                   Vim version 8.1 香り屋版 導入マニュアル
 
                                                          Version: 1.9.3
                                                           Author: MURAOKA Taro

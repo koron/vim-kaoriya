@@ -1,14 +1,14 @@
-                   Vim version 8.0 香り屋版 導入マニュアル
+                   Vim version 8.1 香り屋版 導入マニュアル
 
-                                                         Version: 1.9.3
+                                                         Version: 1.10.0
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 18-May-2018.
+                                                     Last Change: 13-Mar-2019.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
 
-  オリジナルのVimはhttp://www.vim.org/で公開されており、そのままでも日本語を含
+  オリジナルのVimはhttps://www.vim.org/で公開されており、そのままでも日本語を含
   むテキストは編集できますが、香り屋では日本語をより扱い易くするための修正と追
   加を行い香り屋版として公開しています。
 
@@ -82,7 +82,7 @@ Vimの拡張機能について
     をインストールしてください。
 
     - ActiveState社 (ActivePerl)
-        http://www.activestate.com/
+        https://www.activestate.com/
 
   Pythonとの連携
     注意: PythonをインストールしなくてもVimは使用できます。
@@ -97,7 +97,7 @@ Vimの拡張機能について
     Pythonをインストールしてください。
 
     - Python.org
-        http://www.python.org/
+        https://www.python.org/
 
     Python 2.7.11 を利用する場合には、Python 2.7.11のバグを回避するために、管
     理者として以下のコマンドを実行する必要があります。
@@ -122,7 +122,7 @@ Vimの拡張機能について
     Python3をインストールしてください。
 
     - Python.org
-        http://www.python.org/
+        https://www.python.org/
 
   Rubyとの連携
     注意: RubyをインストールしなくてもVimは使用できます。
@@ -136,9 +136,9 @@ Vimの拡張機能について
     Rubyをインストールしてください。
 
     - Ruby 配布サイト
-        http://rubyinstaller.org/
+        https://rubyinstaller.org/
     - Ruby全般の情報
-        http://www.ruby-lang.org/ja/
+        https://www.ruby-lang.org/ja/
 
 使用許諾
   香り屋版のライセンスはオリジナルのVimに従います。詳しくはorigdoc/README.txt
@@ -154,7 +154,7 @@ Vimの拡張機能について
     ん。洋書などが入用の際には、進んでご利用ください。
 
     - 買い物による寄付
-      http://iccf-holland.org/click.html
+      https://iccf-holland.org/click.html
 
   Vim開発スポンサー制度
     Vim開発スポンサー制度と機能要望投票制度が始まりました。有志がVimの開発にお
@@ -166,7 +166,7 @@ Vimの拡張機能について
     には「Hall of honour」に掲載されます。詳細は以下のURLを参照してください。
 
     - Sponsor Vim development
-      http://www.vim.org/sponsor/index.php
+      https://www.vim.org/sponsor/index.php
 
 オリジナルとの相違点
   ソース差分
@@ -198,7 +198,7 @@ Vimの拡張機能について
   なことでもわからないことがあるのならばここで聞いてみると良いでしょう。きっと
   何らかの助けにはなるはずです。
 
-    http://groups.google.com/group/vim_jp/?hl=ja
+    https://groups.google.com/group/vim_jp/?hl=ja
 
   もちろんメールで香り屋版メンテナに直接聞いてもらっても構いません。日本語化部
   分などの不都合は香り屋版メンテナまで連絡をいただければ、折をみて修正いたしま
@@ -210,13 +210,14 @@ Vimの拡張機能について
   クできるかもしれません。Vim日本語版等の関連情報は次のURLにあります。
 
   - Vim本家
-      http://www.vim.org/
+      https://www.vim.org/
       https://github.com/vim/vim
   - Vimの日本コミュニティvim-jp
-      http://vim-jp.org/
+      https://vim-jp.org/
       https://github.com/vim-jp/issues/issues (バグ報告、機能要望)
+      https://vim-jp.org/docs/chat.html (チャット)
   - vim_jp Google グループ
-      http://groups.google.com/group/vim_jp/?hl=ja
+      https://groups.google.com/group/vim_jp/?hl=ja
   - 日本語ドキュメント
       https://github.com/vim-jp/vimdoc-ja/
       https://github.com/vim-jp/vimdoc-ja-working/

@@ -3,7 +3,7 @@
                                                          Version: 1.10.0
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 13-Mar-2019.
+                                                     Last Change: 14-Mar-2019.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
@@ -127,13 +127,16 @@ Vimの拡張機能について
   Rubyとの連携
     注意: RubyをインストールしなくてもVimは使用できます。
 
-    Ruby 2.3.1をインストールするとRubyインターフェースを利用できます。Rubyをイ
+    Ruby 2.6.1をインストールするとRubyインターフェースを利用できます。Rubyをイ
     ンストールしていない場合はRubyインターフェースは自動的に無効となります。
     Rubyインターフェースの詳細については":help ruby"としてVim付属のマニュアル
     を参照してください。
 
     64bit版のVimを使う場合は64bit版のRubyを、32bit版を使う場合は32bit版の
     Rubyをインストールしてください。
+
+    Ruby 2.6.1 からは従来のbinフォルダだけでなくbin\ruby_builtin_dllsフォルダ
+    にもPATHを通す必要があります。
 
     - Ruby 配布サイト
         https://rubyinstaller.org/

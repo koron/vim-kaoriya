@@ -5,6 +5,9 @@
     *   Perl
         *   Strawberry Perlへ変更しました
         *   Perlのバージョンを5.28.1に変更しました
+    *   Ruby
+        *   Rubyのバージョンを2.6.1に変更しました
+        *   PATHの追加設定が必要です
 *   contrib 更新
     *   autofmt (2018-07-03 641529c)
     *   lang-ja (2019-03-12 76e8776)

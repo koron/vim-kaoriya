@@ -50,19 +50,19 @@ LUA= ..\..\build\msvc\target\install-x32\include\lua
 !endif
 !endif
 
-# RubyÇÃê›íË.
+# Ruby 2.6 settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_RUBY)
-RUBY_VER=23
-RUBY_API_VER_LONG=2.3.0
+RUBY_VER=26
+RUBY_API_VER_LONG=2.6.0
 DYNAMIC_RUBY=yes
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-RUBY = D:\Ruby\ruby-2.3.1-x64-mswin64
-RUBY_PLATFORM=x64-mswin64_100
-RUBY_INSTALL_NAME=x64-msvcrt-ruby230
+RUBY = D:\Ruby\rubyinstaller-2.6.1-1-x64
+RUBY_PLATFORM=x64-mingw32
+RUBY_INSTALL_NAME=x64-msvcrt-ruby260
 !else
-RUBY = D:\Ruby\ruby-2.3.1-i386-mswin32
-RUBY_PLATFORM=i386-mswin32_100
-RUBY_INSTALL_NAME=msvcrt-ruby230
+RUBY = D:\Ruby\rubyinstaller-2.6.1-1-x86
+RUBY_PLATFORM=i386-mingw32
+RUBY_INSTALL_NAME=msvcrt-ruby260
 !endif
 !endif
 

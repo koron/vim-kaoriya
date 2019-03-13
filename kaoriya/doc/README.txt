@@ -69,20 +69,20 @@ Vimの拡張機能について
     - LuaJIT サイト
         http://luajit.org/
 
-  Perl(ActivePerl)との連携
+  Perlとの連携
     注意: PerlをインストールしなくてもVimは使用できます。
 
-    ActiveState社により公開されているActivePerl 5.24をインストールすることで、
-    Perlインターフェースを使用することができます。ActivePerlをインストールして
-    いない場合は、Perlインターフェースは自動的に無効となります。Perlインター
-    フェースの詳細については":help perl"としてVim付属のマニュアルを参照してく
-    ださい。
+    strawberryperl.orgにおいて公開されているStrawberry Perl 5.28をインストール
+    することで、Perlインターフェースを使用できます。Strawberry Perlをインス
+    トールしていない場合は、Perlインターフェースは自動的に無効となります。Perl
+    インターフェースの詳細については":help perl"としてVim付属のマニュアルを参
+    照してください。
 
     64bit版のVimを使う場合は64bit版のPerlを、32bit版を使う場合は32bit版のPerl
     をインストールしてください。
 
-    - ActiveState社 (ActivePerl)
-        https://www.activestate.com/
+    - Strawberry Perl
+        http://strawberryperl.com/
 
   Pythonとの連携
     注意: PythonをインストールしなくてもVimは使用できます。

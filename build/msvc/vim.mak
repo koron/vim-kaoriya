@@ -16,11 +16,11 @@ TERMINAL=yes
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes
-PERL_VER=524
+PERL_VER=528
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-PERL = D:\Perl\Perl-5.24.0-64
+PERL = D:\Perl\strawberry-perl-5.28.1.1-64bit\perl
 !else
-PERL = D:\Perl\Perl-5.24.0-32
+PERL = D:\Perl\strawberry-perl-5.28.1.1-32bit\perl
 !endif
 !endif
 

@@ -29,13 +29,13 @@ PERL = D:\Perl\strawberry-perl-5.28.1.1-32bit\perl
 DYNAMIC_PYTHON=yes
 PYTHON_VER=27
 DYNAMIC_PYTHON3=yes
-PYTHON3_VER=35
+PYTHON3_VER=37
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 PYTHON  = D:\Python\Python27
-PYTHON3 = D:\Python\Python35
+PYTHON3 = D:\Python\Python37
 !else
 PYTHON  = D:\Python\Python27-x86
-PYTHON3 = D:\Python\Python35-32
+PYTHON3 = D:\Python\Python37-32
 !endif
 !endif
 

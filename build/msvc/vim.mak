@@ -66,7 +66,7 @@ RUBY_INSTALL_NAME=msvcrt-ruby260
 !endif
 !endif
 
-# XPMÇÃê›íË
+# XPM settings
 !if !defined(DISABLE_XPM)
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 XPM=..\..\build\msvc\target\install-x64

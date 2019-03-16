@@ -16,11 +16,11 @@ TERMINAL=yes
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes
-PERL_VER=524
+PERL_VER=528
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-PERL = D:\Perl\Perl-5.24.0-64
+PERL = D:\Perl\strawberry-perl-5.28.1.1-64bit\perl
 !else
-PERL = D:\Perl\Perl-5.24.0-32
+PERL = D:\Perl\strawberry-perl-5.28.1.1-32bit\perl
 !endif
 !endif
 
@@ -29,13 +29,13 @@ PERL = D:\Perl\Perl-5.24.0-32
 DYNAMIC_PYTHON=yes
 PYTHON_VER=27
 DYNAMIC_PYTHON3=yes
-PYTHON3_VER=35
+PYTHON3_VER=37
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 PYTHON  = D:\Python\Python27
-PYTHON3 = D:\Python\Python35
+PYTHON3 = D:\Python\Python37
 !else
 PYTHON  = D:\Python\Python27-x86
-PYTHON3 = D:\Python\Python35-32
+PYTHON3 = D:\Python\Python37-32
 !endif
 !endif
 
@@ -50,23 +50,23 @@ LUA= ..\..\build\msvc\target\install-x32\include\lua
 !endif
 !endif
 
-# RubyÇÃê›íË.
+# Ruby 2.6 settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_RUBY)
-RUBY_VER=23
-RUBY_API_VER_LONG=2.3.0
+RUBY_VER=26
+RUBY_API_VER_LONG=2.6.0
 DYNAMIC_RUBY=yes
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-RUBY = D:\Ruby\ruby-2.3.1-x64-mswin64
-RUBY_PLATFORM=x64-mswin64_100
-RUBY_INSTALL_NAME=x64-msvcrt-ruby230
+RUBY = D:\Ruby\rubyinstaller-2.6.1-1-x64
+RUBY_PLATFORM=x64-mingw32
+RUBY_INSTALL_NAME=x64-msvcrt-ruby260
 !else
-RUBY = D:\Ruby\ruby-2.3.1-i386-mswin32
-RUBY_PLATFORM=i386-mswin32_100
-RUBY_INSTALL_NAME=msvcrt-ruby230
+RUBY = D:\Ruby\rubyinstaller-2.6.1-1-x86
+RUBY_PLATFORM=i386-mingw32
+RUBY_INSTALL_NAME=msvcrt-ruby260
 !endif
 !endif
 
-# XPMÇÃê›íË
+# XPM settings
 !if !defined(DISABLE_XPM)
 !if "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 XPM=..\..\build\msvc\target\install-x64

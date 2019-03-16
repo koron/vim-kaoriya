@@ -1,14 +1,14 @@
                    Vim version 8.1 香り屋版 導入マニュアル
 
-                                                         Version: 1.9.3
+                                                         Version: 1.10.0
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 18-May-2018.
+                                                     Last Change: 14-Mar-2019.
 
 概要
   Vimはviクローンに分類されるテキストエディタです。
 
-  オリジナルのVimはhttp://www.vim.org/で公開されており、そのままでも日本語を含
+  オリジナルのVimはhttps://www.vim.org/で公開されており、そのままでも日本語を含
   むテキストは編集できますが、香り屋では日本語をより扱い易くするための修正と追
   加を行い香り屋版として公開しています。
 
@@ -69,20 +69,20 @@ Vimの拡張機能について
     - LuaJIT サイト
         http://luajit.org/
 
-  Perl(ActivePerl)との連携
+  Perlとの連携
     注意: PerlをインストールしなくてもVimは使用できます。
 
-    ActiveState社により公開されているActivePerl 5.24をインストールすることで、
-    Perlインターフェースを使用することができます。ActivePerlをインストールして
-    いない場合は、Perlインターフェースは自動的に無効となります。Perlインター
-    フェースの詳細については":help perl"としてVim付属のマニュアルを参照してく
-    ださい。
+    strawberryperl.orgにおいて公開されているStrawberry Perl 5.28をインストール
+    することで、Perlインターフェースを使用できます。Strawberry Perlをインス
+    トールしていない場合は、Perlインターフェースは自動的に無効となります。Perl
+    インターフェースの詳細については":help perl"としてVim付属のマニュアルを参
+    照してください。
 
     64bit版のVimを使う場合は64bit版のPerlを、32bit版を使う場合は32bit版のPerl
     をインストールしてください。
 
-    - ActiveState社 (ActivePerl)
-        http://www.activestate.com/
+    - Strawberry Perl
+        http://strawberryperl.com/
 
   Pythonとの連携
     注意: PythonをインストールしなくてもVimは使用できます。
@@ -97,7 +97,7 @@ Vimの拡張機能について
     Pythonをインストールしてください。
 
     - Python.org
-        http://www.python.org/
+        https://www.python.org/
 
     Python 2.7.11 を利用する場合には、Python 2.7.11のバグを回避するために、管
     理者として以下のコマンドを実行する必要があります。
@@ -112,7 +112,7 @@ Vimの拡張機能について
   Python3との連携
     注意: Python3をインストールしなくてもVimは使用できます。
 
-    Python.orgにより公開されているPython 3.5をインストールすることで、Pythonイ
+    Python.orgにより公開されているPython 3.7をインストールすることで、Pythonイ
     ンターフェースを使用することができます。Pythonをインストールしていない場合
     は、Pythonインターフェースは自動的に無効となります。Pythonインターフェース
     の詳細については":help python3"としてVim付属のマニュアルを参照してくださ
@@ -122,12 +122,12 @@ Vimの拡張機能について
     Python3をインストールしてください。
 
     - Python.org
-        http://www.python.org/
+        https://www.python.org/
 
   Rubyとの連携
     注意: RubyをインストールしなくてもVimは使用できます。
 
-    Ruby 2.3.1をインストールするとRubyインターフェースを利用できます。Rubyをイ
+    Ruby 2.6.1をインストールするとRubyインターフェースを利用できます。Rubyをイ
     ンストールしていない場合はRubyインターフェースは自動的に無効となります。
     Rubyインターフェースの詳細については":help ruby"としてVim付属のマニュアル
     を参照してください。
@@ -135,10 +135,13 @@ Vimの拡張機能について
     64bit版のVimを使う場合は64bit版のRubyを、32bit版を使う場合は32bit版の
     Rubyをインストールしてください。
 
+    Ruby 2.6.1 からは従来のbinフォルダだけでなくbin\ruby_builtin_dllsフォルダ
+    にもPATHを通す必要があります。
+
     - Ruby 配布サイト
-        http://rubyinstaller.org/
+        https://rubyinstaller.org/
     - Ruby全般の情報
-        http://www.ruby-lang.org/ja/
+        https://www.ruby-lang.org/ja/
 
 使用許諾
   香り屋版のライセンスはオリジナルのVimに従います。詳しくはorigdoc/README.txt
@@ -154,7 +157,7 @@ Vimの拡張機能について
     ん。洋書などが入用の際には、進んでご利用ください。
 
     - 買い物による寄付
-      http://iccf-holland.org/click.html
+      https://iccf-holland.org/click.html
 
   Vim開発スポンサー制度
     Vim開発スポンサー制度と機能要望投票制度が始まりました。有志がVimの開発にお
@@ -166,7 +169,7 @@ Vimの拡張機能について
     には「Hall of honour」に掲載されます。詳細は以下のURLを参照してください。
 
     - Sponsor Vim development
-      http://www.vim.org/sponsor/index.php
+      https://www.vim.org/sponsor/index.php
 
 オリジナルとの相違点
   ソース差分
@@ -198,7 +201,7 @@ Vimの拡張機能について
   なことでもわからないことがあるのならばここで聞いてみると良いでしょう。きっと
   何らかの助けにはなるはずです。
 
-    http://groups.google.com/group/vim_jp/?hl=ja
+    https://groups.google.com/group/vim_jp/?hl=ja
 
   もちろんメールで香り屋版メンテナに直接聞いてもらっても構いません。日本語化部
   分などの不都合は香り屋版メンテナまで連絡をいただければ、折をみて修正いたしま
@@ -210,13 +213,14 @@ Vimの拡張機能について
   クできるかもしれません。Vim日本語版等の関連情報は次のURLにあります。
 
   - Vim本家
-      http://www.vim.org/
+      https://www.vim.org/
       https://github.com/vim/vim
   - Vimの日本コミュニティvim-jp
-      http://vim-jp.org/
+      https://vim-jp.org/
       https://github.com/vim-jp/issues/issues (バグ報告、機能要望)
+      https://vim-jp.org/docs/chat.html (チャット)
   - vim_jp Google グループ
-      http://groups.google.com/group/vim_jp/?hl=ja
+      https://groups.google.com/group/vim_jp/?hl=ja
   - 日本語ドキュメント
       https://github.com/vim-jp/vimdoc-ja/
       https://github.com/vim-jp/vimdoc-ja-working/

@@ -22,7 +22,6 @@ CONTRIB_DIR	= ..\..\contrib
 XPM_DIR		= $(CONTRIB_DIR)\libXpm-win32\src
 ICONV_DIR	= $(CONTRIB_DIR)\libiconv2\msvc10
 GETTEXT_DIR	= $(CONTRIB_DIR)\gettext
-DIFFTUILS_DIR	= $(CONTRIB_DIR)\diffutils
 VIMPROC_DIR	= $(CONTRIB_DIR)\vimproc
 VIMPROC_DLL	= vimproc_$(WINDOWS_CPUTYPE).dll
 LUAJIT_DIR	= $(CONTRIB_DIR)\luajit-2.0
@@ -83,7 +82,6 @@ archive-pre:
 	$(MAKE) "$(INSTALL_DIR)\bin\intl.dll"
 	$(MAKE) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\diff.exe"
 	$(MAKE) "$(INSTALL_DIR)\bin\winpty-agent.exe"
 	$(MAKE) vim-clean gvim-clean vim-install
 	$(MAKE) vim-mo-install vim-patch-install
@@ -93,7 +91,6 @@ contrib: $(INSTALL_DIR)\bin\iconv.dll $(INSTALL_DIR)\bin\intl.dll \
 	$(INSTALL_DIR)\lib\libXpm.lib \
 	$(INSTALL_DIR)\bin\$(VIMPROC_DLL) \
 	$(INSTALL_DIR)\bin\lua51.dll \
-	$(INSTALL_DIR)\bin\diff.exe \
 	$(INSTALL_DIR)\bin\winpty-agent.exe
 
 build: iconv-build gettext-build xpm-build vimproc-build luajit-build
@@ -240,26 +237,6 @@ luajit-clean:
 
 luajit-distclean: luajit-clean
 
-### diffutils
-
-diffutils-build:
-	cd "$(DIFFTUILS_DIR)/msvc"
-	nmake NODEBUG=1 build
-	cd "$(BUILD_DIR)"
-
-diffutils-install: diffutils-build
-	- $(COPY) "$(DIFFTUILS_DIR)\msvc" "$(INSTALL_DIR)\bin" diff.exe
-
-diffutils-clean:
-	cd "$(DIFFTUILS_DIR)/msvc"
-	nmake NODEBUG=1 clean
-	cd "$(BUILD_DIR)"
-
-diffutils-distclean:
-	cd "$(DIFFTUILS_DIR)/msvc"
-	nmake NODEBUG=1 distclean
-	cd "$(BUILD_DIR)"
-
 ### rprichard/winpty
 
 WINPTY_VERSION=0.4.3
@@ -309,9 +286,9 @@ langja-install:
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\tutor" MD "$(VIM_INSTALL_DIR)\tutor"
 	cd "$(LANGJA_DIR)"
 	make test
-	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo" 
-	-COPY src\po\ja.euc-jp.mo "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES\vim.mo" 
-	-COPY src\po\ja.sjis.mo "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES\vim.mo" 
+	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo"
+	-COPY src\po\ja.euc-jp.mo "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES\vim.mo"
+	-COPY src\po\ja.sjis.mo "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES\vim.mo"
 	-$(COPY) "runtime\lang" "$(VIM_INSTALL_DIR)\lang" menu_ja*.vim
 	-$(COPY) "runtime\doc" "$(VIM_INSTALL_DIR)\doc" *.UTF-8.1
 	-$(COPY) "runtime\tutor" "$(VIM_INSTALL_DIR)\tutor" tutor.ja.*
@@ -492,7 +469,7 @@ build-dist:
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
 		vim.exe gvim.exe vimrun.exe xxd.exe tee.exe \
-		iconv.dll intl.dll luajit.exe lua51.dll diff.exe \
+		iconv.dll intl.dll luajit.exe lua51.dll \
 		winpty.dll winpty-agent.exe
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
@@ -522,7 +499,6 @@ build-release-pre:
 	$(MAKE) "$(INSTALL_DIR)\lib\libXpm.lib"
 	$(MAKE) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\diff.exe"
 	$(MAKE) "$(INSTALL_DIR)\bin\winpty-agent.exe"
 	$(MAKE) vim-clean gvim-clean
 	$(MAKE) vim-install vim-mo-install vim-patch-install
@@ -561,7 +537,6 @@ snapshot-archive:
 	xpm-build xpm-install xpm-clean xpm-distclean \
 	vimproc-build vimproc-install vimproc-clean vimproc-distclean \
 	luajit-build luajit-install luajit-clean luajit-distclean \
-	diffutils-build diffutils-install diffutils-clean diffutils-distclean \
 	winpty-install \
 	langja-install \
 	vim-build vim-clean vimd-build vimd-clean \
@@ -586,9 +561,6 @@ snapshot-archive:
 
 "$(INSTALL_DIR)\bin\lua51.dll":
 	$(MAKE) luajit-install
-
-"$(INSTALL_DIR)\bin\diff.exe":
-	$(MAKE) diffutils-clean diffutils-install diffutils-distclean
 
 "$(INSTALL_DIR)\bin\winpty-agent.exe":
 	$(MAKE) winpty-install

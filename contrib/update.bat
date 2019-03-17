@@ -8,8 +8,6 @@ SET INSTDIR_X64=%BASE_DIR%..\build\msvc\target\install-x64\
 
 CALL :GIT_UPDATE autofmt %BASE_DIR%autofmt
 IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
-CALL :GIT_UPDATE diffutils %BASE_DIR%diffutils :DIFFUTILS_HOOK
-IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CALL :GIT_UPDATE gettext %BASE_DIR%gettext :GETTEXT_HOOK
 IF %ERRORLEVEL% NEQ 0 GOTO :FAILURE
 CALL :GIT_UPDATE go-vim %BASE_DIR%go-vim
@@ -32,11 +30,6 @@ GOTO :SUCCESS
 
 REM ========================================================================
 REM HOOKS
-
-:DIFFUTILS_HOOK
-CALL :DELETE_FILE %INSTDIR_X32%bin\diff.exe
-CALL :DELETE_FILE %INSTDIR_X64%bin\diff.exe
-EXIT /B 0
 
 :GETTEXT_HOOK
 CALL :DELETE_FILE %INSTDIR_X32%bin\intl.dll

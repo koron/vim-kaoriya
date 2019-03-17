@@ -5,7 +5,6 @@ SET DATE_VER=%date:~-10,4%-%date:~-5,2%-%date:~-2,2%
 SET LOG_FILE=%BASE_DIR%current-%DATE_VER%.log
 
 CALL :SHOW_REV autofmt %BASE_DIR%autofmt
-CALL :SHOW_REV diffutils %BASE_DIR%diffutils
 CALL :SHOW_REV gettext %BASE_DIR%gettext
 CALL :SHOW_REV go-vim %BASE_DIR%go-vim
 CALL :SHOW_REV lang-ja %BASE_DIR%lang-ja

@@ -4,7 +4,7 @@ scriptencoding utf-8
 " An example for a Japanese version vimrc file.
 " 日本語版のデフォルト設定ファイル(vimrc) - Vim 8.1
 "
-" Last Change: 18-May-2018.
+" Last Change: 23-Mar-2019.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -193,11 +193,11 @@ endif
 if has('unix') && !has('gui_running')
   let s:uname = system('uname')
   if s:uname =~? "linux"
-    set term=builtin_linux
+    " no need to use builtin_term for Linux
   elseif s:uname =~? "freebsd"
     set term=builtin_cons25
   elseif s:uname =~? "Darwin"
-    set term=beos-ansi
+    set term=builtin_beos-ansi
   else
     set term=builtin_xterm
   endif

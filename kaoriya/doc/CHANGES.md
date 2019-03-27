@@ -1,3 +1,9 @@
+## 2019/03/27X の変更点
+
+*   パッチの適用
+    *   <https://gist.github.com/k-takata/2d475c21afb1dae67ba2b86f2a8f1c66>
+        from <https://github.com/vim/vim/issues/3923#issuecomment-463164172>
+
 ## 2019/03/25 の変更点
 
 *   ベースコードを8.1.1048に更新しました

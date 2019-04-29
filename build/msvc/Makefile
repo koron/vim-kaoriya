@@ -42,11 +42,14 @@ COPY		= Robocopy /XO
 CPUTYPE=x64
 MSVCRT_CPUTYPE=x64
 WINDOWS_CPUTYPE=win64
+VIMDLL_BASE=vim64
 !ELSE
 CPUTYPE=x32
 MSVCRT_CPUTYPE=x86
 WINDOWS_CPUTYPE=win32
+VIMDLL_BASE=vim32
 !ENDIF
+VIMDLL=$(VIMDLL_BASE).dll
 
 # Check MSVC version.
 !IF "$(_NMAKE_VER)" >= "9." && "$(_NMAKE_VER)" < "@."
@@ -83,7 +86,7 @@ archive-pre:
 	$(MAKE) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
 	$(MAKE) "$(INSTALL_DIR)\bin\winpty-agent.exe"
-	$(MAKE) vim-clean gvim-clean vim-install
+	$(MAKE) vim-clean vim-install
 	$(MAKE) vim-mo-install vim-patch-install
 	$(MAKE) langja-install
 
@@ -114,7 +117,7 @@ version-interfaces:
 version-clean:
 	rm -f version-interfaces.out
 
-rebuild-vim: vim-clean vim-build gvim-clean gvim-build
+rebuild-vim: vim-clean vim-build
 
 ### ICONV
 
@@ -329,42 +332,9 @@ vimd-clean:
 	- if exist vimd.lib del vimd.lib
 	cd "$(BUILD_DIR)"
 
-gvim-build:
-	cd "$(VIM_DIR)\src"
-	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes
-	cd "$(BUILD_DIR)"
-
-gvim-test: gvim-build
-	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim clean
-	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim gui
-	cd "$(BUILD_DIR)"
-
-gvim-test-clean:
-	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim clean
-	cd "$(BUILD_DIR)"
-
-gvim-clean:
-	cd "$(VIM_DIR)\src"
-	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes clean
-	- if exist gvim.lib del gvim.lib
-	cd "$(BUILD_DIR)"
-
-gvimd-build:
-	cd "$(VIM_DIR)\src"
-	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes DEBUG=yes
-	cd "$(BUILD_DIR)"
-
-gvimd-clean:
-	cd "$(VIM_DIR)\src"
-	nmake /NOLOGO /F $(BUILD_DIR)\vim.mak GUI=yes IME=yes DEBUG=yes clean
-	- if exist gvimd.lib del gvimd.lib
-	cd "$(BUILD_DIR)"
-
-vim-install: vim-build gvim-build
+vim-install: vim-build
 	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" \
-		vim.exe gvim.exe vimrun.exe
+		vim.exe gvim.exe $(VIMDLL) vimrun.exe
 	-$(COPY) "$(VIM_DIR)\src\xxd" "$(INSTALL_DIR)\bin" xxd.exe
 	-$(COPY) "$(VIM_DIR)\src\tee" "$(INSTALL_DIR)\bin" tee.exe
 
@@ -388,19 +358,19 @@ PDB_DIST_NAME	= vim$(DIST_VER)-pdb
 PDB_DIST_ZIP	= vim$(DIST_VER)-$(VIM_VER)-$(PATCHSET_VER)-pdb.zip
 PDB_DIST_DIR	= $(OUTPUT_DIR)\$(PDB_DIST_NAME)
 
-pdb-build: $(VIM_DIR)\src\vim.pdb $(VIM_DIR)\src\gvim.pdb
+pdb-build: $(VIM_DIR)\src\$(VIMDLL_BASE).pdb
 
-pdb-install: $(INSTALL_DIR)\bin\vim.pdb $(INSTALL_DIR)\bin\gvim.pdb
+pdb-install: $(INSTALL_DIR)\bin\$(VIMDLL_BASE).pdb
 
-pdb-distdir: $(PDB_DIST_DIR)\vim.pdb $(PDB_DIST_DIR)\gvim.pdb
+pdb-distdir: $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb
 
 pdb-archive: $(OUTPUT_DIR)\$(PDB_DIST_ZIP)
 
-$(VIM_DIR)\src\vim.pdb:
+$(VIM_DIR)\src\vim.pdb $(VIM_DIR)\src\gvim.pdb:
 	$(MAKE) vim-build
 
-$(VIM_DIR)\src\gvim.pdb:
-	$(MAKE) gvim-build
+$(VIM_DIR)\src\$(VIMDLL_BASE).pdb:
+	$(MAKE) vim-build
 
 $(PDB_DIST_DIR):
 	IF NOT EXIST "$(PDB_DIST_DIR)" MKDIR "$(PDB_DIST_DIR)"
@@ -419,7 +389,14 @@ $(PDB_DIST_DIR)\gvim.pdb: $(INSTALL_DIR)\bin\gvim.pdb
 	$(MAKE) $(PDB_DIST_DIR)
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" gvim.pdb
 
-$(OUTPUT_DIR)\$(PDB_DIST_ZIP): $(PDB_DIST_DIR)\vim.pdb $(PDB_DIST_DIR)\gvim.pdb
+$(INSTALL_DIR)\bin\$(VIMDLL_BASE).pdb: $(VIM_DIR)\src\$(VIMDLL_BASE).pdb
+	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" $(VIMDLL_BASE).pdb
+
+$(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb: $(INSTALL_DIR)\bin\$(VIMDLL_BASE).pdb
+	$(MAKE) $(PDB_DIST_DIR)
+	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" $(VIMDLL_BASE).pdb
+
+$(OUTPUT_DIR)\$(PDB_DIST_ZIP): $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb
 	cd "$(OUTPUT_DIR)"
 	zip -r9q $(PDB_DIST_ZIP) $(PDB_DIST_NAME)
 	cd "$(BUILD_DIR)"
@@ -468,7 +445,7 @@ build-dist:
 # Vim and other executable and resource files.
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
-		vim.exe gvim.exe vimrun.exe xxd.exe tee.exe \
+		vim.exe gvim.exe $(VIMDLL) vimrun.exe xxd.exe tee.exe \
 		iconv.dll intl.dll luajit.exe lua51.dll \
 		winpty.dll winpty-agent.exe
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
@@ -500,7 +477,7 @@ build-release-pre:
 	$(MAKE) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
 	$(MAKE) "$(INSTALL_DIR)\bin\winpty-agent.exe"
-	$(MAKE) vim-clean gvim-clean
+	$(MAKE) vim-clean
 	$(MAKE) vim-install vim-mo-install vim-patch-install
 	$(MAKE) langja-install
 	$(MAKE) build-dist
@@ -511,7 +488,7 @@ build-release-core:
 	$(MAKE) pdb-archive
 
 build-release-post:
-	$(MAKE) vim-clean gvim-clean
+	$(MAKE) vim-clean
 
 snapshot: snapshot-build snapshot-install snapshot-archive
 
@@ -519,11 +496,10 @@ snapshot-pre: snapshot-install snapshot-archive
 
 snapshot-build:
 	$(MAKE) vim-clean vim-build
-	$(MAKE) gvim-clean gvim-build
 
 snapshot-install:
 	IF NOT EXIST "$(SNAPSHOT_DIR)" MD "$(SNAPSHOT_DIR)"
-	-$(COPY) "$(VIM_DIR)\src" "$(SNAPSHOT_DIR)" vim.exe gvim.exe
+	-$(COPY) "$(VIM_DIR)\src" "$(SNAPSHOT_DIR)" vim.exe gvim.exe $(VIMDLL)
 
 snapshot-archive:
 	cd "$(OUTPUT_DIR)"
@@ -540,7 +516,6 @@ snapshot-archive:
 	winpty-install \
 	langja-install \
 	vim-build vim-clean vimd-build vimd-clean \
-	gvim-build gvim-clean gvimd-build gvimd-clean \
 	vim-install vim-mo-install vim-patch-install \
 	pdb-build pdb-install pdb-distdir pdb-archive \
 	build-dist archive-dist zip-dist clean-dist \
@@ -566,5 +541,4 @@ snapshot-archive:
 	$(MAKE) winpty-install
 
 "$(INSTALL_DIR)\bin\vim.exe":
-	$(MAKE) vim-clean gvim-clean vim-install vim-mo-install \
-		vim-clean gvim-clean
+	$(MAKE) vim-clean vim-install vim-mo-install vim-clean

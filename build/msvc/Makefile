@@ -420,16 +420,16 @@ build-dist:
 # Plugin - vimdoc-ja
 	-$(COPY) /E "$(CONTRIB_DIR)\vimdoc-ja" "$(VIM_DIST_DIR)\plugins\vimdoc-ja" /XD .git /XF .git*
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
-		-c "helptags $(VIM_DIST_DIR)\plugins\vimdoc-ja\doc | quit"
+		-c "helptags $(VIM_DIST_DIR)\plugins\vimdoc-ja\doc" -c quit
 # Plugin - autofmt
 	-$(COPY) /E "$(CONTRIB_DIR)\autofmt" "$(VIM_DIST_DIR)\plugins\autofmt" /XD .git /XF .git*
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
-		-c "helptags $(VIM_DIST_DIR)\plugins\autofmt\doc | quit"
+		-c "helptags $(VIM_DIST_DIR)\plugins\autofmt\doc" -c quit
 # Plugin - vimproc
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\doc" \
 		"$(VIM_DIST_DIR)\plugins\vimproc\doc"
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
-		-c "helptags $(VIM_DIST_DIR)\plugins\vimproc\doc | quit"
+		-c "helptags $(VIM_DIST_DIR)\plugins\vimproc\doc" -c quit
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\plugin" \
 		"$(VIM_DIST_DIR)\plugins\vimproc\plugin"
 	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload" \
@@ -451,7 +451,7 @@ build-dist:
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
-		-c "helptags $(VIM_DIST_DIR)\$(RTDIR_NAME)\doc | quit"
+		-c "helptags $(VIM_DIST_DIR)\$(RTDIR_NAME)\doc" -c quit
 # Copy MSVC runtime files.
 	-$(COPY) "$(MSVCRT_DIR)" "$(VIM_DIST_DIR)" $(MSVCRT_FILES)
 # Copy patch (diff) files.

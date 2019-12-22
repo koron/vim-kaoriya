@@ -1,6 +1,6 @@
-VIM_VER		= 8.1.1461
-PATCHSET_VER	= 20190604
+VIM_VER		= 8.2.0029
+PATCHSET_VER	= 20191222
 
-VIM_VER_SHORT	= 81
+VIM_VER_SHORT	= 82
 
 # vim:set ts=8 sts=8 sw=8 tw=0 noet ft=make:

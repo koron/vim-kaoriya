@@ -290,7 +290,7 @@ langja-install:
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\doc" MD "$(VIM_INSTALL_DIR)\doc"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\tutor" MD "$(VIM_INSTALL_DIR)\tutor"
 	cd "$(LANGJA_DIR)"
-	make test
+	make LANG=C test
 	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo"
 	-COPY src\po\ja.euc-jp.mo "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES\vim.mo"
 	-COPY src\po\ja.sjis.mo "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES\vim.mo"

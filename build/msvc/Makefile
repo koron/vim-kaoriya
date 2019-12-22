@@ -12,6 +12,7 @@
 
 DIST_VER	= $(VIM_VER_SHORT)-kaoriya-$(WINDOWS_CPUTYPE)
 DATE_VER	= %%date:~-10,4%%%%date:~-5,2%%%%date:~-2,2%%
+TIME_VER	= %%time:~-11,2%%%%time:~-8,2%%%%time:~-5,2%%
 
 RTDIR_NAME	= vim$(VIM_VER_SHORT)
 
@@ -32,6 +33,7 @@ VIM_PATCH_DIR	= $(INSTALL_DIR)\share\vim\patch
 VIM_DIST_DIR	= $(OUTPUT_DIR)\vim$(DIST_VER)
 KAORIYA_DIR	= ..\..\kaoriya
 SNAPSHOT_DIR	= $(OUTPUT_DIR)\vim$(DIST_VER)-snapshot
+TESTRES_DIR	= $(OUTPUT_DIR)\test_result
 
 MSVCRT_DIR	= $(VCINSTALLDIR)\redist\$(MSVCRT_CPUTYPE)\$(MSVCRT_SUBDIR)
 
@@ -307,8 +309,18 @@ vim-build:
 vim-test: vim-build
 	cd "$(VIM_DIR)\src\testdir"
 	nmake /NOLOGO /F Make_dos.mak clean
-	nmake /NOLOGO /F Make_dos.mak win32
+	-nmake /NOLOGO /F Make_dos.mak VIMPROG=..\vim
 	cd "$(BUILD_DIR)"
+	IF NOT EXIST "$(TESTRES_DIR)" MD "$(TESTRES_DIR)"
+	-COPY "$(VIM_DIR)\src\testdir\test_result.log" "$(TESTRES_DIR)\$(DATE_VER)_$(TIME_VER)-cui.log"
+
+vim-test-gui: vim-build
+	cd "$(VIM_DIR)\src\testdir"
+	nmake /NOLOGO /F Make_dos.mak clean
+	-nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim
+	cd "$(BUILD_DIR)"
+	IF NOT EXIST "$(TESTRES_DIR)" MD "$(TESTRES_DIR)"
+	-COPY "$(VIM_DIR)\src\testdir\test_result.log" "$(TESTRES_DIR)\$(DATE_VER)_$(TIME_VER)-gui.log"
 
 vim-test-clean:
 	cd "$(VIM_DIR)\src\testdir"

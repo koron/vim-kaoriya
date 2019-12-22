@@ -1,11 +1,13 @@
 USERNAME=koron.kaoriya
 USERDOMAIN=gmail.com
 
-FEATURES=HUGE
-MBYTE=YES
 USE_MSVCRT=yes
 MIGEMO=yes
 MAP=no
+
+# build as Vim DLL
+VIMDLL=yes
+IME=yes
 
 # DirectWrite support.
 DIRECTX=yes

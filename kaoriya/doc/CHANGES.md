@@ -25,7 +25,7 @@
         * `Test_redraw_after_scroll`
         * `Test_classes_re1`
         * `Test_classes_re2`
-        
+
 ## 2020/01/06 の変更点
 
 *   ベースコードを8.2.0087に更新しました

@@ -1,3 +1,31 @@
+## 2020/07/18 の変更点
+
+*   ベースコードを8.2.1233に更新しました
+*   contrib 更新
+    *   lang-ja (2020-06-25 d262bed)
+    *   LuaJIT (2020-07-13 570e758ca7)
+    *   vimdoc-ja (2020-07-17 4a765dca)
+    *   vimproc (2020-06-23 8f40d86)
+*   既知の問題
+    *   以下のテストが失敗しています
+        * `Test_menu`
+        * `Test_System`
+        * `Test_terminal_composing_unicode`
+        * `Test_terminal_env`
+        * `Test_terminal_noblock`
+        * `Test_terminal_paste_register`
+        * `Test_terminal_scrape_multibyte`
+        * `Test_terminal_scrollback`
+        * `Test_terminal_servername`
+        * `Test_terminal_version`
+        * `Test_undofile_earlier`
+        * `Test_add_remove_menu`
+        * `Test_click_in_other_winbar`
+        * `Test_click_in_winbar`
+        * `Test_redraw_after_scroll`
+        * `Test_classes_re1`
+        * `Test_classes_re2`
+        
 ## 2020/01/06 の変更点
 
 *   ベースコードを8.2.0087に更新しました

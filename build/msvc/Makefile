@@ -458,7 +458,8 @@ build-dist:
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
 		vim.exe gvim.exe $(VIMDLL) vimrun.exe xxd.exe tee.exe \
-		iconv.dll intl.dll luajit.exe lua51.dll
+		iconv.dll intl.dll luajit.exe lua51.dll \
+		winpty.dll winpty-agent.exe
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \

@@ -6,7 +6,6 @@
   --enable-gui=gtk2 \
   --enable-luainterp=dynamic \
   --with-luajit \
-  --enable-pythoninterp=dynamic \
   --enable-python3interp=dynamic \
   --enable-rubyinterp=dynamic \
   --enable-fail-if-missing

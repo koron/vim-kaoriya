@@ -308,23 +308,23 @@ vim-build:
 
 vim-test: vim-build
 	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_dos.mak clean
-	-nmake /NOLOGO /F Make_dos.mak VIMPROG=..\vim
+	nmake /NOLOGO /F Make_mvc.mak clean
+	-nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\vim
 	cd "$(BUILD_DIR)"
 	IF NOT EXIST "$(TESTRES_DIR)" MD "$(TESTRES_DIR)"
 	-COPY "$(VIM_DIR)\src\testdir\test_result.log" "$(TESTRES_DIR)\$(DATE_VER)_$(TIME_VER)-cui.log"
 
 vim-test-gui: vim-build
 	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_dos.mak clean
-	-nmake /NOLOGO /F Make_dos.mak VIMPROG=..\gvim
+	nmake /NOLOGO /F Make_mvc.mak clean
+	-nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\gvim
 	cd "$(BUILD_DIR)"
 	IF NOT EXIST "$(TESTRES_DIR)" MD "$(TESTRES_DIR)"
 	-COPY "$(VIM_DIR)\src\testdir\test_result.log" "$(TESTRES_DIR)\$(DATE_VER)_$(TIME_VER)-gui.log"
 
 vim-test-clean:
 	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_dos.mak clean
+	nmake /NOLOGO /F Make_mvc.mak clean
 	cd "$(BUILD_DIR)"
 
 vim-clean:

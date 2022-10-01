@@ -15,6 +15,11 @@ DIRECTX=yes
 # Terminal support.
 TERMINAL=yes
 
+# Disable language interfaces
+DISABLE_PERL=yes
+DISABLE_PYTHON=yes
+DISABLE_RUBY=yes
+
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes

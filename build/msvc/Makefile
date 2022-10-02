@@ -58,22 +58,27 @@ VIMDLL=$(VIMDLL_BASE).dll
 MSVC_VERSION=msvc9
 MSVCRT_SUBDIR=Microsoft.VC90.CRT
 MSVCRT_FILES=msvcr90.dll
+MSVCRT_COPY=1
 !ELSEIF "$(_NMAKE_VER)" >= "10." && "$(_NMAKE_VER)" < "11."
 MSVC_VERSION=msvc10
 MSVCRT_SUBDIR=Microsoft.VC100.CRT
 MSVCRT_FILES=msvcr100.dll
+MSVCRT_COPY=1
 !ELSEIF "$(_NMAKE_VER)" >= "11." && "$(_NMAKE_VER)" < "12."
 MSVC_VERSION=msvc11
 MSVCRT_SUBDIR=Microsoft.VC110.CRT
 MSVCRT_FILES=msvcr110.dll
+MSVCRT_COPY=1
 !ELSEIF "$(_NMAKE_VER)" >= "12." && "$(_NMAKE_VER)" < "13."
 MSVC_VERSION=msvc12
 MSVCRT_SUBDIR=Microsoft.VC120.CRT
 MSVCRT_FILES=msvcr120.dll
+MSVCRT_COPY=1
 !ELSEIF "$(_NMAKE_VER)" >= "14." && "$(_NMAKE_VER)" < "15."
 MSVC_VERSION=msvc14
 MSVCRT_SUBDIR=Microsoft.VC140.CRT
 MSVCRT_FILES=vcruntime140.dll
+MSVCRT_COPY=0
 !ELSE
 !ERROR Unknown MSVC version: $(_NMAKE_VER)
 !ENDIF
@@ -465,11 +470,14 @@ build-dist:
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
 		-c "helptags $(VIM_DIST_DIR)\$(RTDIR_NAME)\doc" -c quit
 # Copy MSVC runtime files.
-	-$(COPY) "$(MSVCRT_DIR)" "$(VIM_DIST_DIR)" $(MSVCRT_FILES)
+	-IF $(MSVCRT_COPY) NEQ 0 $(COPY) "$(MSVCRT_DIR)" "$(VIM_DIST_DIR)" $(MSVCRT_FILES)
 # Copy patch (diff) files.
 	-$(COPY) /E "$(VIM_PATCH_DIR)" "$(VIM_DIST_DIR)\patch"
 # Copy lua related files
 	-$(COPY) /E "$(INSTALL_DIR)\bin\lua" "$(VIM_DIST_DIR)\lua"
+
+test1:
+	@IF $(MSVCRT_COPY) NEQ 0 ECHO should copy
 
 archive-dist: build-dist
 	$(MAKE) zip-dist

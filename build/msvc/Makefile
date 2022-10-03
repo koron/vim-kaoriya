@@ -490,7 +490,13 @@ zip-dist:
 clean-dist:
 	-RD /S /Q "$(VIM_DIST_DIR)"
 
-build-release-pre:
+build-release-pre: build-release
+
+build-release-core: build-release-archive
+
+build-release-post: build-release-clean
+
+build-release:
 	$(MAKE) "$(INSTALL_DIR)\bin\iconv.dll"
 	$(MAKE) "$(INSTALL_DIR)\bin\intl.dll"
 	$(MAKE) "$(INSTALL_DIR)\lib\libXpm.lib"
@@ -503,11 +509,11 @@ build-release-pre:
 	$(MAKE) build-dist
 	$(MAKE) pdb-distdir
 
-build-release-core:
+build-release-archive:
 	$(MAKE) zip-dist
 	$(MAKE) pdb-archive
 
-build-release-post:
+build-release-clean:
 	$(MAKE) vim-clean
 
 snapshot: snapshot-build snapshot-install snapshot-archive

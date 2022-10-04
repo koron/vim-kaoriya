@@ -476,9 +476,6 @@ build-dist:
 # Copy lua related files
 	-$(COPY) /E "$(INSTALL_DIR)\bin\lua" "$(VIM_DIST_DIR)\lua"
 
-test1:
-	@IF $(MSVCRT_COPY) NEQ 0 ECHO should copy
-
 archive-dist: build-dist
 	$(MAKE) /$(MAKEFLAGS) zip-dist
 

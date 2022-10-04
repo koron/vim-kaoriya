@@ -1,3 +1,18 @@
+## 2022/10/XX の変更点
+
+*   ベースコードを9.0.XXXXに更新しました
+*   コンパイラを Visual Studio 2022 (Visual C 17.X) に変更しました
+*   外部言語インターフェースの変更
+
+    LuaJITを除く外部言語インターフェース(Perl, Python, Ruby)を廃止しました
+    それらが必要な型は vim-win32-installer をご利用ください
+
+    <https://github.com/vim/vim-win32-installer/releases/latest>
+
+*   `:Scratch` バッファを `:w foo.txt` で保存した際の挙動を修正しました
+
+    <https://github.com/koron/vim-kaoriya/issues/30>
+
 ## 2020/07/24 の変更点
 
 *   ベースコードを8.2.1287に更新しました

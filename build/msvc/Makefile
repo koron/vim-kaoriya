@@ -84,18 +84,18 @@ MSVCRT_COPY=0
 !ENDIF
 
 archive:
-	$(MAKE) archive-pre
-	$(MAKE) archive-dist
+	$(MAKE) /$(MAKEFLAGS) archive-pre
+	$(MAKE) /$(MAKEFLAGS) archive-dist
 
 archive-pre:
-	$(MAKE) "$(INSTALL_DIR)\bin\iconv.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\intl.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
-	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\winpty-agent.exe"
-	$(MAKE) vim-clean vim-install
-	$(MAKE) vim-mo-install vim-patch-install
-	$(MAKE) langja-install
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\iconv.dll"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\intl.dll"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\winpty-agent.exe"
+	$(MAKE) /$(MAKEFLAGS) vim-clean vim-install
+	$(MAKE) /$(MAKEFLAGS) vim-mo-install vim-patch-install
+	$(MAKE) /$(MAKEFLAGS) langja-install
 
 contrib: $(INSTALL_DIR)\bin\iconv.dll $(INSTALL_DIR)\bin\intl.dll \
 	$(INSTALL_DIR)\lib\libXpm.lib \
@@ -384,10 +384,10 @@ pdb-distdir: $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb
 pdb-archive: $(OUTPUT_DIR)\$(PDB_DIST_ZIP)
 
 $(VIM_DIR)\src\vim.pdb $(VIM_DIR)\src\gvim.pdb:
-	$(MAKE) vim-build
+	$(MAKE) /$(MAKEFLAGS) vim-build
 
 $(VIM_DIR)\src\$(VIMDLL_BASE).pdb:
-	$(MAKE) vim-build
+	$(MAKE) /$(MAKEFLAGS) vim-build
 
 $(PDB_DIST_DIR):
 	IF NOT EXIST "$(PDB_DIST_DIR)" MKDIR "$(PDB_DIST_DIR)"
@@ -399,18 +399,18 @@ $(INSTALL_DIR)\bin\gvim.pdb: $(VIM_DIR)\src\gvim.pdb
 	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" gvim.pdb
 
 $(PDB_DIST_DIR)\vim.pdb: $(INSTALL_DIR)\bin\vim.pdb
-	$(MAKE) $(PDB_DIST_DIR)
+	$(MAKE) /$(MAKEFLAGS) $(PDB_DIST_DIR)
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" vim.pdb
 
 $(PDB_DIST_DIR)\gvim.pdb: $(INSTALL_DIR)\bin\gvim.pdb
-	$(MAKE) $(PDB_DIST_DIR)
+	$(MAKE) /$(MAKEFLAGS) $(PDB_DIST_DIR)
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" gvim.pdb
 
 $(INSTALL_DIR)\bin\$(VIMDLL_BASE).pdb: $(VIM_DIR)\src\$(VIMDLL_BASE).pdb
 	-$(COPY) "$(VIM_DIR)\src" "$(INSTALL_DIR)\bin" $(VIMDLL_BASE).pdb
 
 $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb: $(INSTALL_DIR)\bin\$(VIMDLL_BASE).pdb
-	$(MAKE) $(PDB_DIST_DIR)
+	$(MAKE) /$(MAKEFLAGS) $(PDB_DIST_DIR)
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(PDB_DIST_DIR)" $(VIMDLL_BASE).pdb
 
 $(OUTPUT_DIR)\$(PDB_DIST_ZIP): $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb
@@ -480,7 +480,7 @@ test1:
 	@IF $(MSVCRT_COPY) NEQ 0 ECHO should copy
 
 archive-dist: build-dist
-	$(MAKE) zip-dist
+	$(MAKE) /$(MAKEFLAGS) zip-dist
 
 zip-dist:
 	cd "$(OUTPUT_DIR)"
@@ -497,31 +497,31 @@ build-release-core: build-release-archive
 build-release-post: build-release-clean
 
 build-release:
-	$(MAKE) "$(INSTALL_DIR)\bin\iconv.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\intl.dll"
-	$(MAKE) "$(INSTALL_DIR)\lib\libXpm.lib"
-	$(MAKE) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
-	$(MAKE) "$(INSTALL_DIR)\bin\lua51.dll"
-	$(MAKE) "$(INSTALL_DIR)\bin\winpty-agent.exe"
-	$(MAKE) vim-clean
-	$(MAKE) vim-install vim-mo-install vim-patch-install
-	$(MAKE) langja-install
-	$(MAKE) build-dist
-	$(MAKE) pdb-distdir
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\iconv.dll"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\intl.dll"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\lib\libXpm.lib"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
+	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\winpty-agent.exe"
+	$(MAKE) /$(MAKEFLAGS) vim-clean
+	$(MAKE) /$(MAKEFLAGS) vim-install vim-mo-install vim-patch-install
+	$(MAKE) /$(MAKEFLAGS) langja-install
+	$(MAKE) /$(MAKEFLAGS) build-dist
+	$(MAKE) /$(MAKEFLAGS) pdb-distdir
 
 build-release-archive:
-	$(MAKE) zip-dist
-	$(MAKE) pdb-archive
+	$(MAKE) /$(MAKEFLAGS) zip-dist
+	$(MAKE) /$(MAKEFLAGS) pdb-archive
 
 build-release-clean:
-	$(MAKE) vim-clean
+	$(MAKE) /$(MAKEFLAGS) vim-clean
 
 snapshot: snapshot-build snapshot-install snapshot-archive
 
 snapshot-pre: snapshot-install snapshot-archive
 
 snapshot-build:
-	$(MAKE) vim-clean vim-build
+	$(MAKE) /$(MAKEFLAGS) vim-clean vim-build
 
 snapshot-install:
 	IF NOT EXIST "$(SNAPSHOT_DIR)" MD "$(SNAPSHOT_DIR)"
@@ -549,22 +549,22 @@ snapshot-archive:
 	snapshot
 
 "$(INSTALL_DIR)\bin\iconv.dll":
-	$(MAKE) iconv-clean iconv-install iconv-distclean
+	$(MAKE) /$(MAKEFLAGS) iconv-clean iconv-install iconv-distclean
 
 "$(INSTALL_DIR)\bin\intl.dll":
-	$(MAKE) gettext-clean gettext-install gettext-distclean
+	$(MAKE) /$(MAKEFLAGS) gettext-clean gettext-install gettext-distclean
 
 "$(INSTALL_DIR)\lib\libXpm.lib":
-	$(MAKE) xpm-clean xpm-install xpm-distclean
+	$(MAKE) /$(MAKEFLAGS) xpm-clean xpm-install xpm-distclean
 
 "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)":
-	$(MAKE) vimproc-clean vimproc-install vimproc-distclean
+	$(MAKE) /$(MAKEFLAGS) vimproc-clean vimproc-install vimproc-distclean
 
 "$(INSTALL_DIR)\bin\lua51.dll":
-	$(MAKE) luajit-install
+	$(MAKE) /$(MAKEFLAGS) luajit-install
 
 "$(INSTALL_DIR)\bin\winpty-agent.exe":
-	$(MAKE) winpty-install
+	$(MAKE) /$(MAKEFLAGS) winpty-install
 
 "$(INSTALL_DIR)\bin\vim.exe":
-	$(MAKE) vim-clean vim-install vim-mo-install vim-clean
+	$(MAKE) /$(MAKEFLAGS) vim-clean vim-install vim-mo-install vim-clean

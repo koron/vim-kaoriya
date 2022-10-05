@@ -5,7 +5,7 @@
 *   外部言語インターフェースの変更
 
     LuaJITを除く外部言語インターフェース(Perl, Python, Ruby)を廃止しました
-    それらが必要な型は vim-win32-installer をご利用ください
+    それらが必要な方は vim-win32-installer をご利用ください
 
     <https://github.com/vim/vim-win32-installer/releases/latest>
 

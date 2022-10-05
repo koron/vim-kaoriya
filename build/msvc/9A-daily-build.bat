@@ -12,6 +12,8 @@ REM Catcn up Vim's update
 git fetch -p
 git merge --ff-only @{u}
 
+REM TODO: update VIM_VER in ..\..\VERSION
+
 REM Apply patches with guilt
 %GUILTCMD% push -a
 

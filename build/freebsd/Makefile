@@ -25,7 +25,7 @@ version:
 
 package:
 	rm -f $(VIM_PKGFILE)
-	tar caf $(VIM_PKGFILE) --uname root --gname wheel --strip-components 1 -C $(DESTDIR) .
+	tar caf $(VIM_PKGFILE) --uid 0 --gid 0 --strip-components 1 -C $(DESTDIR) .
 
 package-clean:
 	rm -rf $(DESTDIR)

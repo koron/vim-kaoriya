@@ -4,7 +4,7 @@ scriptencoding utf-8
 " An example for a Japanese version vimrc file.
 " 日本語版のデフォルト設定ファイル(vimrc) - Vim 8.1
 "
-" Last Change: 23-Mar-2019.
+" Last Change: 06-Oct-2023.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -195,7 +195,11 @@ if has('unix') && !has('gui_running')
   if s:uname =~? "linux"
     " no need to use builtin_term for Linux
   elseif s:uname =~? "freebsd"
-    set term=builtin_cons25
+    if exists("$TERM")
+      set term=$TERM
+    else
+      set term=builtin_cons25
+    endif
   elseif s:uname =~? "Darwin"
     set term=builtin_beos-ansi
   else

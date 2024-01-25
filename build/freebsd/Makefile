@@ -13,15 +13,16 @@ VIM_CONFIG = --with-features=huge \
 VIM_DIR = $(DESTDIR)/usr/local/share/vim
 VIMRUNTIME_DIR = $(DESTDIR)$(VIM_DIR)/vim$(VIM_VER_SHORT)
 
-OS_TARGET = freebsd13
+OS_TARGET = freebsd14
 VIM_PKGFILE = vim$(VIM_VER_SHORT)-kaoriya-$(OS_TARGET)-$(VERSION).tar.bz2
 
 ##############################################################################
 
 version:
-	@echo ROOT_DIR=$(ROOT_DIR)
-	@echo DESTDIR =$(DESTDIR)
-	@echo VERSION =$(VERSION)
+	@echo ROOT_DIR  = $(ROOT_DIR)
+	@echo DESTDIR   = $(DESTDIR)
+	@echo VERSION   = $(VERSION)
+	@echo OS_TARGET = $(OS_TARGET)
 
 package:
 	rm -f $(VIM_PKGFILE)

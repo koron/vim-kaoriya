@@ -1,2 +1,5 @@
 *.sw?
 tmp/
+
+work/
+vim*-kaoriya-*.tar.bz2

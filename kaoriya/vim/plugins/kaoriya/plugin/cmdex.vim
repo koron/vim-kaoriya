@@ -3,7 +3,7 @@
 " cmdex.vim - Extra commands
 "
 " Maintainer:	Muraoka Taro <koron.kaoriya@gmail.com>
-" Last Change:	19-Mar-2013.
+" Last Change:	04-Oct-2022.
 " Commands:
 "		:MenuLang {language}
 "		    (language: none/ja/zh...etc.)
@@ -85,9 +85,10 @@ command! -nargs=0 IminsertOn iunmap <buffer> <ESC>
 "   Open a scratch (no file) buffer.
 command! -nargs=0 Scratch new | setlocal bt=nofile noswf | let b:cmdex_scratch = 1
 function! s:CheckScratchWritten()
-  if &buftype ==# 'nofile' && expand('%').'x' !=# 'x' && exists('b:cmdex_scratch') && b:cmdex_scratch == 1
-    setlocal buftype= swapfile
+  if &buftype ==# 'nofile' && get(b:, 'cmdex_scratch', 0) == 1 && expand('<afile>') !=# ''
     unlet b:cmdex_scratch
+    setlocal buftype= swapfile
+    execute "edit!" expand('<afile>')
   endif
 endfunction
 augroup CmdexScratch

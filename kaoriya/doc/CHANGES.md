@@ -1,17 +1,35 @@
-## 2022/10/XX の変更点
+## 2025/12/XX の変更点
 
-*   ベースコードを9.0.XXXXに更新しました
+*   ベースコードを9.1.XXXXに更新しました
 *   コンパイラを Visual Studio 2022 (Visual C 17.X) に変更しました
 *   外部言語インターフェースの変更
 
-    LuaJITを除く外部言語インターフェース(Perl, Python, Ruby)を廃止しました
-    それらが必要な方は vim-win32-installer をご利用ください
+    LuaJITを除く外部言語インターフェース(Perl, Python, Ruby)を廃止しました。
+    それらが必要な方は vim-win32-installer をご利用ください。
 
     <https://github.com/vim/vim-win32-installer/releases/latest>
 
 *   `:Scratch` バッファを `:w foo.txt` で保存した際の挙動を修正しました
 
     <https://github.com/koron/vim-kaoriya/issues/30>
+
+*   32ビット版バイナリの提供を終了しました
+
+    既に32ビット版のWindows自体のサポート期限が過ぎました。
+
+*   rprichard/winpty のバンドル廃止しました
+
+    代わりに組み込みのConPTYを使用します。
+
+*   vimprc のバンドルを廃止しました
+
+    現在では `job_start()` が主流となっています。
+
+*   README.txt の文字コードをUTF-8に、改行コードをLFのみに変更しました
+
+    Windows標準のメモ帳でも閲覧できるようになりました。
+
+*   幾つかのテストが失敗し、完走していません (2025/12/14 現在)
 
 ## 2020/07/24 の変更点
 

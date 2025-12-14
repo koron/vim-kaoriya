@@ -1,262 +1,176 @@
-                   Vim version 8.2 ‚è‰®”Å “±“üƒ}ƒjƒ…ƒAƒ‹
+                   Vim version 9.1 é¦™ã‚Šå±‹ç‰ˆ å°Žå…¥ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«
 
-                                                         Version: 1.10.0
+                                                         Version: 1.11.0
                                                           Author: MURAOKA Taro
                                                            Since: 23-Aug-1999
-                                                     Last Change: 22-Dec-2019.
+                                                     Last Change: 14-Dec-2025.
 
-ŠT—v
-  Vim‚ÍviƒNƒ[ƒ“‚É•ª—Þ‚³‚ê‚éƒeƒLƒXƒgƒGƒfƒBƒ^‚Å‚·B
+æ¦‚è¦
+  Vimã¯viã‚¯ãƒ­ãƒ¼ãƒ³ã«åˆ†é¡žã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ã§ã™ã€‚
 
-  ƒIƒŠƒWƒiƒ‹‚ÌVim‚Íhttps://www.vim.org/‚ÅŒöŠJ‚³‚ê‚Ä‚¨‚èA‚»‚Ì‚Ü‚Ü‚Å‚à“ú–{Œê‚ðŠÜ
-  ‚ÞƒeƒLƒXƒg‚Í•ÒW‚Å‚«‚Ü‚·‚ªA‚è‰®‚Å‚Í“ú–{Œê‚ð‚æ‚èˆµ‚¢ˆÕ‚­‚·‚é‚½‚ß‚ÌC³‚Æ’Ç
-  ‰Á‚ðs‚¢‚è‰®”Å‚Æ‚µ‚ÄŒöŠJ‚µ‚Ä‚¢‚Ü‚·B
+  ã‚ªãƒªã‚¸ãƒŠãƒ«ã®Vimã¯https://www.vim.org/ã§å…¬é–‹ã•ã‚Œã¦ãŠã‚Šã€ãã®ã¾ã¾ã§ã‚‚æ—¥æœ¬èªžã‚’å«
+  ã‚€ãƒ†ã‚­ã‚¹ãƒˆã¯ç·¨é›†ã§ãã¾ã™ãŒã€é¦™ã‚Šå±‹ã§ã¯æ—¥æœ¬èªžã‚’ã‚ˆã‚Šæ‰±ã„æ˜“ãã™ã‚‹ãŸã‚ã®ä¿®æ­£ã¨è¿½
+  åŠ ã‚’è¡Œã„é¦™ã‚Šå±‹ç‰ˆã¨ã—ã¦å…¬é–‹ã—ã¦ã„ã¾ã™ã€‚
 
-  ƒŠƒŠ[ƒX‚É‚Í32bit”Å‚Æ64bit”Å‚ª‚ ‚è‚Ü‚·B32bit OS‚Å‚Í•K‚¸32bit”Å‚ð‚²—˜—p‚­‚¾
-  ‚³‚¢B64bit OS‚Å‚Í64bit”Å‚Æ32bit”Å‚Ç‚¿‚ç‚Å‚à‚²—˜—p‚¢‚½‚¾‚¯‚Ü‚·B
+  é¦™ã‚Šå±‹ç‰ˆã¯64ãƒ“ãƒƒãƒˆç‰ˆã®ã¿ãŒæä¾›ã•ã‚Œã¾ã™ã€‚Windowsã®32ãƒ“ãƒƒãƒˆç‰ˆè‡ªä½“ã®ã‚µãƒãƒ¼ãƒˆãŒ
+  çµ‚äº†ã—ã¦ã„ã¾ã™ã€‚
 
-ƒCƒ“ƒXƒg[ƒ‹•û–@
-  ”z•zƒtƒ@ƒCƒ‹‚ÍZIP‘ŒÉ‚Å‚·B”z•zƒtƒ@ƒCƒ‹‚É‚ÍVimƒvƒƒOƒ‰ƒ€ƒtƒHƒ‹ƒ_‚ªŠi”[‚³‚ê‚Ä
-  ‚¢‚é‚Ì‚ÅA‰ð“€‚µ‚ÄƒVƒXƒeƒ€“à‚ÌD‚«‚ÈêŠ‚É”z’u‚µ‚Ä‚­‚¾‚³‚¢B
+ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ–¹æ³•
+  é…å¸ƒãƒ•ã‚¡ã‚¤ãƒ«ã¯ZIPæ›¸åº«ã§ã™ã€‚é…å¸ƒãƒ•ã‚¡ã‚¤ãƒ«ã«ã¯Vimãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚©ãƒ«ãƒ€ãŒæ ¼ç´ã•ã‚Œã¦
+  ã„ã‚‹ã®ã§ã€è§£å‡ã—ã¦ã‚·ã‚¹ãƒ†ãƒ å†…ã®å¥½ããªå ´æ‰€ã«é…ç½®ã—ã¦ãã ã•ã„ã€‚
 
-  32bit”Å
-    ”z•zƒtƒ@ƒCƒ‹: vim82-kaoriya-win32-V.V.V-YYYYMMDD.zip
-    VimƒvƒƒOƒ‰ƒ€ƒtƒHƒ‹ƒ_: vim82-kaoriya-win32.zip
+  64ãƒ“ãƒƒãƒˆç‰ˆ
+    é…å¸ƒãƒ•ã‚¡ã‚¤ãƒ«: vim91-kaoriya-win64-V.V.V-YYYYMMDD.zip
+    Vimãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚©ãƒ«ãƒ€: vim91-kaoriya-win64
 
-  64bit”Å
-    ”z•zƒtƒ@ƒCƒ‹: vim82-kaoriya-win64-V.V.V-YYYYMMDD.zip
-    VimƒvƒƒOƒ‰ƒ€ƒtƒHƒ‹ƒ_: vim82-kaoriya-win64
+  ä¸Šè¨˜ã®V.V.Vã«ã¯ãƒ™ãƒ¼ã‚¹ã¨ãªã£ãŸVimã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒãƒ‘ãƒƒãƒç•ªå·ã¾ã§å«ã‚ã¦å…¥ã‚Šã¾ã™ã€‚
+  ä¸Šè¨˜ã®YYYYMMDDã«ã¯ãƒªãƒªãƒ¼ã‚¹ã®å¹´æœˆæ—¥ãŒå…¥ã‚Šã¾ã™ã€‚
 
-  ã‹L‚ÌV.V.V‚É‚Íƒx[ƒX‚Æ‚È‚Á‚½Vim‚Ìƒo[ƒWƒ‡ƒ“‚ªƒpƒbƒ`”Ô†‚Ü‚ÅŠÜ‚ß‚Ä“ü‚è‚Ü‚·B
-  ã‹L‚ÌYYYYMMDD‚É‚ÍƒŠƒŠ[ƒX‚Ì”NŒŽ“ú‚ª“ü‚è‚Ü‚·B
+å®Ÿè¡Œæ–¹æ³•
+  Vimãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚©ãƒ«ãƒ€ã®ä¸­ã®gvimã‚‚ã—ãã¯vimã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚
 
-ŽÀs•û–@
-  VimƒvƒƒOƒ‰ƒ€ƒtƒHƒ‹ƒ_‚Ì’†‚Ìgvim‚à‚µ‚­‚Ívim‚ðƒ_ƒuƒ‹ƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
+ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ« (Windows)
+  Vimãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚©ãƒ«ãƒ€ã‚’å‰Šé™¤ã—ã¦ãã ã•ã„ã€‚ç‰¹åˆ¥ãªæ“ä½œã¯ä¸è¦ã§ã™ã€‚
 
-ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹ (Windows)
-  VimƒvƒƒOƒ‰ƒ€ƒtƒHƒ‹ƒ_‚ðíœ‚µ‚Ä‚­‚¾‚³‚¢B“Á•Ê‚È‘€ì‚Í•s—v‚Å‚·B
-
-‰SŽÒ‚Ì•û‚Ö
-  ‚Ü‚¸‚ÍVim‚Ì‘€ì‚ÉŠµ‚ê‚é‚½‚ßƒgƒŒ[ƒjƒ“ƒO‚·‚é‚±‚Æ‚ðƒIƒXƒXƒ‚µ‚Ü‚·B1‰ñ‚ÌƒgƒŒ[
-  ƒjƒ“ƒO‚É‚©‚©‚éŽžŠÔ‚É‚ÍŒÂl·‚ª‚ ‚è‚Ü‚·‚ª30•ª‚©‚ç1ŽžŠÔ‚­‚ç‚¢‚Å‚·BƒgƒŒ[ƒjƒ“
-  ƒO‚ðŠJŽn‚·‚é‚É‚ÍVim‚ð‹N“®‚µ‚½Œã
+åˆå¿ƒè€…ã®æ–¹ã¸
+  ã¾ãšã¯Vimã®æ“ä½œã«æ…£ã‚Œã‚‹ãŸã‚ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ã™ã‚‹ã“ã¨ã‚’ã‚ªã‚¹ã‚¹ãƒ¡ã—ã¾ã™ã€‚1å›žã®ãƒˆãƒ¬ãƒ¼
+  ãƒ‹ãƒ³ã‚°ã«ã‹ã‹ã‚‹æ™‚é–“ã«ã¯å€‹äººå·®ãŒã‚ã‚Šã¾ã™ãŒ30åˆ†ã‹ã‚‰1æ™‚é–“ãã‚‰ã„ã§ã™ã€‚ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³
+  ã‚°ã‚’é–‹å§‹ã™ã‚‹ã«ã¯Vimã‚’èµ·å‹•ã—ãŸå¾Œ
 
     :Tutorial
 
-  ‚Æ“ü—Í‚µ‚ÄƒŠƒ^[ƒ“ƒL[‚ð‰Ÿ‚µ‚Ü‚·B‚ ‚Æ‚Í‰æ–Ê‚É•\Ž¦‚³‚ê‚½•¶Í‚É‚µ‚½‚ª‚Á‚Ä‘€ì
-  ‚·‚é‚±‚Æ‚ÅAVim‚ÌŠî–{“I‚È‘€ì‚ð—ûK‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·BŠµ‚ê‚é‚Ü‚Å‰½“x‚©ŒJ‚è
-  •Ô‚µ—ûK‚·‚é‚Æ‚æ‚èŒø‰Ê“I‚Å‚·B
+  ã¨å…¥åŠ›ã—ã¦ãƒªã‚¿ãƒ¼ãƒ³ã‚­ãƒ¼ã‚’æŠ¼ã—ã¾ã™ã€‚ã‚ã¨ã¯ç”»é¢ã«è¡¨ç¤ºã•ã‚ŒãŸæ–‡ç« ã«ã—ãŸãŒã£ã¦æ“ä½œ
+  ã™ã‚‹ã“ã¨ã§ã€Vimã®åŸºæœ¬çš„ãªæ“ä½œã‚’ç·´ç¿’ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚æ…£ã‚Œã‚‹ã¾ã§ä½•åº¦ã‹ç¹°ã‚Š
+  è¿”ã—ç·´ç¿’ã™ã‚‹ã¨ã‚ˆã‚ŠåŠ¹æžœçš„ã§ã™ã€‚
 
-Vim‚ÌŠg’£‹@”\‚É‚Â‚¢‚Ä
-  –{Í‚Å‚ÍVim‚ÌŠg’£‹@”\‚ÌÐ‰î‚ÆƒCƒ“ƒXƒg[ƒ‹•û–@‚É‚Â‚¢‚Äq‚×‚Ü‚·BŠg’£‹@”\‚ðƒC
-  ƒ“ƒXƒg[ƒ‹‚µ‚È‚­‚Ä‚àAVim‚ðŽg‚¤‚±‚Æ‚Í‚Å‚«‚Ü‚·B
+Vimã®æ‹¡å¼µæ©Ÿèƒ½ã«ã¤ã„ã¦
+  æœ¬ç« ã§ã¯Vimã®æ‹¡å¼µæ©Ÿèƒ½ã®ç´¹ä»‹ã¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ–¹æ³•ã«ã¤ã„ã¦è¿°ã¹ã¾ã™ã€‚æ‹¡å¼µæ©Ÿèƒ½ã‚’ã‚¤
+  ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ãªãã¦ã‚‚ã€Vimã‚’ä½¿ã†ã“ã¨ã¯ã§ãã¾ã™ã€‚
 
-  ctags‚É‚Â‚¢‚Ä
-    Œ»Ý‚ÌVim‚Íctags‚ð“¯«‚µ‚Ä‚¢‚Ü‚¹‚ñB•K—v‚Æ‚·‚é•û‚ÍˆÈ‰º‚ÌƒTƒCƒg‚©‚çŠeŽ©“üŽè
-    ‚µƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
+  ctagsã«ã¤ã„ã¦
+    ç¾åœ¨ã®Vimã¯ctagsã‚’åŒæ¢±ã—ã¦ã„ã¾ã›ã‚“ã€‚å¿…è¦ã¨ã™ã‚‹æ–¹ã¯ä»¥ä¸‹ã®ã‚µã‚¤ãƒˆã‹ã‚‰å„è‡ªå…¥æ‰‹
+    ã—ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ãã ã•ã„ã€‚
 
     - Universal Ctags
         https://ctags.io/
 
-    - Windows ”Åƒ_ƒEƒ“ƒ[ƒh
+    - Windows ç‰ˆãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
         https://github.com/universal-ctags/ctags-win32/releases
 
-  Lua‚Æ‚Ì˜AŒg
-    KaoriYa”Å‚É‚ÍLua (LuaJIT)‚ªƒoƒ“ƒhƒ‹‚³‚ê‚Ä‚¢‚é‚Ì‚ÅALuaƒCƒ“ƒ^[ƒtƒF[ƒX‚ÍŽ©
-    “®“I‚É—LŒø‚É‚È‚è‚Ü‚·BLuaƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÚ×‚É‚Â‚¢‚Ä‚Í":help lua"‚Æ‚µ‚Ä
-    Vim•t‘®‚Ìƒ}ƒjƒ…ƒAƒ‹‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+  Luaã¨ã®é€£æº
+    KaoriYaç‰ˆã«ã¯Lua (LuaJIT)ãŒãƒãƒ³ãƒ‰ãƒ«ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€Luaã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¯è‡ª
+    å‹•çš„ã«æœ‰åŠ¹ã«ãªã‚Šã¾ã™ã€‚Luaã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®è©³ç´°ã«ã¤ã„ã¦ã¯":help lua"ã¨ã—ã¦
+    Vimä»˜å±žã®ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 
-    - LuaJIT ƒTƒCƒg
+    - LuaJIT ã‚µã‚¤ãƒˆ
         http://luajit.org/
 
-  Perl‚Æ‚Ì˜AŒg
-    ’ˆÓ: Perl‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚È‚­‚Ä‚àVim‚ÍŽg—p‚Å‚«‚Ü‚·B
+ä½¿ç”¨è¨±è«¾
+  é¦™ã‚Šå±‹ç‰ˆã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯ã‚ªãƒªã‚¸ãƒŠãƒ«ã®Vimã«å¾“ã„ã¾ã™ã€‚è©³ã—ãã¯origdoc/README.txt
+  ã‚’ã”è¦§ä¸‹ã•ã„ã€‚
 
-    strawberryperl.org‚É‚¨‚¢‚ÄŒöŠJ‚³‚ê‚Ä‚¢‚éStrawberry Perl 5.28‚ðƒCƒ“ƒXƒg[ƒ‹
-    ‚·‚é‚±‚Æ‚ÅAPerlƒCƒ“ƒ^[ƒtƒF[ƒX‚ðŽg—p‚Å‚«‚Ü‚·BStrawberry Perl‚ðƒCƒ“ƒX
-    ƒg[ƒ‹‚µ‚Ä‚¢‚È‚¢ê‡‚ÍAPerlƒCƒ“ƒ^[ƒtƒF[ƒX‚ÍŽ©“®“I‚É–³Œø‚Æ‚È‚è‚Ü‚·BPerl
-    ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÚ×‚É‚Â‚¢‚Ä‚Í":help perl"‚Æ‚µ‚ÄVim•t‘®‚Ìƒ}ƒjƒ…ƒAƒ‹‚ðŽQ
-    Æ‚µ‚Ä‚­‚¾‚³‚¢B
+  Vimã¯ãƒãƒ£ãƒªãƒ†ã‚£ãƒ¼ã‚¦ã‚§ã‚¢ã¨ç§°ã—ã¦ã„ã¾ã™ãŒã€ã‚ªãƒ¼ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ã§ã‚ã‚Šç„¡æ–™ã§ä½¿ç”¨ã™ã‚‹
+  ã“ã¨ãŒã§ãã¾ã™ã€‚ã—ã‹ã—Vimã®åˆ©ç”¨ã«éš›ã—ã¦å¯¾ä¾¡ã‚’æ”¯æ‰•ã„ãŸã„ã¨è€ƒãˆãŸã®ãªã‚‰ã°ã€æ˜¯
+  éžã‚¦ã‚¬ãƒ³ãƒ€ã®å­¤å…é”ã‚’æ´åŠ©ã™ã‚‹ãŸã‚ã®å¯„ä»˜ã‚’ãŠé¡˜ã„ã„ãŸã—ã¾ã™ã€‚
 
-    64bit”Å‚ÌVim‚ðŽg‚¤ê‡‚Í64bit”Å‚ÌPerl‚ðA32bit”Å‚ðŽg‚¤ê‡‚Í32bit”Å‚ÌPerl
-    ‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
-
-    - Strawberry Perl
-        http://strawberryperl.com/
-
-  Python‚Æ‚Ì˜AŒg
-    ’ˆÓ: Python‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚È‚­‚Ä‚àVim‚ÍŽg—p‚Å‚«‚Ü‚·B
-
-    Python.org‚É‚æ‚èŒöŠJ‚³‚ê‚Ä‚¢‚éPython 2.7‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é‚±‚Æ‚ÅAPythonƒC
-    ƒ“ƒ^[ƒtƒF[ƒX‚ðŽg—p‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·BPython‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚¢‚È‚¢ê‡
-    ‚ÍAPythonƒCƒ“ƒ^[ƒtƒF[ƒX‚ÍŽ©“®“I‚É–³Œø‚Æ‚È‚è‚Ü‚·BPythonƒCƒ“ƒ^[ƒtƒF[ƒX
-    ‚ÌÚ×‚É‚Â‚¢‚Ä‚Í":help python"‚Æ‚µ‚ÄVim•t‘®‚Ìƒ}ƒjƒ…ƒAƒ‹‚ðŽQÆ‚µ‚Ä‚­‚¾‚³
-    ‚¢B
-
-    64bit”Å‚ÌVim‚ðŽg‚¤ê‡‚Í64bit”Å‚ÌPython‚ðA32bit”Å‚ðŽg‚¤ê‡‚Í32bit”Å‚Ì
-    Python‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
-
-    - Python.org
-        https://www.python.org/
-
-    Python 2.7.11 ‚ð—˜—p‚·‚éê‡‚É‚ÍAPython 2.7.11‚ÌƒoƒO‚ð‰ñ”ð‚·‚é‚½‚ß‚ÉAŠÇ
-    —ŽÒ‚Æ‚µ‚ÄˆÈ‰º‚ÌƒRƒ}ƒ“ƒh‚ðŽÀs‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-
-    - 32ƒrƒbƒg”Å
-      reg copy HKLM\SOFTWARE\Python\PythonCore\2.7 HKLM\SOFTWARE\Python\PythonCore\2.7-32 /s /reg:32
-    - 64ƒrƒbƒg”Å
-      reg copy HKLM\SOFTWARE\Python\PythonCore\2.7 HKLM\SOFTWARE\Python\PythonCore\2.7-32 /s /reg:64
-
-    ŽQÆ: https://github.com/vim-jp/issues/issues/843#issuecomment-189205350
-
-  Python3‚Æ‚Ì˜AŒg
-    ’ˆÓ: Python3‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚È‚­‚Ä‚àVim‚ÍŽg—p‚Å‚«‚Ü‚·B
-
-    Python.org‚É‚æ‚èŒöŠJ‚³‚ê‚Ä‚¢‚éPython 3.7‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é‚±‚Æ‚ÅAPythonƒC
-    ƒ“ƒ^[ƒtƒF[ƒX‚ðŽg—p‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·BPython‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚¢‚È‚¢ê‡
-    ‚ÍAPythonƒCƒ“ƒ^[ƒtƒF[ƒX‚ÍŽ©“®“I‚É–³Œø‚Æ‚È‚è‚Ü‚·BPythonƒCƒ“ƒ^[ƒtƒF[ƒX
-    ‚ÌÚ×‚É‚Â‚¢‚Ä‚Í":help python3"‚Æ‚µ‚ÄVim•t‘®‚Ìƒ}ƒjƒ…ƒAƒ‹‚ðŽQÆ‚µ‚Ä‚­‚¾‚³
-    ‚¢B
-
-    64bit”Å‚ÌVim‚ðŽg‚¤ê‡‚Í64bit”Å‚ÌPython3‚ðA32bit”Å‚ðŽg‚¤ê‡‚Í32bit”Å‚Ì
-    Python3‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
-
-    - Python.org
-        https://www.python.org/
-
-  Ruby‚Æ‚Ì˜AŒg
-    ’ˆÓ: Ruby‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚È‚­‚Ä‚àVim‚ÍŽg—p‚Å‚«‚Ü‚·B
-
-    Ruby 2.6.1‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é‚ÆRubyƒCƒ“ƒ^[ƒtƒF[ƒX‚ð—˜—p‚Å‚«‚Ü‚·BRuby‚ðƒC
-    ƒ“ƒXƒg[ƒ‹‚µ‚Ä‚¢‚È‚¢ê‡‚ÍRubyƒCƒ“ƒ^[ƒtƒF[ƒX‚ÍŽ©“®“I‚É–³Œø‚Æ‚È‚è‚Ü‚·B
-    RubyƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌÚ×‚É‚Â‚¢‚Ä‚Í":help ruby"‚Æ‚µ‚ÄVim•t‘®‚Ìƒ}ƒjƒ…ƒAƒ‹
-    ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
-
-    64bit”Å‚ÌVim‚ðŽg‚¤ê‡‚Í64bit”Å‚ÌRuby‚ðA32bit”Å‚ðŽg‚¤ê‡‚Í32bit”Å‚Ì
-    Ruby‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
-
-    Ruby 2.6.1 ‚©‚ç‚Í]—ˆ‚ÌbinƒtƒHƒ‹ƒ_‚¾‚¯‚Å‚È‚­bin\ruby_builtin_dllsƒtƒHƒ‹ƒ_
-    ‚É‚àPATH‚ð’Ê‚·•K—v‚ª‚ ‚è‚Ü‚·B
-
-    - Ruby ”z•zƒTƒCƒg
-        https://rubyinstaller.org/
-    - Ruby‘S”Ê‚Ìî•ñ
-        https://www.ruby-lang.org/ja/
-
-Žg—p‹–‘ø
-  ‚è‰®”Å‚Ìƒ‰ƒCƒZƒ“ƒX‚ÍƒIƒŠƒWƒiƒ‹‚ÌVim‚É]‚¢‚Ü‚·BÚ‚µ‚­‚Íorigdoc/README.txt
-  ‚ð‚²——‰º‚³‚¢B
-
-  Vim‚Íƒ`ƒƒƒŠƒeƒB[ƒEƒFƒA‚ÆÌ‚µ‚Ä‚¢‚Ü‚·‚ªAƒI[ƒvƒ“ƒ\[ƒX‚Å‚ ‚è–³—¿‚ÅŽg—p‚·‚é
-  ‚±‚Æ‚ª‚Å‚«‚Ü‚·B‚µ‚©‚µVim‚Ì—˜—p‚ÉÛ‚µ‚Ä‘Î‰¿‚ðŽx•¥‚¢‚½‚¢‚Æl‚¦‚½‚Ì‚È‚ç‚ÎA¥
-  ”ñƒEƒKƒ“ƒ_‚ÌŒÇŽ™’B‚ð‰‡•‚·‚é‚½‚ß‚ÌŠñ•t‚ð‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·B
-
-  ŠÈ’P‚È(–³—¿‚Ì)Šñ•t‚Ì•û–@
-    ŠCŠO‚©‚çCD‚â–{‚ð’•¶‚·‚éÛ‚ÉˆÈ‰º‚ÌƒŠƒ“ƒN‚ðŒo—R‚µ‚Äw“ü‚·‚é‚±‚Æ‚ÅA‚»‚Ì”„ã
-    ‚Ì‰½ƒp[ƒZƒ“ƒg‚©‚ªŠñ•t‚³‚ê‚Ü‚·Bw“üŽÒ‚É‚Í³‹K‚Ì‘ã‹àˆÈŠO‚Ì•‰’S‚Í‚ ‚è‚Ü‚¹
-    ‚ñB—m‘‚È‚Ç‚ª“ü—p‚ÌÛ‚É‚ÍAi‚ñ‚Å‚²—˜—p‚­‚¾‚³‚¢B
-
-    - ”ƒ‚¢•¨‚É‚æ‚éŠñ•t
-      https://iccf-holland.org/click.html
-
-  VimŠJ”­ƒXƒ|ƒ“ƒT[§“x
-    VimŠJ”­ƒXƒ|ƒ“ƒT[§“x‚Æ‹@”\—v–]“Š•[§“x‚ªŽn‚Ü‚è‚Ü‚µ‚½B—LŽu‚ªVim‚ÌŠJ”­‚É‚¨
-    ‹à‚ðoŽ‘‚µBramŽ‚ÉŠJ”­‚Öê”O‚µ‚Ä‚à‚ç‚¨‚¤‚Æ‚¢‚¤ŽåŽ|‚Å‚·BoŽ‘ŽÒ‚É‚ÍŒ©•Ô‚è‚É
-    ‹@”\—v–]“Š•[‚ÌŒ —˜‚ª—^‚¦‚ç‚ê‚Ü‚·BÅ‹ß‚Å‚Ífolding‚ª‚»‚¤‚Å‚ ‚Á‚½‚æ‚¤‚ÉA‚±
-    ‚Ì‹@”\—v–]“Š•[‚Å‘½‚­‚Ì•[”‚ðW‚ß‚½‹@”\‚©‚ç—Dæ‚µ‚ÄŽÀ‘•‚³‚ê‚Ü‚·BoŽ‘‚Í1Œû
-    10ƒ†[ƒˆÈã‚©‚ç‚ÅAPayPal‚ð’Ê‚¶‚ÄƒNƒŒƒWƒbƒgƒJ[ƒh‚É‚æ‚éŒˆÏ‚à‰Â”\‚Å‚·B‚Ü
-    ‚½Šñ•t‚µ‚½Ž–ŽÀ‚ªŒö•\‚³‚ê‚é‚±‚Æ‚ð‹‘‚Ü‚È‚¯‚ê‚ÎA100ƒ†[ƒˆÈãŠñ•t‚ð‚µ‚½ê‡
-    ‚É‚ÍuHall of honourv‚ÉŒfÚ‚³‚ê‚Ü‚·BÚ×‚ÍˆÈ‰º‚ÌURL‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+  Vimé–‹ç™ºã‚¹ãƒãƒ³ã‚µãƒ¼åˆ¶åº¦
+    Vimé–‹ç™ºã‚¹ãƒãƒ³ã‚µãƒ¼åˆ¶åº¦ã¨æ©Ÿèƒ½è¦æœ›æŠ•ç¥¨åˆ¶åº¦ãŒå§‹ã¾ã‚Šã¾ã—ãŸã€‚æœ‰å¿—ãŒVimã®é–‹ç™ºã«ãŠ
+    é‡‘ã‚’å‡ºè³‡ã—Vimã®é–‹ç™ºã¸å°‚å¿µã—ã¦ã‚‚ã‚‰ãŠã†ã¨ã„ã†ä¸»æ—¨ã§ã™ã€‚å‡ºè³‡è€…ã«ã¯è¦‹è¿”ã‚Šã«æ©Ÿ
+    èƒ½è¦æœ›æŠ•ç¥¨ã®æ¨©åˆ©ãŒä¸Žãˆã‚‰ã‚Œã¾ã™ã€‚æœ€è¿‘ã§ã¯foldingãŒãã†ã§ã‚ã£ãŸã‚ˆã†ã«ã€ã“ã®
+    æ©Ÿèƒ½è¦æœ›æŠ•ç¥¨ã§å¤šãã®ç¥¨æ•°ã‚’é›†ã‚ãŸæ©Ÿèƒ½ã‹ã‚‰å„ªå…ˆã—ã¦å®Ÿè£…ã•ã‚Œã¾ã™ã€‚å‡ºè³‡ã¯1å£10
+    ãƒ¦ãƒ¼ãƒ­ä»¥ä¸Šã‹ã‚‰ã§ã€PayPalã‚’é€šã˜ã¦ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰ã«ã‚ˆã‚‹æ±ºæ¸ˆã‚‚å¯èƒ½ã§ã™ã€‚ã¾ãŸ
+    å¯„ä»˜ã—ãŸäº‹å®ŸãŒå…¬è¡¨ã•ã‚Œã‚‹ã“ã¨ã‚’æ‹’ã¾ãªã‘ã‚Œã°ã€100ãƒ¦ãƒ¼ãƒ­ä»¥ä¸Šå¯„ä»˜ã‚’ã—ãŸå ´åˆã«
+    ã¯ã€ŒHall of honourã€ã«æŽ²è¼‰ã•ã‚Œã¾ã™ã€‚è©³ç´°ã¯ä»¥ä¸‹ã®URLã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 
     - Sponsor Vim development
       https://www.vim.org/sponsor/index.php
 
-ƒIƒŠƒWƒiƒ‹‚Æ‚Ì‘Šˆá“_
-  ƒ\[ƒX·•ª
-    patchƒtƒHƒ‹ƒ_“à‚É·•ª‚ð“¯«‚µ‚Ä‚¢‚Ü‚·B·•ª‚ÌŽg‚¢•û‚â“à—e‚ÉŠÖ‚·‚éŽ¿–â‚âƒR
-    ƒƒ“ƒg‚È‚Ç‚ ‚è‚Ü‚µ‚½‚ç‚è‰®”Åƒƒ“ƒeƒi‚Ü‚Å˜A—‚­‚¾‚³‚¢Bƒ\[ƒX1s1s‚ÉŽŠ‚é
-    ‚Ü‚Å‚ÌŒŸØ‚à‘åŠ½Œ}‚µ‚Ü‚·B
+ã‚ªãƒªã‚¸ãƒŠãƒ«ã¨ã®ç›¸é•ç‚¹
+  ã‚½ãƒ¼ã‚¹å·®åˆ†
+    patchãƒ•ã‚©ãƒ«ãƒ€å†…ã«å·®åˆ†ã‚’åŒæ¢±ã—ã¦ã„ã¾ã™ã€‚å·®åˆ†ã®ä½¿ã„æ–¹ã‚„å†…å®¹ã«é–¢ã™ã‚‹è³ªå•ã‚„ã‚³
+    ãƒ¡ãƒ³ãƒˆãªã©ã‚ã‚Šã¾ã—ãŸã‚‰é¦™ã‚Šå±‹ç‰ˆãƒ¡ãƒ³ãƒ†ãƒŠã¾ã§é€£çµ¡ãã ã•ã„ã€‚ã‚½ãƒ¼ã‚¹1è¡Œ1è¡Œã«è‡³ã‚‹
+    ã¾ã§ã®æ¤œè¨¼ã‚‚å¤§æ­“è¿Žã—ã¾ã™ã€‚
 
-    ˆÈ‰º‚ÌƒŒƒ|ƒWƒgƒŠ‚Å‚Í“¯ƒpƒbƒ`‚ÌÅV”Å‚ðŒöŠJ‚µ‚Ä‚¢‚Ü‚·B
+    ä»¥ä¸‹ã®ãƒ¬ãƒã‚¸ãƒˆãƒªã§ã¯åŒãƒ‘ãƒƒãƒã®æœ€æ–°ç‰ˆã‚’å…¬é–‹ã—ã¦ã„ã¾ã™ã€‚
 
-    - vim-kaoriya-patches: +kaoriyaƒpƒbƒ`
+    - vim-kaoriya-patches: +kaoriyaãƒ‘ãƒƒãƒ
       https://github.com/koron/vim-kaoriya-patches
 
-    patchƒtƒHƒ‹ƒ_‹y‚Ñvim-kaoriya-patches“à‚Ì–¼‘O‚ªX‚ÅŽn‚Ü‚éƒpƒbƒ`‚Í”ñí‚ÉŽÀŒ±
-    “I‚È‚à‚Ì‚Å‚ ‚èŒöŠJ”Å‚É‚Í“K—p‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB‹»–¡‚Ì‚ ‚é•û‚¾‚¯Œä——‚­‚¾‚³‚¢B
+    patchãƒ•ã‚©ãƒ«ãƒ€åŠã³vim-kaoriya-patcheså†…ã®åå‰ãŒXã§å§‹ã¾ã‚‹ãƒ‘ãƒƒãƒã¯éžå¸¸ã«å®Ÿé¨“
+    çš„ãªã‚‚ã®ã§ã‚ã‚Šå…¬é–‹ç‰ˆã«ã¯é©ç”¨ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚èˆˆå‘³ã®ã‚ã‚‹æ–¹ã ã‘å¾¡è¦§ãã ã•ã„ã€‚
 
-  git‚É‚æ‚éƒ\[ƒX‚Æƒpƒbƒ`‚Ì“üŽè•û–@
-    ‚è‰®”Å‚Ìƒ\[ƒXƒR[ƒh(‹y‚Ñƒpƒbƒ`)‚ðgithubƒŒƒ|ƒWƒgƒŠ‚©‚çŽæ“¾‚·‚é‚É‚ÍˆÈ‰º‚Ì
-    ƒTƒCƒg‚ðŽQl‚É‚µ‚Ä‚­‚¾‚³‚¢B
+  gitã«ã‚ˆã‚‹ã‚½ãƒ¼ã‚¹ã¨ãƒ‘ãƒƒãƒã®å…¥æ‰‹æ–¹æ³•
+    é¦™ã‚Šå±‹ç‰ˆã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰(åŠã³ãƒ‘ãƒƒãƒ)ã‚’githubãƒ¬ãƒã‚¸ãƒˆãƒªã‹ã‚‰å–å¾—ã™ã‚‹ã«ã¯ä»¥ä¸‹ã®
+    ã‚µã‚¤ãƒˆã‚’å‚è€ƒã«ã—ã¦ãã ã•ã„ã€‚
 
-    - vim-kaoriya: ƒrƒ‹ƒh—pƒXƒNƒŠƒvƒg‘¼
+    - vim-kaoriya: ãƒ“ãƒ«ãƒ‰ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆä»–
       https://github.com/koron/vim-kaoriya
 
-Šù’m‚Ì–â‘è“_
-  * qkc‚Ì-njƒtƒ‰ƒO‚ÅƒRƒ“ƒo[ƒg‚µ‚½JISƒtƒ@ƒCƒ‹‚ÍŠJ‚¯‚È‚¢(iconv.dll)
-  * scrolloff‚ª‘‹‚‚Ì’š“x”¼•ª‚ÌŽžA‰º‚Ö‚ÌƒXƒNƒ[ƒ‹‚ª2s’PˆÊ‚É‚È‚é
+æ—¢çŸ¥ã®å•é¡Œç‚¹
+  * qkcã®-njãƒ•ãƒ©ã‚°ã§ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ãŸJISãƒ•ã‚¡ã‚¤ãƒ«ã¯é–‹ã‘ãªã„(GNU iconv)
+  * scrolloffãŒçª“é«˜ã®ä¸åº¦åŠåˆ†ã®æ™‚ã€ä¸‹ã¸ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒ2è¡Œå˜ä½ã«ãªã‚‹
 
-Ž¿–âE˜A—æ
-  “ú–{‚ÌVimƒ†[ƒUŒü‚¯‚ÌGoogleƒOƒ‹[ƒv(vim_jp)‚ª—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B‚Ç‚ñ‚È‚ÉŠÈ’P
-  ‚È‚±‚Æ‚Å‚à‚í‚©‚ç‚È‚¢‚±‚Æ‚ª‚ ‚é‚Ì‚È‚ç‚Î‚±‚±‚Å•·‚¢‚Ä‚Ý‚é‚Æ—Ç‚¢‚Å‚µ‚å‚¤B‚«‚Á‚Æ
-  ‰½‚ç‚©‚Ì•‚¯‚É‚Í‚È‚é‚Í‚¸‚Å‚·B
+è³ªå•ãƒ»é€£çµ¡å…ˆ
+  æ—¥æœ¬ã®Vimãƒ¦ãƒ¼ã‚¶å‘ã‘ã®Googleã‚°ãƒ«ãƒ¼ãƒ—(vim_jp)ãŒç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚ã©ã‚“ãªã«ç°¡å˜
+  ãªã“ã¨ã§ã‚‚ã‚ã‹ã‚‰ãªã„ã“ã¨ãŒã‚ã‚‹ã®ãªã‚‰ã°ã“ã“ã§èžã„ã¦ã¿ã‚‹ã¨è‰¯ã„ã§ã—ã‚‡ã†ã€‚ãã£ã¨
+  ä½•ã‚‰ã‹ã®åŠ©ã‘ã«ã¯ãªã‚‹ã¯ãšã§ã™ã€‚
 
     https://groups.google.com/group/vim_jp/?hl=ja
 
-  ‚à‚¿‚ë‚ñƒ[ƒ‹‚Å‚è‰®”Åƒƒ“ƒeƒi‚É’¼Ú•·‚¢‚Ä‚à‚ç‚Á‚Ä‚à\‚¢‚Ü‚¹‚ñB“ú–{Œê‰»•”
-  •ª‚È‚Ç‚Ì•s“s‡‚Í‚è‰®”Åƒƒ“ƒeƒi‚Ü‚Å˜A—‚ð‚¢‚½‚¾‚¯‚ê‚ÎAÜ‚ð‚Ý‚ÄC³‚¢‚½‚µ‚Ü
-  ‚·B
+  ã‚‚ã¡ã‚ã‚“ãƒ¡ãƒ¼ãƒ«ã§é¦™ã‚Šå±‹ç‰ˆãƒ¡ãƒ³ãƒ†ãƒŠã«ç›´æŽ¥èžã„ã¦ã‚‚ã‚‰ã£ã¦ã‚‚æ§‹ã„ã¾ã›ã‚“ã€‚æ—¥æœ¬èªžåŒ–éƒ¨
+  åˆ†ãªã©ã®ä¸éƒ½åˆã¯é¦™ã‚Šå±‹ç‰ˆãƒ¡ãƒ³ãƒ†ãƒŠã¾ã§é€£çµ¡ã‚’ã„ãŸã ã‘ã‚Œã°ã€æŠ˜ã‚’ã¿ã¦ä¿®æ­£ã„ãŸã—ã¾
+  ã™ã€‚
   
-  Vim–{‘Ì‚É‘®‚·‚é‚ÆŽv‚í‚ê‚é•s“s‡‚É‚Â‚¢‚Ä‚ÍA’¼ÚVim–{‰Æ‚Ì‚Ù‚¤‚Ö‰pŒê‚Å˜A—‚·‚é
-  ‚©A‚è‰®”Åƒƒ“ƒeƒi‚É–â‚¢‡‚í‚¹‚Ä‚­‚¾‚³‚¢B‰ž‹}“I‚Éˆ’u‚Å‚«‚é‚à‚Ì‚Å‚ ‚ê‚Î‚»
-  ‚¤‚µ‚Ü‚·‚µA‚»‚¤‚Å‚È‚­‚Ä‚àŒã“ú‚Â‚½‚È‚¢‰pŒê‚É‚È‚è‚Ü‚·‚ªVim–{‰Æ‚ÖƒtƒB[ƒhƒoƒb
-  ƒN‚Å‚«‚é‚©‚à‚µ‚ê‚Ü‚¹‚ñBVim“ú–{Œê”Å“™‚ÌŠÖ˜Aî•ñ‚ÍŽŸ‚ÌURL‚É‚ ‚è‚Ü‚·B
+  Vimæœ¬ä½“ã«å±žã™ã‚‹ã¨æ€ã‚ã‚Œã‚‹ä¸éƒ½åˆã«ã¤ã„ã¦ã¯ã€ç›´æŽ¥Vimæœ¬å®¶ã®ã»ã†ã¸è‹±èªžã§é€£çµ¡ã™ã‚‹
+  ã‹ã€é¦™ã‚Šå±‹ç‰ˆãƒ¡ãƒ³ãƒ†ãƒŠã«å•ã„åˆã‚ã›ã¦ãã ã•ã„ã€‚å¿œæ€¥çš„ã«å‡¦ç½®ã§ãã‚‹ã‚‚ã®ã§ã‚ã‚Œã°ã
+  ã†ã—ã¾ã™ã—ã€ãã†ã§ãªãã¦ã‚‚å¾Œæ—¥ã¤ãŸãªã„è‹±èªžã«ãªã‚Šã¾ã™ãŒVimæœ¬å®¶ã¸ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒ
+  ã‚¯ã§ãã‚‹ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚Vimæ—¥æœ¬èªžç‰ˆç­‰ã®é–¢é€£æƒ…å ±ã¯æ¬¡ã®URLã«ã‚ã‚Šã¾ã™ã€‚
 
-  - Vim–{‰Æ
+  - Vimæœ¬å®¶
       https://www.vim.org/
       https://github.com/vim/vim
-  - Vim‚Ì“ú–{ƒRƒ~ƒ…ƒjƒeƒBvim-jp
+  - Vimã®æ—¥æœ¬ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£vim-jp
       https://vim-jp.org/
-      https://github.com/vim-jp/issues/issues (ƒoƒO•ñA‹@”\—v–])
-      https://vim-jp.org/docs/chat.html (ƒ`ƒƒƒbƒg)
-  - vim_jp Google ƒOƒ‹[ƒv
+      https://vim-jp.org/docs/chat.html (ãƒãƒ£ãƒƒãƒˆ/Slack)
+      https://github.com/vim-jp/issues/issues (ãƒã‚°å ±å‘Šã€æ©Ÿèƒ½è¦æœ›)
+  - vim_jp Google ã‚°ãƒ«ãƒ¼ãƒ—
       https://groups.google.com/group/vim_jp/?hl=ja
-  - “ú–{ŒêƒhƒLƒ…ƒƒ“ƒg
+  - æ—¥æœ¬èªžãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
       https://github.com/vim-jp/vimdoc-ja/
       https://github.com/vim-jp/vimdoc-ja-working/
       https://github.com/vim-jp/lang-ja/
-  - ‚è‰®”Åƒƒ“ƒeƒi
+  - é¦™ã‚Šå±‹ç‰ˆãƒ¡ãƒ³ãƒ†ãƒŠ
       https://github.com/koron/vim-kaoriya/
       MURAOKA Taro <koron.kaoriya@gmail.com>
-      Twitter @kaoriya
+      X/Twitter @kaoriya
 
-ŽÓŽ«
-  ‰½‚æ‚è‚àA‘f°‚ç‚µ‚¢ƒGƒfƒBƒ^‚Å‚ ‚éVim‚ðƒtƒŠ[ƒ\ƒtƒgƒEƒFƒA‚Æ‚µ‚ÄŒöŠJ&ŠÇ—‚µA
-  ¡‰ñ‚Ì“ú–{Œê”Å‚ÌŒöŠJ‚ð‰õ‘ø‚µ‚Ä‚¢‚½‚¾‚¢‚½Bram MoolenaarŽ‚ÉÅ‘å‚ÌŠ´ŽÓ‚ð‚¢‚½‚µ
-  ‚Ü‚·B‚Ü‚½A‚±‚Ì”z•zƒpƒbƒP[ƒW‚É‚ÍˆÈ‰º‚Ì•ûX‚É‚æ‚éƒtƒ@ƒCƒ‹EƒhƒLƒ…ƒƒ“ƒg‚ªŠÜ
-  ‚Ü‚ê‚Ä‚¢‚Ü‚·B‰Á‚¦‚Ä‚è‰®”Å‚Ìì¬‚ÉŠÖ˜A‚µ‚ÄA‘½‚­‚Ì•ûX‚©‚ç—lX‚ÈƒAƒCƒfƒA‚â
-  ƒoƒO•ñ‚ð‚¢‚½‚¾‚«‚Ü‚µ‚½BŠF—l‹¦—Í‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚·B
+è¬è¾ž
+  ä½•ã‚ˆã‚Šã‚‚ã€ç´ æ™´ã‚‰ã—ã„ã‚¨ãƒ‡ã‚£ã‚¿ã§ã‚ã‚‹Vimã‚’ãƒ•ãƒªãƒ¼ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¨ã—ã¦ä½œæˆã€å…¬é–‹
+  ã—ã€æ—¥æœ¬èªžç‰ˆã®å…¬é–‹ã‚’å¿«è«¾ã—ã¦ã„ãŸã ã„ãŸBram Moolenaaræ°ã«æœ€å¤§ã®æ„Ÿè¬ã‚’ã„ãŸã—ã¾
+  ã™ã€‚ã¾ãŸã€ã“ã®é…å¸ƒãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ã¯ä»¥ä¸‹ã®æ–¹ã€…ã«ã‚ˆã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆãŒå«ã¾
+  ã‚Œã¦ã„ã¾ã™ã€‚åŠ ãˆã¦é¦™ã‚Šå±‹ç‰ˆã®ä½œæˆã«é–¢é€£ã—ã¦ã€å¤šãã®æ–¹ã€…ã‹ã‚‰æ§˜ã€…ãªã‚¢ã‚¤ãƒ‡ã‚¢ã‚„ãƒ
+  ã‚°å ±å‘Šã‚’ã„ãŸã ãã¾ã—ãŸã€‚çš†æ§˜å”åŠ›ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã™ã€‚
 
-  (ƒAƒ‹ƒtƒ@ƒxƒbƒg‡)
-  - 215 (VimŒfŽ¦”Â:1587)
-    autodate.vim‚Ì‰pŒêƒhƒLƒ…ƒƒ“ƒg“Yí
+  (ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †)
+  - 215 (VimæŽ²ç¤ºæ¿:1587)
+    autodate.vimã®è‹±èªžãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆæ·»å‰Š
   - FUJITA Yasuhiro <yasuhiroff@ka.baynet.ne.jp>
-    runtime/keymap/tcode_cp932.vim (ƒ}ƒbƒvC³E’Ç‰Á)
+    runtime/keymap/tcode_cp932.vim (ãƒžãƒƒãƒ—ä¿®æ­£ãƒ»è¿½åŠ )
   - KIHARA, Hideto <deton@m1.interq.or.jp>
     runtime/keymap/tutcode_cp932.vim
   - MATSUMOTO Yasuhiro <mattn_jp@hotmail.com>
-    diffs/ (ˆê•”ƒR[ƒh—¬—p/ƒAƒhƒoƒCƒX/—V‚Ñ’‡ŠÔ)
+    diffs/ (ä¸€éƒ¨ã‚³ãƒ¼ãƒ‰æµç”¨/ã‚¢ãƒ‰ãƒã‚¤ã‚¹/éŠã³ä»²é–“)
     googletranslate.vim
   - NAKADAIRA Yukihiro <http://code.google.com/u/yukihiro.nakadaira/>
     plugins/autofmt
   - NISHIOKA Takuhiro <takuhiro@super.win.ne.jp>
-    runtime/plugin/format.vim (Vim6‘Î‰ž‰ü‘¢”Å)
+    runtime/plugin/format.vim (Vim6å¯¾å¿œæ”¹é€ ç‰ˆ)
   - TAKASUKA Yoshihiro <tesuri@d1.dion.ne.jp>
     runtime/keymap/tcode_cp932.vim
 
-  ‚»‚µ‚Ä‘‚Ä‚ÌVimƒ†[ƒU‚ÉB
+  ãã—ã¦ç·ã¦ã®Vimãƒ¦ãƒ¼ã‚¶ã«ã€‚
 
 ------------------------------------------------------------------------------
-                  ¶‚«‚éŽ–‚Ö‚Ì‹­‚¢ˆÓŽu‚ª“¯Žž‚ÉŽ©•ª‚ÆˆÙ‚È‚é¶–½‚ð‚à‘¸‚ÔS‚Æ‚È‚é
+                  ç”Ÿãã‚‹äº‹ã¸ã®å¼·ã„æ„å¿—ãŒåŒæ™‚ã«è‡ªåˆ†ã¨ç•°ãªã‚‹ç”Ÿå‘½ã‚’ã‚‚å°Šã¶å¿ƒã¨ãªã‚‹
                                         MURAOKA Taro <koron.kaoriya@gmail.com>
  vim:set ts=8 sts=2 sw=2 tw=78 et ft=memo:

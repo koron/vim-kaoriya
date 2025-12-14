@@ -15,6 +15,11 @@ DIRECTX=yes
 # Terminal support.
 TERMINAL=yes
 
+# Disable language interfaces
+DISABLE_PERL=yes
+DISABLE_PYTHON=yes
+DISABLE_RUBY=yes
+
 # Perl settings
 !if !defined(DISABLE_IF) && !defined(DISABLE_PERL)
 DYNAMIC_PERL=yes
@@ -98,11 +103,10 @@ MSCVER=12.0
 MSVCRT_DLL=msvcr120.dll
 !ELSEIF "$(_NMAKE_VER)" >= "14." && "$(_NMAKE_VER)" < "15."
 MSCVER=14.0
-MSVCRT_FILES=vcruntime140.dll
+MSVCRT_DLL=vcruntime140.dll
 !ELSE
 !ERROR Unknown MSVC version: $(_NMAKE_VER)
 !ENDIF
-
 
 !IF "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
 DEFINES_ARCH =
@@ -113,7 +117,7 @@ DEFINES_ARCH = /D_USE_32BIT_TIME_T=1
 DEFINES= /DMODIFIED_BY=\"$(USERNAME)@$(USERDOMAIN)\" \
 		/DDYNAMIC_MSVCRT_DLL=\"$(MSVCRT_DLL)\" \
 		/DGETTEXT_DLL=\"intl.dll\" \
-		/DGETTEXT_DLL_ALT=\"intl.dll\" \
+		/DDYNAMIC_ICONV_DLL=\"iconv.dll\" \
 		/D_BIND_TO_CURRENT_VCLIBS_VERSION=1 \
 		$(DEFINES_ARCH)
 

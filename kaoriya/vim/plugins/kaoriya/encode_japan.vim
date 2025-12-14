@@ -2,7 +2,7 @@
 "
 " 日本語向けにエンコードを設定するサンプル - Vim7用
 "
-" Last Change: 23-Apr-2013.
+" Last Change: 14-Dec-2025.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 
 " 各エンコードを示す文字列のデフォルト値。s:CheckIconvCapabilityを()呼ぶことで
@@ -78,10 +78,5 @@ augroup END
 "===========================================================================
 " 本ファイルを読み込み(sourceした)時に、最適な設定を実行する。
 "
-if kaoriya#switch#enabled('utf-8')
-  set encoding=utf-8
-else
-  set encoding=japan
-endif
 call s:CheckIconvCapability()
 call s:DetermineFileencodings()

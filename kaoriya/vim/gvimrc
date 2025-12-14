@@ -2,9 +2,9 @@ scriptencoding utf-8
 " vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 "
 " An example for a Japanese version gvimrc file.
-" 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim 8.1
+" 日本語版のデフォルトGUI設定ファイル(gvimrc) - Vim 9.1
 "
-" Last Change: 26-Dec-2019.
+" Last Change: 15-Dec-2025.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -55,7 +55,7 @@ if 1 && exists('$HOME') && filereadable($HOME . '/.gvimrc_first.vim')
 endif
 
 "---------------------------------------------------------------------------
-" Bram氏の提供する設定例をインクルード (別ファイル:vimrc_example.vim)。これ
+" Vim本体の提供する設定例をインクルード (別ファイル:vimrc_example.vim)。これ
 " 以前にg:no_gvimrc_exampleに非0な値を設定しておけばインクルードしない。
 if 1 && (!exists('g:no_gvimrc_example') || g:no_gvimrc_example == 0)
   source $VIMRUNTIME/gvimrc_example.vim
@@ -74,8 +74,8 @@ highlight Terminal guifg=lightgrey guibg=grey20
 if has('win32')
   " Windows用
   if &guifont == ''
-    set guifont=MS_Gothic:h12:cSHIFTJIS
-    "set guifont=MS_Mincho:h12:cSHIFTJIS
+    set guifont=MS_Gothic:h12:cDEFAULT
+    "set guifont=MS_Mincho:h12:cDEFAULT
   endif
   " 行間隔の設定
   set linespace=1
@@ -174,9 +174,9 @@ endif
 " 印刷用フォント
 if has('printer')
   if has('win32')
-    set printfont=MS_Mincho:h12:cSHIFTJIS
-    "set printfont=MS_Gothic:h12:cSHIFTJIS
+    set printfont=MS_Mincho:h12:cDEFAULT
+    "set printfont=MS_Gothic:h12:cDEFAULT
   endif
 endif
 
-" Copyright (C) 2009-2018 KaoriYa/MURAOKA Taro
+" Copyright (C) 2009-2025 KaoriYa/MURAOKA Taro

@@ -2,9 +2,9 @@ scriptencoding utf-8
 " vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 "
 " An example for a Japanese version vimrc file.
-" 日本語版のデフォルト設定ファイル(vimrc) - Vim 8.1
+" 日本語版のデフォルト設定ファイル(vimrc) - Vim 9.1
 "
-" Last Change: 23-Mar-2019.
+" Last Change: 15-Dec-2025.
 " Maintainer:  MURAOKA Taro <koron.kaoriya@gmail.com>
 "
 " 解説:
@@ -67,8 +67,7 @@ unlet s:path
 " 日本語対応のための設定:
 "
 " ファイルを読込む時にトライする文字エンコードの順序を確定する。漢字コード自
-" 動判別機能を利用する場合には別途iconv.dllが必要。iconv.dllについては
-" README_w32j.txtを参照。ユーティリティスクリプトを読み込むことで設定される。
+" 動判別機能を利用する場合には +iconv 機能が必要。
 source $VIM/plugins/kaoriya/encode_japan.vim
 " メッセージを日本語にする (Windowsでは自動的に判断・設定されている)
 if !(has('win32') || has('mac')) && has('multi_lang')
@@ -90,10 +89,6 @@ if has('keymap')
   " ローマ字仮名のkeymap
   "silent! set keymap=japanese
   "set iminsert=0 imsearch=0
-endif
-" 非GUI日本語コンソールを使っている場合の設定
-if !has('gui_running') && &encoding != 'cp932' && &term == 'win32'
-  set termencoding=cp932
 endif
 
 "---------------------------------------------------------------------------
@@ -195,7 +190,11 @@ if has('unix') && !has('gui_running')
   if s:uname =~? "linux"
     " no need to use builtin_term for Linux
   elseif s:uname =~? "freebsd"
-    set term=builtin_cons25
+    if exists("$TERM")
+      set term=$TERM
+    else
+      set term=builtin_cons25
+    endif
   elseif s:uname =~? "Darwin"
     set term=builtin_beos-ansi
   else
@@ -218,11 +217,6 @@ if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
   let $PATH = $VIM . ';' . $PATH
 endif
 
-if has('mac')
-  " Macではデフォルトの'iskeyword'がcp932に対応しきれていないので修正
-  set iskeyword=@,48-57,_,128-167,224-235
-endif
-
 "---------------------------------------------------------------------------
 " KaoriYaでバンドルしているプラグインのための設定
 
@@ -232,11 +226,6 @@ set formatexpr=autofmt#japanese#formatexpr()
 " vimdoc-ja: 日本語ヘルプを無効化する.
 if kaoriya#switch#enabled('disable-vimdoc-ja')
   let &rtp = join(filter(split(&rtp, ','), 'v:val !~ "[/\\\\]plugins[/\\\\]vimdoc-ja"'), ',')
-endif
-
-" vimproc: 同梱のvimprocを無効化する
-if kaoriya#switch#enabled('disable-vimproc')
-  let &rtp = join(filter(split(&rtp, ','), 'v:val !~ "[/\\\\]plugins[/\\\\]vimproc$"'), ',')
 endif
 
 " go-extra: 同梱の vim-go-extra を無効化する

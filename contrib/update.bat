@@ -67,11 +67,11 @@ EXIT /B 0
 CD %2
 git fetch -fp
 IF %ERRORLEVEL% NEQ 0 GOTO :GIT_UPDATE_END
-git diff --quiet ..@{u}
+git diff --quiet "..@{u}"
 IF %ERRORLEVEL% EQU 0 GOTO :GIT_UPDATE_END
 ECHO %1: found updates.
 ECHO --------
-git merge --ff --ff-only @{u}
+git merge --ff --ff-only "@{u}"
 ECHO --------
 IF %ERRORLEVEL% NEQ 0 GOTO :GIT_UPDATE_END
 git log -n 1 --date=short --format="%1 (%%ad %%h)" >> %LOG_FILE%

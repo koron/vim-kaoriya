@@ -288,20 +288,14 @@ langja-install:
 	IF NOT EXIST "$(VIM_INSTALL_DIR)" MD "$(VIM_INSTALL_DIR)"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES" \
 		MD "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES"
-	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES" \
-		MD "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES"
-	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES" \
-		MD "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\doc" MD "$(VIM_INSTALL_DIR)\doc"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\tutor" MD "$(VIM_INSTALL_DIR)\tutor"
 	cd "$(LANGJA_DIR)"
 	make LANG=C test
 	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo"
-	-COPY src\po\ja.euc-jp.mo "$(VIM_INSTALL_DIR)\lang\ja.euc-jp\LC_MESSAGES\vim.mo"
-	-COPY src\po\ja.sjis.mo "$(VIM_INSTALL_DIR)\lang\ja.sjis\LC_MESSAGES\vim.mo"
 	-$(COPY) "runtime\lang" "$(VIM_INSTALL_DIR)\lang" menu_ja*.vim
 	-$(COPY) "runtime\doc" "$(VIM_INSTALL_DIR)\doc" *.UTF-8.1
-	-$(COPY) "runtime\tutor" "$(VIM_INSTALL_DIR)\tutor" tutor.ja.*
+	-$(COPY) "runtime\tutor" "$(VIM_INSTALL_DIR)\tutor" tutor*.ja.*
 	cd "$(BUILD_DIR)"
 
 ### VIM
@@ -442,21 +436,21 @@ build-dist:
 	-$(COPY) /E "$(CONTRIB_DIR)\autofmt" "$(VIM_DIST_DIR)\plugins\autofmt" /XD .git /XF .git*
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
 		-c "helptags $(VIM_DIST_DIR)\plugins\autofmt\doc" -c quit
-# Plugin - vimproc
-	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\doc" \
-		"$(VIM_DIST_DIR)\plugins\vimproc\doc"
-	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
-		-c "helptags $(VIM_DIST_DIR)\plugins\vimproc\doc" -c quit
-	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\plugin" \
-		"$(VIM_DIST_DIR)\plugins\vimproc\plugin"
-	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload" \
-		"$(VIM_DIST_DIR)\plugins\vimproc\autoload" \
-		vimproc.vim
-	-$(COPY) "$(INSTALL_DIR)\bin" \
-		"$(VIM_DIST_DIR)\plugins\vimproc\lib" \
-		$(VIMPROC_DLL)
-	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload\vimproc" \
-		"$(VIM_DIST_DIR)\plugins\vimproc\autoload\vimproc"
+## Plugin - vimproc
+#	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\doc" \
+#		"$(VIM_DIST_DIR)\plugins\vimproc\doc"
+#	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
+#		-c "helptags $(VIM_DIST_DIR)\plugins\vimproc\doc" -c quit
+#	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\plugin" \
+#		"$(VIM_DIST_DIR)\plugins\vimproc\plugin"
+#	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload" \
+#		"$(VIM_DIST_DIR)\plugins\vimproc\autoload" \
+#		vimproc.vim
+#	-$(COPY) "$(INSTALL_DIR)\bin" \
+#		"$(VIM_DIST_DIR)\plugins\vimproc\lib" \
+#		$(VIMPROC_DLL)
+#	-$(COPY) /E "$(CONTRIB_DIR)\vimproc\autoload\vimproc" \
+#		"$(VIM_DIST_DIR)\plugins\vimproc\autoload\vimproc"
 # Plugin - golang
 	-$(COPY) /E "$(CONTRIB_DIR)\go-vim" "$(VIM_DIST_DIR)\plugins\golang" /XD .git /XF .git*
 # Vim and other executable and resource files.

@@ -27,11 +27,17 @@ CD "%CURDIR%"
 REM update VIM_VER
 CALL tools\command-common.bat
 
+REM Clear previous releases.
+RD /S /Q "target\vim%VIM_VER_SHORT%-kaoriya-win64"
+RD /S /Q "target\vim%VIM_VER_SHORT%-kaoriya-win64-pdb"
+DEL /F "target\%RELZIP_W64%"
+DEL /F "target\%PDBZIP_W64%"
+
 REM Build Vim
 nmake /NOLOGO build-release
 
 REM Test
-nmake /NOLOGO vim-test
+REM nmake /NOLOGO vim-test
 
 REM Create archives
 nmake /NOLOGO build-release-archive

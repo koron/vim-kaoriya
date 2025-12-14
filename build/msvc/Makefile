@@ -92,7 +92,6 @@ archive-pre:
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\intl.dll"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
-	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\winpty-agent.exe"
 	$(MAKE) /$(MAKEFLAGS) vim-clean vim-install
 	$(MAKE) /$(MAKEFLAGS) vim-mo-install vim-patch-install
 	$(MAKE) /$(MAKEFLAGS) langja-install
@@ -100,8 +99,7 @@ archive-pre:
 contrib: $(INSTALL_DIR)\bin\iconv.dll $(INSTALL_DIR)\bin\intl.dll \
 	$(INSTALL_DIR)\lib\libXpm.lib \
 	$(INSTALL_DIR)\bin\$(VIMPROC_DLL) \
-	$(INSTALL_DIR)\bin\lua51.dll \
-	$(INSTALL_DIR)\bin\winpty-agent.exe
+	$(INSTALL_DIR)\bin\lua51.dll
 
 build: iconv-build gettext-build xpm-build vimproc-build luajit-build
 
@@ -246,41 +244,6 @@ luajit-install: luajit-build
 luajit-clean:
 
 luajit-distclean: luajit-clean
-
-### rprichard/winpty
-
-WINPTY_VERSION=0.4.3
-WINPTY_BASENAME=winpty-$(WINPTY_VERSION)-msvc2015
-WINPTY_ZIP=$(WINPTY_BASENAME).zip
-WINPTY_EXTDIR=target\$(WINPTY_BASENAME)
-!IF "$(PROCESSOR_ARCHITECTURE)" == "AMD64"
-WINPTY_ARCHDIR=x64_xp
-!ELSE
-WINPTY_ARCHDIR=ia32_xp
-!ENDIF
-
-winpty-install: winpty-extract
-	-$(COPY) "$(WINPTY_EXTDIR)\$(WINPTY_ARCHDIR)\bin" \
-		"$(INSTALL_DIR)\bin" \
-		winpty.dll winpty-agent.exe
-
-winpty-download: target\$(WINPTY_ZIP)
-
-winpty-extract: $(WINPTY_EXTDIR)
-
-winpty-clean:
-	-RD /S /Q $(WINPTY_EXTDIR)
-	-DEL /F /Q $(INSTALL_DIR)\bin\winpty.dll
-	-DEL /F /Q $(INSTALL_DIR)\bin\winpty-agent.exe
-
-winpty-distclean: winpty-clean
-	-DEL /F /Q target\$(WINPTY_ZIP)
-
-target\$(WINPTY_ZIP):
-	curl -sL https://github.com/rprichard/winpty/releases/download/$(WINPTY_VERSION)/$(WINPTY_ZIP) -o $@
-
-$(WINPTY_EXTDIR): target\$(WINPTY_ZIP)
-	unzip -qqo target\$(WINPTY_ZIP) -d $(WINPTY_EXTDIR)
 
 ### lang-ja
 
@@ -457,8 +420,7 @@ build-dist:
 	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
 		vim.exe gvim.exe $(VIMDLL) vimrun.exe xxd.exe tee.exe \
-		iconv.dll intl.dll luajit.exe lua51.dll \
-		winpty.dll winpty-agent.exe
+		iconv.dll intl.dll luajit.exe lua51.dll
 	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
@@ -493,7 +455,6 @@ build-release:
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\lib\libXpm.lib"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
-	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\winpty-agent.exe"
 	$(MAKE) /$(MAKEFLAGS) vim-clean
 	$(MAKE) /$(MAKEFLAGS) vim-install vim-mo-install vim-patch-install
 	$(MAKE) /$(MAKEFLAGS) langja-install
@@ -530,7 +491,6 @@ snapshot-archive:
 	xpm-build xpm-install xpm-clean xpm-distclean \
 	vimproc-build vimproc-install vimproc-clean vimproc-distclean \
 	luajit-build luajit-install luajit-clean luajit-distclean \
-	winpty-install \
 	langja-install \
 	vim-build vim-clean vimd-build vimd-clean \
 	vim-install vim-mo-install vim-patch-install \
@@ -553,9 +513,6 @@ snapshot-archive:
 
 "$(INSTALL_DIR)\bin\lua51.dll":
 	$(MAKE) /$(MAKEFLAGS) luajit-install
-
-"$(INSTALL_DIR)\bin\winpty-agent.exe":
-	$(MAKE) /$(MAKEFLAGS) winpty-install
 
 "$(INSTALL_DIR)\bin\vim.exe":
 	$(MAKE) /$(MAKEFLAGS) vim-clean vim-install vim-mo-install vim-clean

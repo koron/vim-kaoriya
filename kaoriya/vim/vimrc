@@ -228,9 +228,4 @@ if kaoriya#switch#enabled('disable-vimdoc-ja')
   let &rtp = join(filter(split(&rtp, ','), 'v:val !~ "[/\\\\]plugins[/\\\\]vimdoc-ja"'), ',')
 endif
 
-" go-extra: 同梱の vim-go-extra を無効化する
-if kaoriya#switch#enabled('disable-go-extra')
-  let &rtp = join(filter(split(&rtp, ','), 'v:val !~ "[/\\\\]plugins[/\\\\]golang$"'), ',')
-endif
-
 " Copyright (C) 2009-2018 KaoriYa/MURAOKA Taro

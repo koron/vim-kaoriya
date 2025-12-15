@@ -4,9 +4,6 @@
 [submodule "contrib/autofmt"]
 	path = contrib/autofmt
 	url = https://github.com/vim-jp/autofmt.git
-[submodule "contrib/go-vim"]
-	path = contrib/go-vim
-	url = https://github.com/vim-jp/vim-go-extra.git
 [submodule "contrib/lang-ja"]
 	path = contrib/lang-ja
 	url = https://github.com/vim-jp/lang-ja.git
@@ -22,9 +19,6 @@
 [submodule "contrib/vimdoc-ja"]
 	path = contrib/vimdoc-ja
 	url = https://github.com/vim-jp/vimdoc-ja.git
-[submodule "contrib/vimproc"]
-	path = contrib/vimproc
-	url = https://github.com/Shougo/vimproc.git
 [submodule "contrib/gettext"]
 	path = contrib/gettext
 	url = https://github.com/koron/gettext.git

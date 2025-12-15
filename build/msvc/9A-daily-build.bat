@@ -9,22 +9,22 @@ CD "%VIMDIR%"
 
 REM Catcn up Vim's update
 %GUILTCMD% pop -a
-REM git fetch -p
-REM git merge --ff-only @{u}
+git fetch -p
+git merge --ff-only "@{u}"
 
 REM Update VIM_VER in ..\..\VERSION
 
-REM SET TEMP_PATCH_NUM=%TEMP%\%RANDOM%_vim_patch_num.txt
-REM sed -ne '/^static int included_patches/,/^\s*[0-9]\+,$/p' src/version.c | tail -1 | tr -cd 0123456789 | xargs printf '%%04d' > %TEMP_PATCH_NUM%
-REM SET /P PATCH_NUM=<%TEMP_PATCH_NUM%
-REM DEL /F %TEMP_PATCH_NUM%
-REM sed -i -e 's/^\(VIM_VER\s*=\s*[0-9]\+\.[0-9]\+\.\)[0-9]\+/\1%PATCH_NUM%/' ..\VERSION
+SET TEMP_PATCH_NUM=%TEMP%\%RANDOM%_vim_patch_num.txt
+sed -ne '/^static int included_patches/,/^\s*[0-9]\+,$/p' src/version.c | tail -1 | tr -cd 0123456789 | xargs printf '%%04d' > %TEMP_PATCH_NUM%
+SET /P PATCH_NUM=<%TEMP_PATCH_NUM%
+DEL /F %TEMP_PATCH_NUM%
+sed -i -e 's/^\(VIM_VER\s*=\s*[0-9]\+\.[0-9]\+\.\)[0-9]\+/\1%PATCH_NUM%/' ..\VERSION
 
 REM Apply patches with guilt
 %GUILTCMD% push -a
 
 CD "%CURDIR%"
-REM update VIM_VER
+REM load updated VIM_VER
 CALL tools\command-common.bat
 
 REM Clear previous releases.
@@ -44,6 +44,7 @@ nmake /NOLOGO build-release-archive
 nmake /NOLOGO build-release-clean
 
 REM Install x64 binary to local
+RD /S /Q "%INSTALL_DIR%\vim%VIM_VER_SHORT%-kaoriya-win64"
 7za x -o"%INSTALL_DIR%" -y "target\%RELZIP_W64%"
 
 REM Clean patches with guilt

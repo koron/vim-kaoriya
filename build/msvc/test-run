@@ -1,0 +1,7 @@
+#!env bash
+
+set -eu
+
+cd ../../vim/src/testdir
+
+nmake -NOLOGO -F Make_mvc.mak VIM_PROG=..\\vim.exe "$@"

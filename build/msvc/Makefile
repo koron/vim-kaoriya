@@ -191,7 +191,7 @@ xpm-install: xpm-build
 		xpm.h
 	-$(COPY) "$(XPM_DIR)" "$(INSTALL_DIR)\include" \
 		simx.h
-	-$(COPY) "$(XPM_DIR)" "$(INSTALL_DIR)\lib" \
+	-$(COPY) "$(XPM_DIR)" "$(INSTALL_DIR)\lib-vc14" \
 		libXpm.lib
 
 xpm-clean:

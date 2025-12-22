@@ -37,7 +37,7 @@ REM Build Vim
 nmake /NOLOGO build-release
 
 REM Test
-nmake /NOLOGO test-dist
+nmake /NOLOGO build-release-test
 
 REM Create archives
 nmake /NOLOGO build-release-archive

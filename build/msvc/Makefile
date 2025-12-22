@@ -415,15 +415,6 @@ build-dist:
 # Copy lua related files
 	-$(COPY) /E "$(INSTALL_DIR)\bin\lua" "$(VIM_DIST_DIR)\lua"
 
-test-dist:
-	echo "$(VIM_DIST_DIR)"
-	cd "$(VIM_DIR)\src\testdir"
-	nmake /NOLOGO /F Make_mvc.mak clean
-	-nmake /NOLOGO /F Make_mvc.mak VIMPROG="$(VIM_DIST_DIR)\vim.exe"
-	cd "$(BUILD_DIR)"
-	IF NOT EXIST "$(TESTRES_DIR)" MD "$(TESTRES_DIR)"
-	-COPY "$(VIM_DIR)\src\testdir\test_result.log" "$(TESTRES_DIR)\$(DATE_VER)_$(TIME_VER)-dist.log"
-
 archive-dist: build-dist
 	$(MAKE) /$(MAKEFLAGS) zip-dist
 
@@ -452,6 +443,15 @@ build-release:
 	$(MAKE) /$(MAKEFLAGS) langja-install
 	$(MAKE) /$(MAKEFLAGS) build-dist
 	$(MAKE) /$(MAKEFLAGS) pdb-distdir
+
+build-release-test:
+	cd "$(VIM_DIR)\src\testdir"
+	nmake /NOLOGO /F Make_mvc.mak clean
+	-nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\vim.exe
+	cd "$(BUILD_DIR)"
+	IF NOT EXIST "$(TESTRES_DIR)" MD "$(TESTRES_DIR)"
+	-COPY "$(VIM_DIR)\src\testdir\test_result.log" "$(TESTRES_DIR)\$(DATE_VER)_$(TIME_VER)-dist.log"
+
 
 build-release-archive:
 	$(MAKE) /$(MAKEFLAGS) zip-dist

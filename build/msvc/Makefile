@@ -222,14 +222,23 @@ luajit-distclean: luajit-clean
 
 ### lang-ja
 
-langja-install:
+langja-build:
+	cd "$(LANGJA_DIR)\src\po"
+	SET LANG=C
+	SET OLD_PO_FILE_INPUT=yes
+	make update
+	"$(INSTALL_DIR)\bin\msgfmt.exe" --check -v -o ja.mo ja.po
+	"$(INSTALL_DIR)\bin\msgfmt.exe" --check -v -o ja.euc-jp.mo ja.euc-jp.po
+	"$(INSTALL_DIR)\bin\msgfmt.exe" --check -v -o ja.sjis.mo ja.sjis.po
+	cd "$(BUILD_DIR)"
+
+langja-install: langja-build
 	IF NOT EXIST "$(VIM_INSTALL_DIR)" MD "$(VIM_INSTALL_DIR)"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES" \
 		MD "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\doc" MD "$(VIM_INSTALL_DIR)\doc"
 	IF NOT EXIST "$(VIM_INSTALL_DIR)\tutor" MD "$(VIM_INSTALL_DIR)\tutor"
 	cd "$(LANGJA_DIR)"
-	make LANG=C test
 	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo"
 	-$(COPY) "runtime\lang" "$(VIM_INSTALL_DIR)\lang" menu_ja*.vim
 	-$(COPY) "runtime\doc" "$(VIM_INSTALL_DIR)\doc" *.UTF-8.1

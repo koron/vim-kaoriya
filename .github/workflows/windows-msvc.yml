@@ -34,15 +34,29 @@ jobs:
         call "%VCVARSALL%" amd64
         nmake /NOLOGO build-release
 
-    - name: Create the archive
+    - name: Create archives
       run: |
         call "%VCVARSALL%" amd64
         nmake /NOLOGO build-release-archive
 
-    - name: Upload artifacts
+    - name: Upload archives as artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: windows-msvc
+        name: windows-msvc-archives
         path: |
           build/msvc/target/vim*-kaoriya-win64-*.zip
           build/msvc/target/vim*-kaoriya-win64-*-pdb.zip
+
+    - name: Test
+      continue-on-error: true
+      working-directory: vim/src/testdir
+      run: |
+        call "%VCVARSALL%" amd64
+        nmake /NOLOGO /F Make_mvc.mak
+
+    - name: Upload test result
+      uses: actions/upload-artifact@v6
+      with:
+        name: windows-msvc-test_result
+        path: vim/src/testdir/test_result.log
+        if-no-files-found: error

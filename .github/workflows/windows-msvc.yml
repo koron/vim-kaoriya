@@ -1,0 +1,18 @@
+name: Windows Build (MSVC)
+
+on:
+  push:
+    branches: [ '**' ]
+
+jobs:
+
+  build:
+    name: Build on Windows (MSVC)
+    runs-on: windows-2025
+
+    steps:
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive

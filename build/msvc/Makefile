@@ -23,8 +23,6 @@ CONTRIB_DIR	= ..\..\contrib
 XPM_DIR		= $(CONTRIB_DIR)\libXpm-win32\src
 ICONV_DIR	= $(CONTRIB_DIR)\libiconv2\msvc10
 GETTEXT_DIR	= $(CONTRIB_DIR)\gettext
-VIMPROC_DIR	= $(CONTRIB_DIR)\vimproc
-VIMPROC_DLL	= vimproc_$(WINDOWS_CPUTYPE).dll
 LUAJIT_DIR	= $(CONTRIB_DIR)\luajit-2.0
 LANGJA_DIR	= $(CONTRIB_DIR)\lang-ja
 VIM_DIR		= ..\..\vim
@@ -90,7 +88,6 @@ archive:
 archive-pre:
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\iconv.dll"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\intl.dll"
-	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
 	$(MAKE) /$(MAKEFLAGS) vim-clean vim-install
 	$(MAKE) /$(MAKEFLAGS) vim-mo-install vim-patch-install
@@ -98,18 +95,17 @@ archive-pre:
 
 contrib: $(INSTALL_DIR)\bin\iconv.dll $(INSTALL_DIR)\bin\intl.dll \
 	$(INSTALL_DIR)\lib\libXpm.lib \
-	$(INSTALL_DIR)\bin\$(VIMPROC_DLL) \
 	$(INSTALL_DIR)\bin\lua51.dll
 
-build: iconv-build gettext-build xpm-build vimproc-build luajit-build
+build: iconv-build gettext-build xpm-build luajit-build
 
-install: iconv-install gettext-install xpm-install vimproc-install \
+install: iconv-install gettext-install xpm-install \
 	luajit-install
 
-clean: iconv-clean gettext-clean xpm-clean vimproc-clean luajit-clean \
+clean: iconv-clean gettext-clean xpm-clean luajit-clean \
 	version-clean
 
-distclean: iconv-distclean gettext-distclean xpm-distclean vimproc-distclean \
+distclean: iconv-distclean gettext-distclean xpm-distclean \
 	luajit-distclean
 
 version: version-interfaces
@@ -202,27 +198,6 @@ xpm-clean:
 xpm-distclean:
 	cd "$(XPM_DIR)"
 	nmake -f Make_msvc_lib.mak clean
-	cd "$(BUILD_DIR)"
-
-### VIMPROC
-
-vimproc-build:
-	cd "$(VIMPROC_DIR)"
-	nmake /F Make_msvc.mak nodebug=1
-	cd "$(BUILD_DIR)"
-
-vimproc-install: vimproc-build
-	-$(COPY) "$(VIMPROC_DIR)\lib" "$(INSTALL_DIR)\bin" \
-		$(VIMPROC_DLL)
-
-vimproc-clean:
-	cd "$(VIMPROC_DIR)"
-	nmake /F Make_msvc.mak clean
-	cd "$(BUILD_DIR)"
-
-vimproc-distclean:
-	cd "$(VIMPROC_DIR)"
-	nmake /F Make_msvc.mak clean
 	cd "$(BUILD_DIR)"
 
 ### LuaJIT
@@ -436,7 +411,6 @@ build-release:
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\iconv.dll"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\intl.dll"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\lib\libXpm.lib"
-	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\$(VIMPROC_DLL)"
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
 	$(MAKE) /$(MAKEFLAGS) vim-clean
 	$(MAKE) /$(MAKEFLAGS) vim-install vim-mo-install vim-patch-install
@@ -481,7 +455,6 @@ snapshot-archive:
 	iconv-build iconv-install iconv-clean iconv-distclean \
 	gettext-build gettext-install gettext-clean gettext-distclean \
 	xpm-build xpm-install xpm-clean xpm-distclean \
-	vimproc-build vimproc-install vimproc-clean vimproc-distclean \
 	luajit-build luajit-install luajit-clean luajit-distclean \
 	langja-install \
 	vim-build vim-clean vimd-build vimd-clean \
@@ -499,9 +472,6 @@ snapshot-archive:
 
 "$(INSTALL_DIR)\lib\libXpm.lib":
 	$(MAKE) /$(MAKEFLAGS) xpm-clean xpm-install xpm-distclean
-
-"$(INSTALL_DIR)\bin\$(VIMPROC_DLL)":
-	$(MAKE) /$(MAKEFLAGS) vimproc-clean vimproc-install vimproc-distclean
 
 "$(INSTALL_DIR)\bin\lua51.dll":
 	$(MAKE) /$(MAKEFLAGS) luajit-install

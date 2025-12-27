@@ -24,10 +24,19 @@ jobs:
 
     - name: Preparation
       run: |
-        # Setup vcvarsall.bat location
+        REM Setup vcvarsall.bat location
         for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
-        # Install zip from Info-Zip
-        choco install -y zip
+        REM Install tools by chocolatey
+        choco install -y patch zip
+
+    - name: Apply kaoriya patches
+      working-directory: vim
+      run: |
+        FOR /F "delims=" %%l IN (..\patches\master\series) DO (
+          ECHO Applying patch: %%l
+          patch -p1 < "..\patches\master\%%l"
+          IF ERRORLEVEL 1 EXIT /B 1
+        )
 
     - name: Build
       run: |

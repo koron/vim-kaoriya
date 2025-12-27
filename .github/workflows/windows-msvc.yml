@@ -1,0 +1,71 @@
+name: Windows Build (MSVC)
+
+on:
+  push:
+    branches: [ '**' ]
+
+jobs:
+
+  build:
+    name: Build on Windows (MSVC)
+    runs-on: windows-2025
+
+    defaults:
+      run:
+        shell: cmd
+        working-directory: build/msvc
+
+    steps:
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
+    - name: Preparation
+      run: |
+        REM Setup vcvarsall.bat location
+        for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
+        REM Install tools by chocolatey
+        choco install -y patch zip
+
+    - name: Apply kaoriya patches
+      working-directory: vim
+      run: |
+        FOR /F "delims=" %%l IN (..\patches\master\series) DO (
+          ECHO Applying patch: %%l
+          patch -p1 < "..\patches\master\%%l"
+          IF ERRORLEVEL 1 EXIT /B 1
+        )
+
+    - name: Build
+      run: |
+        call "%VCVARSALL%" amd64
+        nmake /NOLOGO build-release
+
+    - name: Create archives
+      run: |
+        call "%VCVARSALL%" amd64
+        nmake /NOLOGO build-release-archive
+
+    - name: Upload archives as artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: windows-msvc-archives
+        path: |
+          build/msvc/target/vim*-kaoriya-win64-*.zip
+          build/msvc/target/vim*-kaoriya-win64-*-pdb.zip
+
+    - name: Test
+      continue-on-error: true
+      working-directory: vim/src/testdir
+      run: |
+        call "%VCVARSALL%" amd64
+        nmake /NOLOGO /F Make_mvc.mak
+
+    - name: Upload test result
+      uses: actions/upload-artifact@v6
+      with:
+        name: windows-msvc-test_result
+        path: vim/src/testdir/test_result.log
+        if-no-files-found: error

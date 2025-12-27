@@ -15,7 +15,7 @@
 	url = https://github.com/koron/libXpm-win32.git
 [submodule "contrib/luajit-2.0"]
 	path = contrib/luajit-2.0
-	url = http://luajit.org/git/luajit-2.0.git
+	url = https://github.com/LuaJIT/LuaJIT.git
 [submodule "contrib/vimdoc-ja"]
 	path = contrib/vimdoc-ja
 	url = https://github.com/vim-jp/vimdoc-ja.git

@@ -10,9 +10,36 @@ jobs:
     name: Build on Windows (MSVC)
     runs-on: windows-2025
 
+    defaults:
+      run:
+        shell: cmd
+        working-directory: build/msvc
+
     steps:
 
     - name: Checkout repository with submodules
       uses: actions/checkout@v6
       with:
         submodules: recursive
+
+    - name: Preparation
+      run: |
+        for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
+
+    - name: Build
+      run: |
+        call "%VCVARSALL%" amd64
+        nmake /NOLOGO build-release
+
+    - name: Create the archive
+      run: |
+        call "%VCVARSALL%" amd64
+        nmake /NOLOGO build-release-archive
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: windows-msvc
+        path: |
+          build/msvc/target/vim*-kaoriya-win64-*.zip
+          build/msvc/target/vim*-kaoriya-win64-*-pdb.zip

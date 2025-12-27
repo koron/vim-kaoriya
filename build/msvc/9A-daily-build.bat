@@ -41,7 +41,6 @@ nmake /NOLOGO build-release-test
 
 REM Create archives
 nmake /NOLOGO build-release-archive
-nmake /NOLOGO build-release-clean
 
 REM Install x64 binary to local
 RD /S /Q "%INSTALL_DIR%\vim%VIM_VER_SHORT%-kaoriya-win64"

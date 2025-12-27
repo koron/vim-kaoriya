@@ -1,7 +1,7 @@
 ## 2025/12/XX の変更点
 
-*   ベースコードを9.1.XXXXに更新しました
-*   コンパイラを Visual Studio 2022 (Visual C 17.X) に変更しました
+*   ベースコードを9.1.2022に更新しました
+*   コンパイラを Visual Studio 2022 (Visual C 17.14.22) に変更しました
 *   外部言語インターフェースの変更
 
     LuaJITを除く外部言語インターフェース(Perl, Python, Ruby)を廃止しました。
@@ -34,7 +34,7 @@
     Vim本体のデフォルト設定が utf-8 になったため、それに合わせました。
     それに伴い `switches/catalog/utf-8.vim` を削除しました。
 
-*   同梱の4つのキーマップファイルをUTF-8に変更しました。
+*   同梱の4つのキーマップファイルのエンコードをUTF-8に変更しました。
 
     それに伴いファイル名に含まれていた `_cp932` を削除しました。
 
@@ -42,7 +42,14 @@
 
     それに伴い `switches/catalog/disable-go-extra.vim` を削除しました。
 
-*   幾つかのテストが失敗し、完走していません (2025/12/14 現在)
+*   以下のテストが失敗し、完走していません (2025/12/27 現在)
+
+    *   test_terminal.vim
+        *   Test_terminal_cwd: 時々失敗する
+        *   PR作成済み: https://github.com/vim/vim/pull/19025
+            *   Test_terminal_duplicate_eof_arg
+            *   Test_terminal_eof_arg
+            *   Test_terminal_eof_arg_win32_ctrl_z
 
 ## 2020/07/24 の変更点
 

@@ -226,10 +226,7 @@ langja-build:
 	cd "$(LANGJA_DIR)\src\po"
 	SET LANG=C
 	SET OLD_PO_FILE_INPUT=yes
-	make update
-	"$(INSTALL_DIR)\bin\msgfmt.exe" --check -v -o ja.mo ja.po
-	"$(INSTALL_DIR)\bin\msgfmt.exe" --check -v -o ja.euc-jp.mo ja.euc-jp.po
-	"$(INSTALL_DIR)\bin\msgfmt.exe" --check -v -o ja.sjis.mo ja.sjis.po
+	make update ja.mo ja.euc-jp.mo ja.sjis.mo
 	cd "$(BUILD_DIR)"
 
 langja-install: langja-build

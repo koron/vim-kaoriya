@@ -7,25 +7,11 @@ CALL tools\command-common.bat
 
 CD "%VIMDIR%"
 
-REM Catcn up Vim's update
-%GUILTCMD% pop -a
-git fetch -p
-git merge --ff-only "@{u}"
-
-REM Update VIM_VER in ..\..\VERSION
-
-SET TEMP_PATCH_NUM=%TEMP%\%RANDOM%_vim_patch_num.txt
-sed -ne '/^static int included_patches/,/^\s*[0-9]\+,$/p' src/version.c | tail -1 | tr -cd 0123456789 | xargs printf '%%04d' > %TEMP_PATCH_NUM%
-SET /P PATCH_NUM=<%TEMP_PATCH_NUM%
-DEL /F %TEMP_PATCH_NUM%
-sed -i -e 's/^\(VIM_VER\s*=\s*[0-9]\+\.[0-9]\+\.\)[0-9]\+/\1%PATCH_NUM%/' ..\VERSION
-
 REM Apply patches with guilt
+%GUILTCMD% pop -a
 %GUILTCMD% push -a
 
 CD "%CURDIR%"
-REM load updated VIM_VER
-CALL tools\command-common.bat
 
 REM Clear previous releases.
 RD /S /Q "target\vim%VIM_VER_SHORT%-kaoriya-win64"

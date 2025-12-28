@@ -29,7 +29,7 @@ jobs:
         REM Add to PATH
         echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
         REM Install tools by chocolatey
-        choco install -y patch zip
+        choco install -y diffutils patch zip
 
     - name: Apply kaoriya patches
       working-directory: vim
@@ -69,5 +69,7 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: windows-msvc-test_result
-        path: vim/src/testdir/test_result.log
+        path: |
+          vim/src/testdir/test_result.log
+          vim/src/testdir/test*.failed
         if-no-files-found: error

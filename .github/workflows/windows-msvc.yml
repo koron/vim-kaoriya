@@ -22,14 +22,14 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Preparation
-      run: |
-        REM Setup vcvarsall.bat location
-        for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
-        REM Add to PATH
-        echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
-        REM Install tools by chocolatey
-        choco install -y diffutils patch
+    - name: Install tools by choco
+      run: choco install -y diffutils patch
+
+    - name: Setup VC++ environment (VCVARSALL)
+      run: for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
+
+    - name: Add custom tools to PATH
+      run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
 
     - name: Apply kaoriya patches
       working-directory: vim

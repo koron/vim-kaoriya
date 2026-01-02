@@ -353,7 +353,7 @@ $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb: $(INSTALL_DIR)\bin\$(VIMDLL_BASE).pdb
 
 $(OUTPUT_DIR)\$(PDB_DIST_ZIP): $(PDB_DIST_DIR)\$(VIMDLL_BASE).pdb
 	cd "$(OUTPUT_DIR)"
-	zip -r9q $(PDB_DIST_ZIP) $(PDB_DIST_NAME)
+	7z a -bso0 -bd -mx=7 -r $(PDB_DIST_ZIP) $(PDB_DIST_NAME)
 	cd "$(BUILD_DIR)"
 
 ### DISTRIBUTION
@@ -401,7 +401,7 @@ archive-dist: build-dist
 
 zip-dist:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(DIST_VER)-$(VIM_VER)-$(PATCHSET_VER).zip vim$(DIST_VER)
+	7z a -bso0 -bd -mx=7 -r vim$(DIST_VER)-$(VIM_VER)-$(PATCHSET_VER).zip vim$(DIST_VER)
 	cd "$(BUILD_DIR)"
 
 clean-dist:
@@ -453,7 +453,7 @@ snapshot-install:
 
 snapshot-archive:
 	cd "$(OUTPUT_DIR)"
-	zip -r9q vim$(DIST_VER)-snapshot-$(PATCHSET_VER).zip vim$(DIST_VER)-snapshot
+	7z a -bso0 -bd -mx=7 -r vim$(DIST_VER)-snapshot-$(PATCHSET_VER).zip vim$(DIST_VER)-snapshot
 	cd "$(BUILD_DIR)"
 
 

@@ -29,7 +29,7 @@ jobs:
         REM Add to PATH
         echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
         REM Install tools by chocolatey
-        choco install -y diffutils patch zip
+        choco install -y diffutils patch
 
     - name: Apply kaoriya patches
       working-directory: vim

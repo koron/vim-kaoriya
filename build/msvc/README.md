@@ -12,6 +12,8 @@
 
 ## テストリリース時のコマンド
 
+TODO: 古いので書き直し
+
 *   `11-build-all.bat` リリース用の32bitと64bit版のzipを作成するバッチ
 *   `12-upload-all.bat` テスト配信用サーバへzipアップロードする
 *   `13-update-canary.bat` canary 版を更新する

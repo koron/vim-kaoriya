@@ -1,0 +1,86 @@
+name: Ubuntu Build
+
+on:
+  push:
+    branches: [ '**' ]
+
+jobs:
+
+  build:
+    name: Build on Ubuntu (Linux)
+    runs-on: ubuntu-24.04
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
+    - name: Uninstall snap
+      run: |
+        sudo bash vim/ci/remove_snap.sh
+
+    - name: Update and upgrade packages
+      run: |
+        sudo apt update
+        sudo apt upgrade -y --allow-downgrades
+
+    - name: Install packages
+      run: |
+        PACKAGES=()
+        PACKAGES+=( gettext )
+        PACKAGES+=( libxt-dev libgtk2.0-dev )
+        PACKAGES+=( luajit libluajit-5.1-dev )
+        sudo apt install -y --allow-downgrades "${PACKAGES[@]}"
+
+    - name: Apply kaoriya patches
+      working-directory: vim
+      run: |
+        cat ../patches/master/series | while read line ; do
+          echo "Applying patch: ${line}"
+          patch -p1 < "../patches/master/${line}"
+        done
+
+    - name: Configure
+      working-directory: build/xubuntu
+      run: make vim-configure
+
+    - name: Build
+      working-directory: build/xubuntu
+      run: make vim-build
+
+    - name: Create archives
+      working-directory: build/xubuntu
+      run: |
+        make vim-install \
+             kaoriya-install \
+             autofmt-install \
+             package
+
+    - name: Upload archives as artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: ubuntu-archives
+        path: |
+          build/xubuntu/vim*-kaoriya-ubuntu*.tar.bz2
+        if-no-files-found: error
+
+    - name: Test
+      continue-on-error: true
+      working-directory: vim/src/testdir
+      run: |
+        make -f Makefile
+
+    - name: Upload test result
+      uses: actions/upload-artifact@v6
+      with:
+        name: ubuntu-test_result
+        path: |
+          vim/src/testdir/test_result.log
+          vim/src/testdir/test*.failed
+        if-no-files-found: error

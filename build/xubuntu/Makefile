@@ -17,7 +17,7 @@ VIM_CONFIG = --with-features=huge \
 VIM_DIR = $(DESTDIR)/usr/local/share/vim
 VIMRUNTIME_DIR = $(DESTDIR)$(VIM_DIR)/vim$(VIM_VER_SHORT)
 
-OS_TARGET = ubuntu23.10
+OS_TARGET = ubuntu24.04
 VIM_PKGFILE = vim$(VIM_VER_SHORT)-kaoriya-$(OS_TARGET)-$(VERSION).tar.bz2
 
 ##############################################################################
@@ -35,7 +35,7 @@ package:
 package-clean:
 	rm -rf $(DESTDIR)
 
-package-install-all: vim-install-auto kaoriya-install autofmt-install govim-install
+package-install-all: vim-install-auto kaoriya-install autofmt-install
 
 package-auto: package-clean package-install-all package
 
@@ -94,20 +94,4 @@ autofmt-install:
 	  for f in `find . -type f -not -name '.*' `; do \
 	    echo install: $$f ; \
 	    install -m 0666 $$f $(AUTOFMT_INSTDIR)/$$f || exit 1 ; \
-	  done
-
-##############################################################################
-
-GOVIM_SRCDIR = $(ROOT_DIR)/contrib/go-vim
-GOVIM_INSTDIR = $(VIM_DIR)/plugins/golang
-
-govim-install:
-	@cd $(GOVIM_SRCDIR) && \
-	  for d in `find . -type d -not -name '.*'`; do \
-	    echo mkdir: $$d ; \
-	    install -d -m 0755 $(GOVIM_INSTDIR)/$$d || exit 1 ; \
-	  done ; \
-	  for f in `find . -type f -not -name '.*' `; do \
-	    echo install: $$f ; \
-	    install -m 0666 $$f $(GOVIM_INSTDIR)/$$f || exit 1 ; \
 	  done

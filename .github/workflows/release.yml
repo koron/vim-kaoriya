@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    tags: [ '**' ]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  windows-msvc:
+    name: Windows (MSVC)
+    uses: ./.github/workflows/windows-msvc.yml
+    secrets: inherit
+
+  linux:
+    name: Linux (Ubuntu)
+    uses: ./.github/workflows/ubuntu.yml
+    secrets: inherit

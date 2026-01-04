@@ -25,8 +25,20 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install tools by choco
-      run: choco install -y diffutils patch
+    - name: Install tools by MSYS2
+      uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2.30.0
+      id: msys2
+      with:
+        msystem: MSYS
+        update: false
+        install: >-
+          diffutils
+          patch
+        release: false
+
+    - name: Setup MSYS2 PATH
+      run: |
+        echo ${{ steps.msys2.outputs.msys2-location }}\usr\bin>> %GITHUB_PATH%
 
     - name: Setup VC++ environment (VCVARSALL)
       run: for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%

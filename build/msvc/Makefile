@@ -414,15 +414,29 @@ build-release-core: build-release-archive
 build-release-post: build-release-clean
 
 build-release:
+	@echo ::group::Build iconv
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\iconv.dll"
+	@echo ::endgroup::
+	@echo ::group::Build gettext
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\intl.dll"
+	@echo ::endgroup::
+	@echo ::group::Build XPM
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\lib\libXpm.lib"
+	@echo ::endgroup::
+	@echo ::group::Build LuaJIT
 	$(MAKE) /$(MAKEFLAGS) "$(INSTALL_DIR)\bin\lua51.dll"
+	@echo ::endgroup::
+	@echo ::group::Build Vim
 	$(MAKE) /$(MAKEFLAGS) vim-clean
 	$(MAKE) /$(MAKEFLAGS) vim-install vim-mo-install vim-patch-install
+	@echo ::endgroup::
+	@echo ::group::Build others
 	$(MAKE) /$(MAKEFLAGS) langja-install
+	@echo ::endgroup::
+	@echo ::group::Create distributions
 	$(MAKE) /$(MAKEFLAGS) build-dist
 	$(MAKE) /$(MAKEFLAGS) pdb-distdir
+	@echo ::endgroup::
 
 build-release-test:
 	cd "$(VIM_DIR)\src\testdir"

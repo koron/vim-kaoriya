@@ -16,14 +16,8 @@ jobs:
     defaults:
       run:
         shell: cmd
-        working-directory: build/msvc
 
     steps:
-
-    - name: Checkout repository with submodules
-      uses: actions/checkout@v6
-      with:
-        submodules: recursive
 
     - name: Install tools by MSYS2
       uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2.30.0
@@ -43,6 +37,14 @@ jobs:
     - name: Setup VC++ environment (VCVARSALL)
       run: for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
 
+    - name: Configure git
+      run: git config --global core.autocrlf input
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
     - name: Add custom tools to PATH
       run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
 
@@ -56,11 +58,13 @@ jobs:
         )
 
     - name: Build
+      working-directory: build/msvc
       run: |
         call "%VCVARSALL%" amd64
         nmake /NOLOGO build-release
 
     - name: Create archives
+      working-directory: build/msvc
       run: |
         call "%VCVARSALL%" amd64
         nmake /NOLOGO build-release-archive

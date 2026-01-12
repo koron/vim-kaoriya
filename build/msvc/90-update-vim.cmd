@@ -16,6 +16,8 @@ SET /P PATCH_NUM=<%TEMP_PATCH_NUM%
 DEL /F %TEMP_PATCH_NUM%
 sed -i -e 's/^\(VIM_VER\s*=\s*[0-9]\+\.[0-9]\+\.\)[0-9]\+/\1%PATCH_NUM%/' ..\VERSION
 
+TYPE ..\VERSION
+
 REM END
 PAUSE
 EXIT /B 0

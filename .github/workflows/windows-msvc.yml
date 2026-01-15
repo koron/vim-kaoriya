@@ -126,7 +126,10 @@ jobs:
       working-directory: vim/src/testdir
       run: |
         call "%VCVARSALL%" amd64
-        nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\..\..\vim91-kaoriya-win64\${{ matrix.vimprog }}.exe
+        Robocopy /XO ..\..\..\vim91-kaoriya-win64 .. ^
+          gvim.exe iconv.dll intl.dll lua51.dll luajit.exe tee.exe ^
+          vcruntime140.dll vim.exe vim64.dll vimrun.exe xxd.exe
+        nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\${{ matrix.vimprog }}.exe
 
     - name: Upload test result
       uses: actions/upload-artifact@v6

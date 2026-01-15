@@ -62,19 +62,13 @@ jobs:
         call "%VCVARSALL%" amd64
         nmake /NOLOGO build-release
 
-    - name: Create archives
-      working-directory: build/msvc
-      run: |
-        call "%VCVARSALL%" amd64
-        nmake /NOLOGO build-release-archive
-
-    - name: Upload archives as artifacts
+    - name: Upload the built artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: windows-msvc-archives
+        name: windows-msvc-build
         path: |
-          build/msvc/target/vim*-kaoriya-win64-*.zip
-          build/msvc/target/vim*-kaoriya-win64-*-pdb.zip
+          build/msvc/target/vim*-kaoriya-win64
+          build/msvc/target/vim*-kaoriya-win64-pdb
 
   test:
     name: Test
@@ -122,13 +116,10 @@ jobs:
     - name: Add custom tools to PATH
       run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
 
-    - name: Download the archive
+    - name: Download the built artifacts
       uses: actions/download-artifact@v7
       with:
-        name: windows-msvc-archives
-
-    - name: Extract the archive
-      run: 7z x vim91-kaoriya-win64-*.zip
+        name: windows-msvc-build
 
     - name: Test
       continue-on-error: true

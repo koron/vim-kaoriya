@@ -87,6 +87,12 @@ jobs:
       run:
         shell: cmd
 
+    strategy:
+      matrix:
+        vimprog:
+        - vim
+        - gvim
+
     steps:
 
     - name: Install tools by MSYS2
@@ -124,19 +130,19 @@ jobs:
         name: windows-msvc-archives
 
     - name: Extract the archive
-      run: 7z x vim*-kaoriya-win64-*.zip
+      run: 7z x vim91-kaoriya-win64-*.zip
 
     - name: Test
       continue-on-error: true
       working-directory: vim/src/testdir
       run: |
         call "%VCVARSALL%" amd64
-        nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\..\..\vim91-kaoriya-win64\vim.exe
+        nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\..\..\vim91-kaoriya-win64\${{ matrix.vimprog }}.exe
 
     - name: Upload test result
       uses: actions/upload-artifact@v6
       with:
-        name: windows-msvc-test_result
+        name: windows-msvc-test_result-${{ matrix.vimprog }}
         path: |
           vim/src/testdir/test_result.log
           vim/src/testdir/test*.failed

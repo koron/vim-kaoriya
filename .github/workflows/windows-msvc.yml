@@ -1,4 +1,4 @@
-name: Windows Build (MSVC)
+name: Windows with MSVC
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    name: Build on Windows (MSVC)
+    name: Build
     runs-on: windows-2025
 
     defaults:
@@ -26,7 +26,6 @@ jobs:
         msystem: MSYS
         update: false
         install: >-
-          diffutils
           patch
         release: false
 
@@ -63,31 +62,79 @@ jobs:
         call "%VCVARSALL%" amd64
         nmake /NOLOGO build-release
 
-    - name: Create archives
-      working-directory: build/msvc
-      run: |
-        call "%VCVARSALL%" amd64
-        nmake /NOLOGO build-release-archive
-
-    - name: Upload archives as artifacts
+    - name: Upload the built artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: windows-msvc-archives
+        name: windows-msvc-build
         path: |
-          build/msvc/target/vim*-kaoriya-win64-*.zip
-          build/msvc/target/vim*-kaoriya-win64-*-pdb.zip
+          build/msvc/target/vim*-kaoriya-win64
+          build/msvc/target/vim*-kaoriya-win64-pdb
+
+  test:
+    name: Test
+    runs-on: windows-2025
+
+    needs: build
+
+    defaults:
+      run:
+        shell: cmd
+
+    strategy:
+      matrix:
+        vimprog:
+        - vim
+        - gvim
+
+    steps:
+
+    - name: Install tools by MSYS2
+      uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2.30.0
+      id: msys2
+      with:
+        msystem: MSYS
+        update: false
+        install: >-
+          diffutils
+        release: false
+
+    - name: Setup MSYS2 PATH
+      run: |
+        echo ${{ steps.msys2.outputs.msys2-location }}\usr\bin>> %GITHUB_PATH%
+
+    - name: Setup VC++ environment (VCVARSALL)
+      run: for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
+
+    - name: Configure git
+      run: git config --global core.autocrlf input
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
+    - name: Add custom tools to PATH
+      run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
+
+    - name: Download the built artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: windows-msvc-build
 
     - name: Test
       continue-on-error: true
       working-directory: vim/src/testdir
       run: |
         call "%VCVARSALL%" amd64
-        nmake /NOLOGO /F Make_mvc.mak
+        Robocopy /XO ..\..\..\vim91-kaoriya-win64 .. ^
+          gvim.exe iconv.dll intl.dll lua51.dll luajit.exe tee.exe ^
+          vcruntime140.dll vim.exe vim64.dll vimrun.exe xxd.exe
+        nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\${{ matrix.vimprog }}.exe
 
     - name: Upload test result
       uses: actions/upload-artifact@v6
       with:
-        name: windows-msvc-test_result
+        name: windows-msvc-test_result-${{ matrix.vimprog }}
         path: |
           vim/src/testdir/test_result.log
           vim/src/testdir/test*.failed

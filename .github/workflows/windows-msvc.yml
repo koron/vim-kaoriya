@@ -1,4 +1,4 @@
-name: Windows Build (MSVC)
+name: Windows with MSVC
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    name: Build on Windows (MSVC)
+    name: Build
     runs-on: windows-2025
 
     defaults:
@@ -77,12 +77,61 @@ jobs:
           build/msvc/target/vim*-kaoriya-win64-*.zip
           build/msvc/target/vim*-kaoriya-win64-*-pdb.zip
 
+  test:
+    name: Test
+    runs-on: windows-2025
+
+    needs: build
+
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+
+    - name: Install tools by MSYS2
+      uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2.30.0
+      id: msys2
+      with:
+        msystem: MSYS
+        update: false
+        install: >-
+          diffutils
+          patch
+        release: false
+
+    - name: Setup MSYS2 PATH
+      run: |
+        echo ${{ steps.msys2.outputs.msys2-location }}\usr\bin>> %GITHUB_PATH%
+
+    - name: Setup VC++ environment (VCVARSALL)
+      run: for /f "usebackq tokens=*" %%i in (`vswhere -products * -latest -property installationPath`) do (echo VCVARSALL=%%i\VC\Auxiliary\Build\vcvarsall.bat) >> %GITHUB_ENV%
+
+    - name: Configure git
+      run: git config --global core.autocrlf input
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
+    - name: Add custom tools to PATH
+      run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
+
+    - name: Download the archive
+      uses: actions/download-artifact@v7
+      with:
+        name: windows-msvc-archives
+
+    - name: Extract the archive
+      run: 7z x vim*-kaoriya-win64-*.zip
+
     - name: Test
       continue-on-error: true
       working-directory: vim/src/testdir
       run: |
         call "%VCVARSALL%" amd64
-        nmake /NOLOGO /F Make_mvc.mak
+        nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\..\..\vim91-kaoriya-win64\vim.exe
 
     - name: Upload test result
       uses: actions/upload-artifact@v6

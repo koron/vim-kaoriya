@@ -127,8 +127,10 @@ jobs:
       run: |
         call "%VCVARSALL%" amd64
         Robocopy /XO ..\..\..\vim91-kaoriya-win64 .. ^
-          gvim.exe iconv.dll intl.dll lua51.dll luajit.exe tee.exe ^
-          vcruntime140.dll vim.exe vim64.dll vimrun.exe xxd.exe
+          gvim.exe iconv.dll intl.dll lua51.dll vcruntime140.dll vim.exe ^
+          vim64.dll vimrun.exe
+        Robocopy /XO ..\..\..\vim91-kaoriya-win64 ..\tee tee.exe
+        Robocopy /XO ..\..\..\vim91-kaoriya-win64 ..\xxd xxd.exe
         nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\${{ matrix.vimprog }}.exe
 
     - name: Upload test result

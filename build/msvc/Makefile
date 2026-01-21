@@ -239,7 +239,7 @@ langja-install: langja-build
 	-COPY src\po\ja.mo "$(VIM_INSTALL_DIR)\lang\ja\LC_MESSAGES\vim.mo"
 	-$(COPY) "runtime\lang" "$(VIM_INSTALL_DIR)\lang" menu_ja*.vim
 	-$(COPY) "runtime\doc" "$(VIM_INSTALL_DIR)\doc" *.UTF-8.1
-	-$(COPY) "runtime\tutor" "$(VIM_INSTALL_DIR)\tutor" tutor*.ja.*
+	-$(COPY) "runtime\tutor" "$(VIM_INSTALL_DIR)\tutor" tutor*.ja
 	cd "$(BUILD_DIR)"
 
 ### VIM

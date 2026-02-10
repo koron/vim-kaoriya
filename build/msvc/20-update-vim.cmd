@@ -4,6 +4,14 @@ CALL tools\command-common.bat
 
 CD "%VIMDIR%"
 
+REM Check changes without commit
+git status --porcelain
+IF %ERRORLEVEL% NEQ 0 (
+  ECHO [Error] git working tree is dirty
+  PAUSE
+  EXIT /b 1
+)
+
 REM Catcn up Vim's update
 git switch master
 git fetch -p

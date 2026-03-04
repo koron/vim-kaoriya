@@ -47,6 +47,10 @@ jobs:
     - name: Add custom tools to PATH
       run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
 
+    - name: Read VERSION file
+      run: |
+        FOR /F "usebackq eol=# tokens=1,2 delims==	 " %%i IN ("VERSION") DO (ECHO %%i=%%j) >> %GITHUB_ENV%
+
     - name: Apply kaoriya patches
       working-directory: vim
       run: |
@@ -63,12 +67,13 @@ jobs:
         nmake /NOLOGO build-release
 
     - name: Upload the built artifacts
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: windows-msvc-build
         path: |
-          build/msvc/target/vim*-kaoriya-win64
-          build/msvc/target/vim*-kaoriya-win64-pdb
+          build/msvc/target/vim${{ env.VIM_VER_SHORT }}-kaoriya-win64
+          build/msvc/target/vim${{ env.VIM_VER_SHORT }}-kaoriya-win64-pdb
+        if-no-files-found: error
 
   test:
     name: Test
@@ -117,8 +122,12 @@ jobs:
     - name: Add custom tools to PATH
       run: echo %GITHUB_WORKSPACE%\build\msvc\target\install-x64\bin>> %GITHUB_PATH%
 
+    - name: Read VERSION file
+      run: |
+        FOR /F "usebackq eol=# tokens=1,2 delims==	 " %%i IN ("VERSION") DO (ECHO %%i=%%j) >> %GITHUB_ENV%
+
     - name: Download the built artifacts
-      uses: actions/download-artifact@v7
+      uses: actions/download-artifact@v8
       with:
         name: windows-msvc-build
 
@@ -127,15 +136,15 @@ jobs:
       working-directory: vim/src/testdir
       run: |
         call "%VCVARSALL%" amd64
-        Robocopy /XO ..\..\..\vim91-kaoriya-win64 .. ^
+        Robocopy /XO ..\..\..\vim${{ env.VIM_VER_SHORT }}-kaoriya-win64 .. ^
           gvim.exe iconv.dll intl.dll lua51.dll vcruntime140.dll vim.exe ^
           vim64.dll vimrun.exe
-        Robocopy /XO ..\..\..\vim91-kaoriya-win64 ..\tee tee.exe
-        Robocopy /XO ..\..\..\vim91-kaoriya-win64 ..\xxd xxd.exe
+        Robocopy /XO ..\..\..\vim${{ env.VIM_VER_SHORT }}-kaoriya-win64 ..\tee tee.exe
+        Robocopy /XO ..\..\..\vim${{ env.VIM_VER_SHORT }}-kaoriya-win64 ..\xxd xxd.exe
         nmake /NOLOGO /F Make_mvc.mak VIMPROG=..\${{ matrix.vimprog }}.exe
 
     - name: Upload test result
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: windows-msvc-test_result-${{ matrix.vimprog }}
         path: |

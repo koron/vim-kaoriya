@@ -8,7 +8,7 @@ SET VIMDIR=%~dp0..\..\..\vim
 
 SET GUILTCMD=sh /usr/local/bin/guilt
 
-FOR /F "usebackq tokens=1,2 delims==	 " %%i IN ("..\..\VERSION") do SET %%i=%%j
+FOR /F "usebackq eol=# tokens=1,2 delims==	 " %%i IN ("..\..\VERSION") do SET %%i=%%j
 
 SET _VIM_PREFIX=vim%VIM_VER_SHORT%
 SET _VIM_SUFFIX=%VIM_VER%-%PATCHSET_VER%

@@ -81,6 +81,7 @@ jobs:
         shell: cmd
 
     strategy:
+      fail-fast: false
       matrix:
         vimprog:
         - vim

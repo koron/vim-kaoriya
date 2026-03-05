@@ -132,6 +132,12 @@ jobs:
       with:
         name: windows-msvc-build
 
+    - name: Force to use winpty
+      working-directory: vim/src/testdir/util
+      run: |
+        <nul set /p "=set termwintype=winpty" >> setup.vim
+        type setup.vim
+
     - name: Test
       continue-on-error: true
       working-directory: vim/src/testdir

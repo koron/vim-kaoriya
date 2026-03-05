@@ -64,6 +64,11 @@ jobs:
           IF ERRORLEVEL 1 EXIT /B 1
         )
 
+    - name: Force revert v9.2.0048
+      working-directory: vim/src
+      run: |
+        sed -i -e 's/10, 0, 22000/10, 0, 32767/' os_win32.c
+
     - name: Build
       working-directory: build/msvc
       run: |

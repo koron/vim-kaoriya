@@ -81,7 +81,7 @@ jobs:
 
   test:
     name: Test
-    runs-on: windows-2025
+    runs-on: ${{ matrix.os }}
 
     needs: build
 
@@ -95,6 +95,9 @@ jobs:
         vimprog:
         - vim
         - gvim
+        os:
+        - windows-2022
+        - windows-2025
 
     steps:
 
@@ -150,7 +153,7 @@ jobs:
     - name: Upload test result
       uses: actions/upload-artifact@v7
       with:
-        name: windows-msvc-test_result-${{ matrix.vimprog }}
+        name: windows-msvc-test_result-${{ matrix.vimprog }}-${{ matrix.os }}
         path: |
           vim/src/testdir/test_result.log
           vim/src/testdir/test*.failed

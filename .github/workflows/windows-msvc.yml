@@ -56,6 +56,7 @@ jobs:
         FOR /F "usebackq eol=# tokens=1,2 delims==	 " %%i IN ("VERSION") DO (ECHO %%i=%%j) >> %GITHUB_ENV%
 
     - name: Apply kaoriya patches
+      if: false
       working-directory: vim
       run: |
         FOR /F "delims=" %%l IN (..\patches\master\series) DO (

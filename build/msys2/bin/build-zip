@@ -3,8 +3,9 @@
 set -eu
 source $(dirname "$0")/common
 
-DISTNAME=vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}-${VIM_VER}-${PATCHSET_VER}
-DISTDIR=./target/${DISTNAME}
+DISTNAME=vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}
+DISTDIR=target/vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}
+DISTZIP=target/${DISTDIR}-${VIM_VER}-${PATCHSET_VER}.zip
 RUNTIMEDIR=vim${VIM_VER_SHORT}
 
 KAORIYADIR=../../kaoriya
@@ -45,7 +46,7 @@ _rsync \
 # Vim translation files.
 _mkdir ${DISTDIR}/${RUNTIMEDIR}
 mingw32-make -C ../../vim/src/po -f Make_ming.mak \
-  VIMRUNTIME=../../../build/msys2/target/${DISTNAME}/${RUNTIMEDIR} \
+  VIMRUNTIME=../../../build/msys2/${DISTDIR}/${RUNTIMEDIR} \
   install-all
 
 # Vim runtime
@@ -81,14 +82,11 @@ _helptags ${DISTDIR}/plugins/vimdoc-ja/doc
 # Copy translated files: man pages, lang, and tutor from lang-ja
 _mkdir ${DISTDIR}/${RUNTIMEDIR}
 make -C ${CONTRIBDIR}/lang-ja \
-  INSTALL_DIR=../../build/msys2/target/${DISTNAME}/${RUNTIMEDIR} \
+  INSTALL_DIR=../../build/msys2/${DISTDIR}/${RUNTIMEDIR} \
   install
 
 # TODO: Gather license files
 _mkdir ${DISTDIR}/licenses
 
 # Archive as a zip file
-(
-  cd target
-  7z a -bso0 -bd -mx=7 -r $DISTNAME.zip $DISTNAME
-)
+7z a -bso0 -bd -mx=7 -r ${DISTZIP} $(readlink -f ${DISTDIR})

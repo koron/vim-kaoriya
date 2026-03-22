@@ -304,7 +304,7 @@ vim-patch-install:
 	IF NOT EXIST "$(VIM_PATCH_DIR)" MD "$(VIM_PATCH_DIR)"
 	cd "$(VIM_DIR)"
 	-DEL /F /Q "$(VIM_PATCH_DIR)\*"
-	-$(COPY) "..\patches\master" "$(VIM_PATCH_DIR)" *.diff series
+	-$(COPY) "..\patches\master" "$(VIM_PATCH_DIR)" /XF *~ guards status
 	cd "$(BUILD_DIR)"
 
 ### PDB
@@ -381,11 +381,12 @@ build-dist:
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
 		-c "helptags $(VIM_DIST_DIR)\plugins\autofmt\doc" -c quit
 # Vim and other executable and resource files.
-	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt
+	-$(COPY) "$(VIM_DIR)" "$(VIM_DIST_DIR)\origdoc" README.txt LICENSE
 	-$(COPY) "$(INSTALL_DIR)\bin" "$(VIM_DIST_DIR)" \
 		vim.exe gvim.exe $(VIMDLL) vimrun.exe xxd.exe tee.exe \
 		iconv.dll intl.dll luajit.exe lua51.dll
-	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
+	-$(COPY) /E "$(VIM_DIR)\runtime" "$(VIM_DIST_DIR)\$(RTDIR_NAME)" \
+		/XD generator testdir
 	-$(COPY) /E "$(VIM_INSTALL_DIR)" "$(VIM_DIST_DIR)\$(RTDIR_NAME)"
 	-"$(INSTALL_DIR)\bin\vim.exe" -nes -u NONE -U NONE --noplugin \
 		-c "helptags $(VIM_DIST_DIR)\$(RTDIR_NAME)\doc" -c quit

@@ -1,3 +1,4 @@
-syntax/generator
+indent/testdir
 syntax/Makefile
+syntax/generator
 syntax/testdir

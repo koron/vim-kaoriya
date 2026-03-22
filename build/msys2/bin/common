@@ -1,4 +1,5 @@
-JOBS=4
+# Job parallelism is determined by the number of available logical cores.
+JOBS=$(grep processor /proc/cpuinfo | wc -l)
 
 source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' ../../VERSION)
 

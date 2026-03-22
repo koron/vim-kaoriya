@@ -1,5 +1,3 @@
-JOBS=16
-
 VIM_MAKE_FLAGS+=(
   USERNAME=koron.kaoriya
   USERDOMAIN=gmail.com

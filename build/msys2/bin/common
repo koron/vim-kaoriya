@@ -1,0 +1,13 @@
+JOBS=4
+
+VIMDIR=../../vim
+
+VIM_MAKE_FLAGS=()
+
+if [[ -r "config" ]] ; then
+  source "config"
+fi
+
+cd ${VIMDIR}
+
+# vim:set ft=sh:

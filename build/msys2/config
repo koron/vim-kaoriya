@@ -1,0 +1,12 @@
+JOBS=16
+
+VIM_MAKE_FLAGS+=(
+  USERNAME=koron.kaoriya
+  USERDOMAIN=gmail.com
+  EXTRA_DEFINES=-DMODIFIED_BY=\\\"koron.kaoriya@gmail.com\\\"
+  LUA=$(pkgconf luajit --variable=prefix)
+  LUA_INCDIR=$(pkgconf luajit --variable=includedir)
+  LUA_VER=51
+)
+
+# vim:set ft=sh:

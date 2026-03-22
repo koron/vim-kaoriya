@@ -2,6 +2,7 @@
 
 set -eu
 source $(dirname "$0")/common
+cd ${VIMDIR}
 
 mingw32-make -C src -j ${JOBS} -f Make_ming.mak \
   VIMDLL=yes GUI=yes STATIC_STDCPLUS=yes USE_MSYSTEM_PACKAGES=static \

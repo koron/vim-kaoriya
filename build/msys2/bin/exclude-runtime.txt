@@ -1,0 +1,3 @@
+syntax/generator
+syntax/Makefile
+syntax/testdir

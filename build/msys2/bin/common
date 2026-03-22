@@ -1,5 +1,7 @@
 JOBS=4
 
+source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' ../../VERSION)
+
 VIMDIR=../../vim
 
 VIM_MAKE_FLAGS=()
@@ -7,7 +9,5 @@ VIM_MAKE_FLAGS=()
 if [[ -r "config" ]] ; then
   source "config"
 fi
-
-cd ${VIMDIR}
 
 # vim:set ft=sh:

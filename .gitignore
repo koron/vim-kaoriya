@@ -3,3 +3,5 @@ tmp/
 
 work/
 vim*-kaoriya-*.tar.bz2
+
+target/

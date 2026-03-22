@@ -1,0 +1,94 @@
+#!/bin/bash
+
+set -eu
+source $(dirname "$0")/common
+
+DISTNAME=vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}-${VIM_VER}-${PATCHSET_VER}
+DISTDIR=./target/${DISTNAME}
+RUNTIMEDIR=vim${VIM_VER_SHORT}
+
+KAORIYADIR=../../kaoriya
+CONTRIBDIR=../../contrib
+PATCHDIR=../../patches
+
+_mkdir() {
+  if [[ ! -d "$1" ]] ; then
+    mkdir -p "$1"
+    echo "mkdir $1"
+  fi
+}
+
+_rsync() {
+  rsync -a --exclude='.git*' --info=name2 "$@"
+}
+
+_helptags() {
+  ${VIMDIR}/src/vim.exe -nes -u NONE --noplugin -c "helptags $1" -c quit
+}
+
+
+# Vim's original documents
+_mkdir ${DISTDIR}/origdoc
+_rsync ${VIMDIR}/README.txt ${VIMDIR}/LICENSE ${DISTDIR}/origdoc
+
+# Vim executables
+_mkdir ${DISTDIR}
+_rsync \
+  ${VIMDIR}/src/vim64.dll \
+  ${VIMDIR}/src/vim.exe \
+  ${VIMDIR}/src/gvim.exe \
+  ${VIMDIR}/src/vimrun.exe \
+  ${VIMDIR}/src/xxd/xxd.exe \
+  ${VIMDIR}/src/tee/tee.exe \
+  ${DISTDIR}
+
+# Vim translation files.
+_mkdir ${DISTDIR}/${RUNTIMEDIR}
+mingw32-make -C ../../vim/src/po -f Make_ming.mak \
+  VIMRUNTIME=../../../build/msys2/target/${DISTNAME}/${RUNTIMEDIR} \
+  install-all
+
+# Vim runtime
+_mkdir ${DISTDIR}/${RUNTIMEDIR}
+_rsync --exclude-from=$(dirname "$0")/exclude-runtime.txt \
+  ${VIMDIR}/runtime/ ${DISTDIR}/${RUNTIMEDIR}
+_helptags ${DISTDIR}/${RUNTIMEDIR}/doc
+
+# KaoriYa patches
+_mkdir ${DISTDIR}/patch
+_rsync --exclude='*~' --exclude=guards --exclude=status \
+  ${PATCHDIR}/master/ ${DISTDIR}/patch
+
+# KaoriYa other files
+_mkdir ${DISTDIR}
+_rsync ${KAORIYADIR}/doc/ ${DISTDIR}
+_rsync ${KAORIYADIR}/vim/ ${DISTDIR}
+
+# Clean switches that have been experimentally enabled
+_mkdir ${DISTDIR}/switches/enabled
+rm -f ${DISTDIR}/switches/enabled/*.vim
+
+# Plugin - autofmt
+_mkdir ${DISTDIR}/plugins
+_rsync ${CONTRIBDIR}/autofmt/ ${DISTDIR}/plugins/autofmt
+_helptags ${DISTDIR}/plugins/autofmt/doc
+
+# Plugin - vimdoc-ja
+_mkdir ${DISTDIR}/plugins
+_rsync ${CONTRIBDIR}/vimdoc-ja/ ${DISTDIR}/plugins/vimdoc-ja
+_helptags ${DISTDIR}/plugins/vimdoc-ja/doc
+
+# Copy translated files: man pages, lang, and tutor from lang-ja
+_mkdir ${DISTDIR}/${RUNTIMEDIR}
+make -C ${CONTRIBDIR}/lang-ja \
+  INSTALL_DIR=../../build/msys2/target/${DISTNAME}/${RUNTIMEDIR} \
+  install
+
+# TODO: Gather license files
+_mkdir ${DISTDIR}/licenses
+
+# Archive as a zip file
+(
+  cd target
+  7z a -bso0 -bd -mx=7 -r $DISTNAME.zip $DISTNAME
+)

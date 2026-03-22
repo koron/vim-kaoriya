@@ -2,5 +2,6 @@
 
 set -eu
 source $(dirname "$0")/common
+cd ${VIMDIR}
 
 SHELL= mingw32-make -C src/testdir -f Make_ming.mak "$@"

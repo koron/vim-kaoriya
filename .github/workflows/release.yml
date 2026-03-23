@@ -5,7 +5,7 @@ on:
     tags: [ '**' ]
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: ci-release-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

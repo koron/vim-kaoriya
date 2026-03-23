@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 set -eu
 source $(dirname "$0")/common
 
 DISTNAME=vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}
-DISTDIR=target/vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}
-DISTZIP=target/${DISTDIR}-${VIM_VER}-${PATCHSET_VER}.zip
+DISTDIR=target/${DISTNAME}
+DISTZIP=target/${DISTNAME}-${VIM_VER}-${PATCHSET_VER}.zip
 RUNTIMEDIR=vim${VIM_VER_SHORT}
 
 KAORIYADIR=../../kaoriya
@@ -83,10 +83,15 @@ _helptags ${DISTDIR}/plugins/vimdoc-ja/doc
 _mkdir ${DISTDIR}/${RUNTIMEDIR}
 make -C ${CONTRIBDIR}/lang-ja \
   INSTALL_DIR=../../build/msys2/${DISTDIR}/${RUNTIMEDIR} \
+  VIM=$(readlink -f ${VIMDIR}/src/vim.exe) \
   install
 
-# TODO: Gather license files
+# Gather license files
 _mkdir ${DISTDIR}/licenses
+for f in "${LICENSES[@]}" ; do
+  pkgname=$(basename "$(dirname $f)")
+  _rsync "$f" ${DISTDIR}/licenses/${pkgname}.txt
+done
 
 # Archive as a zip file
 7z a -bso0 -bd -mx=7 -r ${DISTZIP} $(readlink -f ${DISTDIR})

@@ -9,3 +9,6 @@ test-clean:
 
 clean:
 	./bin/make-vim clean
+
+zip:
+	./bin/build-zip

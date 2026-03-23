@@ -1,10 +1,16 @@
-JOBS=4
+# Job parallelism is determined by the number of available logical cores.
+JOBS=$(grep processor /proc/cpuinfo | wc -l)
 
 source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' ../../VERSION)
 
 VIMDIR=../../vim
 
 VIM_MAKE_FLAGS=()
+
+LICENSES=()
+LICENSES+=(/${MSYSTEM,,}/share/licenses/libiconv/COPYING)
+LICENSES+=(/${MSYSTEM,,}/share/licenses/gettext/COPYING)
+LICENSES+=(/${MSYSTEM,,}/share/licenses/xpm-nox/COPYRIGHT)
 
 if [[ -r "config" ]] ; then
   source "config"

@@ -7,6 +7,11 @@ VIMDIR=../../vim
 
 VIM_MAKE_FLAGS=()
 
+LICENSES=()
+LICENSES+=(/${MSYSTEM,,}/share/licenses/libiconv/COPYING)
+LICENSES+=(/${MSYSTEM,,}/share/licenses/gettext/COPYING)
+LICENSES+=(/${MSYSTEM,,}/share/licenses/xpm-nox/COPYRIGHT)
+
 if [[ -r "config" ]] ; then
   source "config"
 fi

@@ -86,8 +86,12 @@ make -C ${CONTRIBDIR}/lang-ja \
   VIM=$(readlink -f ${VIMDIR}/src/vim.exe) \
   install
 
-# TODO: Gather license files
+# Gather license files
 _mkdir ${DISTDIR}/licenses
+for f in "${LICENSES[@]}" ; do
+  pkgname=$(basename "$(dirname $f)")
+  _rsync "$f" ${DISTDIR}/licenses/${pkgname}.txt
+done
 
 # Archive as a zip file
 7z a -bso0 -bd -mx=7 -r ${DISTZIP} $(readlink -f ${DISTDIR})

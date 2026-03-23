@@ -15,6 +15,11 @@ jobs:
     uses: ./.github/workflows/windows-msvc.yml
     secrets: inherit
 
+  windows-msys2:
+    name: Windows (MSYS2)
+    uses: ./.github/workflows/windows-msys2.yml
+    secrets: inherit
+
   linux:
     name: Linux (Ubuntu)
     uses: ./.github/workflows/ubuntu.yml

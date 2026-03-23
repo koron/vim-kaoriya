@@ -26,6 +26,7 @@ jobs:
       id: msys2
       with:
         update: true
+        msystem: UCRT64
         pacboy: >-
           diffutils:p
           make:p
@@ -41,7 +42,6 @@ jobs:
           pkgconf:
           rsync:
           7zip:p
-        msystem: UCRT64
         release: false
 
     - name: Set up MSYS2 path
@@ -88,4 +88,87 @@ jobs:
         name: windows-ucrt64-build
         path: |
           build/msys2/target/vim${{ env.VIM_VER_SHORT }}-kaoriya-ucrt64
+        if-no-files-found: error
+
+  test:
+    name: Test
+    runs-on: windows-2025
+
+    needs: build
+
+    defaults:
+      run:
+        shell: cmd
+
+    strategy:
+      fail-fast: false
+      matrix:
+        vimprog:
+        - vim
+        - gvim
+
+    steps:
+    - name: Install tools by MSYS2
+      uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2.30.0
+      id: msys2
+      with:
+        msystem: UCRT64
+        update: false
+        pacboy: >-
+          diffutils:p
+          make:p
+          luajit:p
+        release: false
+
+    - name: Set up MSYS2 path
+      run: |
+        echo ${{ steps.msys2.outputs.msys2-location }}\%MSYSTEM%\bin>> %GITHUB_PATH%
+        echo ${{ steps.msys2.outputs.msys2-location }}\usr\bin>> %GITHUB_PATH%
+
+    - name: Configure git
+      run: git config --global core.autocrlf input
+
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
+    - name: Read VERSION file
+      run: |
+        FOR /F "usebackq eol=# tokens=1,2 delims==	 " %%i IN ("VERSION") DO (ECHO %%i=%%j) >> %GITHUB_ENV%
+
+    - name: Download the built artifacts
+      uses: actions/download-artifact@v8
+      with:
+        name: windows-ucrt64-build
+        path: vim${{ env.VIM_VER_SHORT }}-kaoriya-ucrt64
+
+    - name: Pre-check
+      shell: msys2 {0}
+      run:
+        ls -l
+
+    - name: Copy executables
+      working-directory: vim${{ env.VIM_VER_SHORT }}-kaoriya-ucrt64
+      shell: msys2 {0}
+      run: |
+        cp -p gvim.exe vim.exe vim64.dll vimrun.exe ../vim/src
+        cp -p tee.exe ../vim/src/tee
+        cp -p xxd.exe ../vim/src/xxd
+
+    - name: Test
+      continue-on-error: true
+      working-directory: vim/src/testdir
+      shell: msys2 {0}
+      run: |
+        unset SHELL
+        mingw32-make -f Make_ming.mak VIMPROG=..\\${{ matrix.vimprog }}.exe
+
+    - name: Upload test result
+      uses: actions/upload-artifact@v7
+      with:
+        name: windows-msys2-test_result-${{ matrix.vimprog }}
+        path: |
+          vim/src/testdir/test_result.log
+          vim/src/testdir/test*.failed
         if-no-files-found: error

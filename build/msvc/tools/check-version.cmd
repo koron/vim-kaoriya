@@ -15,7 +15,7 @@ IF EXIST "%OUTFILE%" (
 
 "%TARGETDIR%\vim" -u tools\check.vim -U NONE --noplugin --not-a-term -c "f %OUTFILE%|wq"
 IF NOT EXIST "%OUTFILE%" (
-    ECHO ERROR: Failed on checking version
+    ECHO [41;97mERROR: Failed on checking version[0m
     PAUSE
     EIXT /B 1
 )
@@ -26,11 +26,11 @@ FOR /f "usebackq eol=; tokens=1,* delims==" %%a in  ("%OUTFILE%") do (
 DEL /F %OUTFILE%
 
 IF NOT "%check_version%"=="%VIM_VER%" (
-    ECHO ERROR: unexpected version: want=%VIM_VER% got=%check_version%
+    ECHO [41;97mERROR: unexpected version: want=%VIM_VER% got=%check_version%[0m
     SET HAS_ERROR=1
 )
 IF %check_kaoriya% NEQ 1 (
-    ECHO ERROR: without kaoriya patches
+    ECHO [41;97mERROR: without kaoriya patches[0m
     SET HAS_ERROR=1
 )
 IF DEFINED HAS_ERROR (
@@ -38,7 +38,7 @@ IF DEFINED HAS_ERROR (
     EXIT /B 1
 )
 
-ECHO OK: %TARGETDIR% is %check_version% +kaoriya
+ECHO [42;97mOK: %TARGETDIR% is %check_version% +kaoriya[0m
 PAUSE
 EXIT /B 0
 

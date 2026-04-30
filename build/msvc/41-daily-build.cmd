@@ -11,6 +11,12 @@ REM Apply patches with guilt
 %GUILTCMD% pop -a
 %GUILTCMD% push -a
 
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO [41;97mERROR: Failed to apply patches[0m
+    PAuSE
+    EXIT /b 1
+)
+
 CD "%CURDIR%"
 
 REM Clear previous releases.
@@ -40,3 +46,5 @@ CD "%CURDIR%"
 REM END
 PAUSE
 EXIT /B 0
+
+REM vim:set ts=8 sts=4 sw=4 tw=0 et:

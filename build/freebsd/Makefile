@@ -31,7 +31,7 @@ package:
 package-clean:
 	rm -rf $(DESTDIR)
 
-package-install-all: vim-install-auto kaoriya-install autofmt-install govim-install
+package-install-all: vim-install-auto kaoriya-install autofmt-install
 
 package-auto: package-clean package-install-all package
 

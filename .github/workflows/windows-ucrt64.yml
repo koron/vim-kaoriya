@@ -1,4 +1,4 @@
-name: Windows with MSYS2
+name: Windows with UCRT64/MSYS2
 
 on:
   push:
@@ -71,13 +71,13 @@ jobs:
         )
 
     - name: Build
-      working-directory: build/msys2
+      working-directory: build/ucrt64
       shell: msys2 {0}
       run: |
         make build
 
     - name: Distribution
-      working-directory: build/msys2
+      working-directory: build/ucrt64
       shell: msys2 {0}
       run: |
         make zip
@@ -87,7 +87,7 @@ jobs:
       with:
         name: windows-ucrt64-build
         path: |
-          build/msys2/target/vim${{ env.VIM_VER_SHORT }}-kaoriya-ucrt64
+          build/ucrt64/target/vim${{ env.VIM_VER_SHORT }}-kaoriya-ucrt64
         if-no-files-found: error
 
   test:

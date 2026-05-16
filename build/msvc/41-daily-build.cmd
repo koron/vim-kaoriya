@@ -31,6 +31,9 @@ nmake /NOLOGO build-release
 REM Test
 nmake /NOLOGO build-release-test
 
+REM Stop conhost.exe, which is likely running out of control.
+taskkill /F /FI "IMAGENAME eq conhost.exe" /FI "MEMUSAGE gt 200000"
+
 REM Create archives
 nmake /NOLOGO build-release-archive
 

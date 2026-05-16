@@ -5,3 +5,6 @@ source $(dirname "$0")/common
 cd ${VIMDIR}
 
 SHELL= mingw32-make -C src/testdir -f Make_ming.mak "$@"
+
+# Stop conhost.exe, which is likely running out of control.
+taskkill -F -FI "IMAGENAME eq conhost.exe" -FI "MEMUSAGE gt 200000"

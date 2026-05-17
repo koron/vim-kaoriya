@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -eu
+
+BINDIR="$(dirname $(realpath "$0"))"
+VIMDIR="$(realpath "$BINDIR/../vim")"
+ROOTDIR="$(realpath "$BINDIR/..")"
+
+(
+  cd "$VIMDIR"
+
+  # Check changes without commit
+  if git status --porcelain | grep -q . ; then
+    echo -e "\e[41;97mERROR: git worktree is dirty\e[m"
+    exit 1
+  fi
+
+
+  # Ensure on "master" branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  if [ "$current_branch" != "master" ] ; then
+    git switch master
+  fi
+
+  # Catch up Vim's updates
+  git pull -p --ff-only
+  count=$(git rev-list --count ORIG_HEAD..HEAD)
+  if [ $count -eq 0 ] ; then
+    echo -e "\e[41;97mERROR: no changes pulled\e[m"
+    exit 1
+  fi
+
+  # Update VIM_VER in VERSION file
+  patch_num=$(sed -ne '/^static int included_patches/,/^\s*[0-9]\+,$/p' src/version.c | tail -1 | tr -cd 0123456789 | xargs printf '%04d')
+  sed -i -e "s/^\(VIM_VER\s*=\s*[0-9]\+\.[0-9]\+\.\)[0-9]\+/\1$patch_num/" "$ROOTDIR/VERSION"
+
+  grep -e "^VIM_VER\b" -e "^PATCHSET_VER\b" "$ROOTDIR/VERSION"
+)

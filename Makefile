@@ -1,5 +1,7 @@
 include VERSION
 
+default: update
+
 DISTDIR=dist
 CORE=vim-$(VIM_VER)+kaoriya-$(PATCHSET_VER)
 CORE_TARGET=$(DISTDIR)/$(CORE).tar.bz2
@@ -18,3 +20,7 @@ $(PATCH_TARGET):
 	sh build/dist/collect_applied_patches.sh vim $(PATCH_TMPDIR)
 	tar cjf $@ -C $(DISTDIR) $(PATCH)
 	rm -rf $(PATCH_TMPDIR)
+
+update:
+	./bin/update-vimsrc
+	./bin/commit-push

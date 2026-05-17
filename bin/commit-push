@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -eu
+
+BINDIR="$(dirname $(realpath "$0"))"
+ROOTDIR="$(realpath "$BINDIR/..")"
+
+
+(
+  cd "$ROOTDIR"
+
+  # Make sure we are on the "main" branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  if [ "$current_branch" != "main" ] ; then
+    echo -e "\e[41;97mERROR: not a "main" branch: $current_branch\e[m"
+    exit 1
+  fi
+
+  # Verify that ./VERSION and ./vim have been changed
+  if git diff --exit-code --quiet ./VERSION ; then
+    echo -e "\e[41;97mERROR: no changes on ./VERSION \e[m"
+    exit 1
+  fi
+  if git diff --exit-code --quiet ./vim ; then
+    echo -e "\e[41;97mERROR: no changes on ./vim \e[m"
+    exit 1
+  fi
+
+  echo "Detected changes on ./vim and ./VERSION"
+  source <(sed 's/\s*=\s*/=/g' VERSION)
+
+  echo "Committing..."
+  git add ./vim ./VERSION
+  git commit -m "Catch up Vim $VIM_VER"
+  echo "Pushing..."
+  git push
+)

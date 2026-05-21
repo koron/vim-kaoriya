@@ -13,7 +13,8 @@ VIM_CONFIG = --with-features=huge \
 VIM_DIR = $(DESTDIR)/usr/local/share/vim
 VIMRUNTIME_DIR = $(DESTDIR)$(VIM_DIR)/vim$(VIM_VER_SHORT)
 
-OS_TARGET = freebsd14
+OSVERSION != freebsd-version -k | cut -d- -f1
+OS_TARGET = freebsd$(OSVERSION)
 VIM_PKGFILE = vim$(VIM_VER_SHORT)-kaoriya-$(OS_TARGET)-$(VERSION).tar.bz2
 
 ##############################################################################

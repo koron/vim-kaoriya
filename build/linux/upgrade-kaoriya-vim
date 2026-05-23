@@ -9,6 +9,7 @@ guilt push --all
 ./configure \
   --prefix=/opt/vim92+kaoriya \
   --with-features=huge \
+  --enable-imctrl-fcitx5 \
   --enable-gui=gtk3 \
   --enable-luainterp=dynamic \
   --with-luajit \

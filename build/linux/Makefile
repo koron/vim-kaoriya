@@ -13,6 +13,7 @@ VIM_SRCDIR = $(ROOT_DIR)/vim/src
 VIM_CONFIG = --prefix=$(PREFIX) \
 	     --with-features=huge \
 	     --enable-gui=gtk3 \
+	     --enable-imctrl-fcitx5 \
 	     --enable-luainterp=dynamic \
 	     --with-luajit \
 	     --enable-python3interp=dynamic \
@@ -56,7 +57,7 @@ vim-configure:
 	cd $(VIM_SRCDIR) && ./configure $(VIM_CONFIG)
 
 vim-build:
-	cd $(VIM_SRCDIR) && make -j4
+	cd $(VIM_SRCDIR) && make -j$$(nproc)
 
 vim-install:
 	cd $(VIM_SRCDIR) && make DESTDIR=$(DESTDIR) install

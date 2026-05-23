@@ -5,6 +5,7 @@
   --prefix=/opt/vim92
   --with-features=huge \
   --enable-gui=gtk3 \
+  --enable-imctrl-fcitx5 \
   --enable-luainterp=dynamic \
   --with-luajit \
   --enable-python3interp=dynamic \

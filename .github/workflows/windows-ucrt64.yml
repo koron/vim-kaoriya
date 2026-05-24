@@ -1,10 +1,6 @@
 name: Windows with UCRT64/MSYS2
 
 on:
-  push:
-    branches: [ '**' ]
-    tags-ignore: ['**' ]
-
   workflow_call:
 
 concurrency:
@@ -14,7 +10,7 @@ concurrency:
 jobs:
   build:
     name: Build
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     defaults:
       run:
@@ -22,7 +18,7 @@ jobs:
 
     steps:
     - name: Set up MSYS2 packages
-      uses: msys2/setup-msys2@cafece8e6baf9247cf9b1bf95097b0b983cc558d # v2.31.0
+      uses: msys2/setup-msys2@e9898307ac31d1a803454791be09ab9973336e1c # v2.31.1
       id: msys2
       with:
         update: true
@@ -92,7 +88,7 @@ jobs:
 
   test:
     name: Test
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     needs: build
 
@@ -109,7 +105,7 @@ jobs:
 
     steps:
     - name: Install tools by MSYS2
-      uses: msys2/setup-msys2@cafece8e6baf9247cf9b1bf95097b0b983cc558d # v2.31.0
+      uses: msys2/setup-msys2@e9898307ac31d1a803454791be09ab9973336e1c # v2.31.1
       id: msys2
       with:
         msystem: UCRT64
@@ -118,6 +114,7 @@ jobs:
           diffutils:p
           make:p
           luajit:p
+          python:p
         release: false
 
     - name: Set up MSYS2 path

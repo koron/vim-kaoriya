@@ -1,11 +1,12 @@
-name: Release
+name: Build
 
 on:
   push:
-    tags: [ '**' ]
+    branches: [ '**' ]
+    tags-ignore: ['**' ]
 
 concurrency:
-  group: ci-release-${{ github.workflow }}-${{ github.ref }}
+  group: ci-build-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

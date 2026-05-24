@@ -14,7 +14,7 @@ concurrency:
 jobs:
   build:
     name: Build
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     defaults:
       run:
@@ -92,7 +92,7 @@ jobs:
 
   test:
     name: Test
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     needs: build
 

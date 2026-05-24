@@ -27,14 +27,15 @@ jobs:
       uses: msys2/setup-msys2@e9898307ac31d1a803454791be09ab9973336e1c # v2.31.1
       id: msys2
       with:
-        msystem: MSYS
-        update: false
-        install: >-
-          patch
+        update: true
+        msystem: UCRT64
+        pacboy: >-
+          patch:
         release: false
 
     - name: Setup MSYS2 PATH
       run: |
+        echo ${{ steps.msys2.outputs.msys2-location }}\%MSYSTEM%\bin>> %GITHUB_PATH%
         echo ${{ steps.msys2.outputs.msys2-location }}\usr\bin>> %GITHUB_PATH%
 
     - name: Setup VC++ environment (VCVARSALL)
@@ -102,14 +103,15 @@ jobs:
       uses: msys2/setup-msys2@e9898307ac31d1a803454791be09ab9973336e1c # v2.31.1
       id: msys2
       with:
-        msystem: MSYS
-        update: false
-        install: >-
-          diffutils
+        update: true
+        msystem: UCRT64
+        pacbody: >-
+          diffutils:p
         release: false
 
     - name: Setup MSYS2 PATH
       run: |
+        echo ${{ steps.msys2.outputs.msys2-location }}\%MSYSTEM%\bin>> %GITHUB_PATH%
         echo ${{ steps.msys2.outputs.msys2-location }}\usr\bin>> %GITHUB_PATH%
 
     - name: Setup VC++ environment (VCVARSALL)

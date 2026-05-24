@@ -118,6 +118,7 @@ jobs:
           diffutils:p
           make:p
           luajit:p
+          python:p
         release: false
 
     - name: Set up MSYS2 path

@@ -37,8 +37,10 @@ jobs:
       run: |
         PACKAGES=()
         PACKAGES+=( gettext )
-        PACKAGES+=( libxt-dev libgtk2.0-dev )
+        PACKAGES+=( libxt-dev libgtk-3-dev )
         PACKAGES+=( luajit libluajit-5.1-dev )
+        PACKAGES+=( python3-dev )
+        PACKAGES+=( ruby-dev )
         sudo apt install -y --allow-downgrades "${PACKAGES[@]}"
 
     - name: Apply kaoriya patches
@@ -50,15 +52,15 @@ jobs:
         done
 
     - name: Configure
-      working-directory: build/xubuntu
+      working-directory: build/linux
       run: make vim-configure
 
     - name: Build
-      working-directory: build/xubuntu
+      working-directory: build/linux
       run: make vim-build
 
     - name: Create archives
-      working-directory: build/xubuntu
+      working-directory: build/linux
       run: |
         make vim-install \
              kaoriya-install \
@@ -70,7 +72,7 @@ jobs:
       with:
         name: ubuntu-archives
         path: |
-          build/xubuntu/vim*-kaoriya-ubuntu*.tar.bz2
+          build/linux/vim*-kaoriya-linux-*.tar.bz2
         if-no-files-found: error
 
     - name: Test

@@ -22,5 +22,9 @@ $(PATCH_TARGET):
 	rm -rf $(PATCH_TMPDIR)
 
 update:
-	./bin/update-vimsrc
+	git pull -p
+	git submodule update --rebase
+
+upgrade:
+	./bin/upgrade-vimsrc
 	./bin/commit-push

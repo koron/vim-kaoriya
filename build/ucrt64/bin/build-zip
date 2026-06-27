@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-set -eu
+set -euo pipefail
 source $(dirname "$0")/common
 
 DISTNAME=vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}

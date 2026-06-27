@@ -16,4 +16,16 @@ if [[ -r "config" ]] ; then
   source "config"
 fi
 
+_msg_info() {
+  echo "INFO: $@"
+}
+
+_msg_error() {
+  echo "[41;97mERROR: $@[0m"
+}
+
+_msg_ok() {
+  echo "[42;97mOK: $@[0m"
+}
+
 # vim:set ft=sh:

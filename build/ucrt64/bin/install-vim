@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BINDIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$BINDIR/common"
+
+PREFIX="$1"
+
+CORENAME="vim${VIM_VER_SHORT}-kaoriya-${MSYSTEM,,}"
+ZIPFILE="target/$CORENAME-${VIM_VER}-${PATCHSET_VER}.zip"
+INSTALL_DIR="$PREFIX/$CORENAME"
+
+if [[ ! -r "$ZIPFILE" ]]; then
+  _msg_error "Not found: $ZIPFILE"
+  exit 1
+fi
+
+if [[ -e "$INSTALL_DIR" ]]; then
+  _msg_info "Removing old directory: $INSTALL_DIR"
+  rm -r "$INSTALL_DIR"
+fi
+
+_msg_info "Extracting $ZIPFILE -> $PREFIX"
+7z x -y -bso0 -bsp0 -o"$(cygpath -m $PREFIX)" "$(cygpath -m $ZIPFILE)"
+
+"$BINDIR/check-vim" "$INSTALL_DIR"

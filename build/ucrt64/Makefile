@@ -38,4 +38,4 @@ install:
 upload:
 	./bin/upload-files
 
-release: package-auto install-daily install upload
+release: package-auto install-daily upload

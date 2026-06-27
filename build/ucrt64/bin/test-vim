@@ -2,6 +2,16 @@
 
 set -euo pipefail
 source $(dirname "$0")/common
-cd ${VIMDIR}
 
-SHELL= mingw32-make -C src/testdir -f Make_ming.mak "$@"
+(
+  cd ${VIMDIR}
+
+  SHELL= mingw32-make -C src/testdir -f Make_ming.mak "$@"
+)
+
+TESTLOG="${VIMDIR}/src/testdir/test_result.log"
+RESULTSDIR="target/test_result"
+if [[ -r "$TESTLOG" ]]; then
+  mkdir -p "$RESULTSDIR"
+  cp "$TESTLOG" "$RESULTSDIR/$(date -r "$TESTLOG" "+%Y%m%d_%H%M%S").log"
+fi

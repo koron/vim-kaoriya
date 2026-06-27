@@ -29,6 +29,8 @@ REM Build Vim
 nmake /NOLOGO build-release
 
 REM Test
+SET SHELL=
+SET PATH=%PATH%;%CD%\target\install-x64\bin
 nmake /NOLOGO build-release-test
 
 REM Stop conhost.exe, which is likely running out of control.

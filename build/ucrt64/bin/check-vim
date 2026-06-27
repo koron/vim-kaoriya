@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BINDIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$BINDIR/common"
+
+TARGETDIR="$1"
+OUTFILE="check-vim.out"
+
+if [[ -e "$OUTFILE" ]]; then
+  rm -f "$OUTFILE"
+fi
+
+"$TARGETDIR/vim" -u "$BINDIR/check.vim" -U NONE --noplugin --not-a-term -c "f $OUTFILE|wq"
+if [[ ! -r "$OUTFILE" ]]; then
+  _msg_error "Failed on checking version"
+  exit 1
+fi
+
+source "$OUTFILE"
+rm -f "$OUTFILE"
+
+HAS_ERROR=0
+if [[ "$version" != "$VIM_VER" ]]; then
+  _msg_error "unexpected version: want=$VIM_VER got=$version"
+  HAS_ERROR=1
+fi
+if [[ "$kaoriya" != "1" ]]; then
+  _msg_error "without kaoriya patches"
+  HAS_ERROR=1
+fi
+if [[ $HAS_ERROR == "1" ]]; then
+  exit 1
+fi
+
+_msg_ok "$TARGETDIR is $version +kaoriya"

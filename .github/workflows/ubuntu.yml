@@ -88,4 +88,5 @@ jobs:
         path: |
           vim/src/testdir/test_result.log
           vim/src/testdir/test*.failed
+          vim/src/testdir/messages
         if-no-files-found: error

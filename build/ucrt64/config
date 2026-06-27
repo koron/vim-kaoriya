@@ -5,6 +5,7 @@ VIM_MAKE_FLAGS+=(
   LUA=$(pkgconf luajit --variable=prefix)
   LUA_INCDIR=$(pkgconf luajit --variable=includedir)
   LUA_VER=51
+  MIGEMO=yes
 )
 
 # vim:set ft=sh:

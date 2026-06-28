@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(cd "$(dirname "$(readlink -f "$0")")" && pwd)/common"
+
+cd "${VIMDIR}/src"
+
+nmake -nologo -f Make_mvc.mak "${VIM_MAKE_FLAGS[@]}" "$@"

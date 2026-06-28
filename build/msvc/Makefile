@@ -22,7 +22,6 @@ clean:
 	./bin/make-vim clean
 
 zip:
-	# TODO
 	./bin/build-zip
 
 package-auto:

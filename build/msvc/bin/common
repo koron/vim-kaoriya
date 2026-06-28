@@ -8,6 +8,8 @@ VIMDIR="$ROOTDIR/vim"
 
 VIM_MAKE_FLAGS=()
 
+LICENSES=()
+
 if [[ -r "config" ]] ; then
   source "config"
 fi
@@ -23,10 +25,5 @@ _msg_error() {
 _msg_ok() {
   echo "[42;97mOK: $@[0m"
 }
-
-#echo ROOTDIR=$ROOTDIR
-#echo VIM_VER=$VIM_VER
-#echo PATCHSET_VER=$PATCHSET_VER
-#echo VIM_VER_SHORT=$VIM_VER_SHORT
 
 # vim:set ft=sh:

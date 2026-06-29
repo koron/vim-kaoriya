@@ -27,6 +27,9 @@ jobs:
         msystem: UCRT64
         pacboy: >-
           patch:
+          make:
+          rsync:
+          7zip:p
         release: false
 
     - name: Setup MSYS2 PATH
@@ -65,7 +68,7 @@ jobs:
       working-directory: build/msvc
       run: |
         call "%VCVARSALL%" amd64
-        nmake /NOLOGO build-release
+        make contrib-install build zip
 
     - name: Upload the built artifacts
       uses: actions/upload-artifact@v7

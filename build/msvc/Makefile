@@ -118,7 +118,7 @@ luajit-build: $(LUAJIT_DIR)/src/luajit.exe
 $(LUAJIT_DIR)/src/luajit.exe: $(LUAJIT_DIR)/src/msvcbuild.bat $(LUAJIT_DIR)/src/*.c $(LUAJIT_DIR)/src/*.h
 	cd "$(LUAJIT_DIR)/src" && cmd //C msvcbuild.bat
 
-luajit-install:
+luajit-install: luajit-build
 	mkdir -p "$(INSTALL_DIR)/include/lua"
 	mkdir -p "$(INSTALL_DIR)/bin"
 	mkdir -p "$(INSTALL_DIR)/lib"

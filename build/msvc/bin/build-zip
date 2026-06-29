@@ -5,7 +5,7 @@ set -euo pipefail
 source "$(cd "$(dirname "$(readlink -f "$0")")" && pwd)/common"
 
 BUILDDIR="$ROOTDIR/build/msvc"
-DISTNAME="new-vim$VIM_VER_SHORT-kaoriya-win64"
+DISTNAME="vim$VIM_VER_SHORT-kaoriya-win64"
 DISTDIR="$BUILDDIR/target/$DISTNAME"
 DISTZIP="$BUILDDIR/target/$DISTNAME-$VIM_VER-$PATCHSET_VER.zip"
 RUNTIMEDIR="vim$VIM_VER_SHORT"

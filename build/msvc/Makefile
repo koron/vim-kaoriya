@@ -34,7 +34,6 @@ install:
 	./bin/install-vim /d/Vim
 
 upload:
-	# TODO:
 	./bin/upload-files
 
 release: package-auto install-daily upload

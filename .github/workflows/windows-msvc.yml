@@ -68,7 +68,13 @@ jobs:
       working-directory: build/msvc
       run: |
         call "%VCVARSALL%" amd64
-        make contrib-install build zip
+        make contrib-install build
+
+    - name: Distribution
+      working-directory: build/msvc
+      run: |
+        call "%VCVARSALL%" amd64
+        make zip
 
     - name: Upload the built artifacts
       uses: actions/upload-artifact@v7

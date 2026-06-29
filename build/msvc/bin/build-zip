@@ -16,7 +16,9 @@ PATCHDIR="$ROOTDIR/patches"
 
 INSTALL_DIR="$BUILDDIR/target/install-x64"
 
-MSVCRT_DLL="$(cygpath -u "$VCToolsRedistDir")/x64/Microsoft.VC143.CRT/vcruntime140.dll"
+MSVCRT_DLL="$(find "$(cygpath -u "$VCToolsRedistDir")x64" -type f -name vcruntime140.dll)"
+
+export PATH="$INSTALL_DIR/bin:$PATH"
 
 _mkdir() {
   if [[ ! -d "$1" ]] ; then
@@ -30,7 +32,7 @@ _rsync() {
 }
 
 _helptags() {
-  "$VIMDIR/src/vim.exe" -nes -u NONE --noplugin -c "helptags $1" -c quit
+  "$VIMDIR/src/vim.exe" -nes -u NONE --noplugin -c "helptags $(cygpath -w "$1")" -c quit
 }
 
 _7z_a() {
@@ -83,7 +85,7 @@ _mkdir "$DISTDIR"
 _rsync \
   "$INSTALL_DIR/bin/lua51.dll" \
   "$INSTALL_DIR/bin/luajit.exe" \
-  "$INSTALL_DIR/bin/lua" \
+  "$INSTALL_DIR/include/lua" \
   "$DISTDIR"
 
 # KaoriYa patches
@@ -111,13 +113,21 @@ _rsync "$CONTRIBDIR/vimdoc-ja/" "$DISTDIR/plugins/vimdoc-ja"
 _helptags "$DISTDIR/plugins/vimdoc-ja/doc"
 
 # Copy translated files: man pages, lang, and tutor from lang-ja
-_mkdir "$DISTDIR/$RUNTIMEDIR"
-make -C "$CONTRIBDIR/lang-ja" \
-  INSTALL_DIR="$DISTDIR/$RUNTIMEDIR" \
-  VIM="$(readlink -f "$VIMDIR/src/vim.exe")" \
-  install
+(
+  LANG=C OLD_PO_FILE_INPUT=yes make -C "$CONTRIBDIR/lang-ja/src/po" \
+    update ja.mo ja.euc-jp.mo ja.sjis.mo
 
-_7z_a -r "$DISTZIP" "$DISTDIR"
+  _mkdir "$DISTDIR/$RUNTIMEDIR/lang/ja/LC_MESSAGES"
+  _mkdir "$DISTDIR/$RUNTIMEDIR/doc"
+  _mkdir "$DISTDIR/$RUNTIMEDIR/tutor"
+  cp -vu "$CONTRIBDIR/lang-ja/src/po/ja.mo" "$DISTDIR/$RUNTIMEDIR/lang/ja/LC_MESSAGES"
+  cp -vu "$CONTRIBDIR/lang-ja/runtime/lang/"menu_ja*.vim "$DISTDIR/$RUNTIMEDIR/lang"
+  cp -vu "$CONTRIBDIR/lang-ja/runtime/doc/"*.UTF-8.1 "$DISTDIR/$RUNTIMEDIR/doc"
+  cp -vu "$CONTRIBDIR/lang-ja/runtime/tutor/"tutor*.ja "$DISTDIR/$RUNTIMEDIR/tutor"
+)
+
+rm -f "$DISTZIP"
+_7z_a -r "$(cygpath -w "$DISTZIP")" "$(cygpath -w "$DISTDIR")"
 
 
 # PDB archive
@@ -126,4 +136,5 @@ PDB_DISTDIR="$BUILDDIR/target/$PDB_DISTNAME"
 PDB_DISTZIP="$BUILDDIR/target/$DISTNAME-$VIM_VER-$PATCHSET_VER-pdb.zip"
 _mkdir "$PDB_DISTDIR"
 _rsync "$VIMDIR/src/vim64.pdb" "$PDB_DISTDIR"
-_7z_a -r "$PDB_DISTZIP" "$PDB_DISTDIR"
+rm -f "$PDB_DISTZIP"
+_7z_a -r "$(cygpath -w "$PDB_DISTZIP")" "$(cygpath -w "$PDB_DISTDIR")"

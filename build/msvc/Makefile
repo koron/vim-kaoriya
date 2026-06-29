@@ -75,17 +75,17 @@ GETTEXT_DIR = $(ROOT_DIR)/contrib/gettext
 
 gettext-build:
 	cd "$(GETTEXT_DIR)" && \
-		nmake -NOLOGO -f Makefile.msvc DLL=1 \
+		nmake -NOLOGO -f Makefile.msvc DLL=1 MFLAGS="-MD" \
 		PREFIX="$$(cygpath -w "$(INSTALL_DIR)")"
 
 gettext-install: gettext-build
 	cd "$(GETTEXT_DIR)" && \
-		nmake -NOLOGO -f Makefile.msvc DLL=1 \
+		nmake -NOLOGO -f Makefile.msvc DLL=1 MFLAGS="-MD" \
 		PREFIX="$$(cygpath -w "$(INSTALL_DIR)")" install
 
 gettext-clean:
 	cd "$(GETTEXT_DIR)" && \
-		nmake -NOLOGO -f Makefile.msvc DLL=1 \
+		nmake -NOLOGO -f Makefile.msvc DLL=1 MFLAGS="-MD" \
 		PREFIX="$$(cygpath -w "$(INSTALL_DIR)")" clean
 
 ##############################################################################

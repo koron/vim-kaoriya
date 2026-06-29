@@ -164,7 +164,7 @@ jobs:
     - name: Upload test result
       uses: actions/upload-artifact@v7
       with:
-        name: windows-msys2-test_result-${{ matrix.vimprog }}
+        name: windows-ucrt64-test_result-${{ matrix.vimprog }}
         path: |
           vim/src/testdir/test_result.log
           vim/src/testdir/test*.failed

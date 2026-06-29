@@ -28,11 +28,9 @@ package-auto:
 	$(MAKE) clean test-clean patch-apply build test patch-revert zip
 
 install-daily:
-	# TODO:
 	./bin/install-vim /d/Vim/daily
 
 install:
-	# TODO:
 	./bin/install-vim /d/Vim
 
 upload:

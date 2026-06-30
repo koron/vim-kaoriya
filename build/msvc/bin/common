@@ -6,9 +6,17 @@ source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' "$ROOTDIR/VERSION")
 
 VIMDIR="$ROOTDIR/vim"
 
+CONTRIBDIR="$ROOTDIR/contrib"
+KAORIYADIR="$ROOTDIR/kaoriya"
+PATCHDIR="$ROOTDIR/patches"
+
 VIM_MAKE_FLAGS=()
 
-LICENSES=()
+LICENSES=(
+  "libiconv     $CONTRIBDIR/libiconv2/COPYING.LIB"
+  "gettext      $CONTRIBDIR/gettext/gettext-runtime/intl/COPYING.LIB-2.1"
+  "libXpm-win32 $CONTRIBDIR/libXpm-win32/COPYING"
+)
 
 if [[ -r "config" ]] ; then
   source "config"

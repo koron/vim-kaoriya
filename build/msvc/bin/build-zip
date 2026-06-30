@@ -10,10 +10,6 @@ DISTDIR="$BUILDDIR/target/$DISTNAME"
 DISTZIP="$BUILDDIR/target/$DISTNAME-$VIM_VER-$PATCHSET_VER.zip"
 RUNTIMEDIR="vim$VIM_VER_SHORT"
 
-KAORIYADIR="$ROOTDIR/kaoriya"
-CONTRIBDIR="$ROOTDIR/contrib"
-PATCHDIR="$ROOTDIR/patches"
-
 INSTALL_DIR="$BUILDDIR/target/install-x64"
 
 MSVCRT_DLL="$(find "$(cygpath -u "$VCToolsRedistDir")x64" -type f -name vcruntime140.dll)"
@@ -125,6 +121,13 @@ _helptags "$DISTDIR/plugins/vimdoc-ja/doc"
   cp -vu "$CONTRIBDIR/lang-ja/runtime/doc/"*.UTF-8.1 "$DISTDIR/$RUNTIMEDIR/doc"
   cp -vu "$CONTRIBDIR/lang-ja/runtime/tutor/"tutor*.ja "$DISTDIR/$RUNTIMEDIR/tutor"
 )
+
+# Gather license files
+_mkdir "$DISTDIR/licenses"
+for item in "${LICENSES[@]}" ; do
+  IFS=' ' read -r -a data <<< "$item"
+  cp -uv "${data[1]}" "$DISTDIR/licenses/${data[0]}.txt"
+done
 
 rm -f "$DISTZIP"
 _7z_a -r "$(cygpath -w "$DISTZIP")" "$(cygpath -w "$DISTDIR")"

@@ -1,0 +1,39 @@
+name="koron.kaoriya"
+domain="gmail.com"
+
+defines=(
+  -DMODIFIED_BY=\\\"${name}@${domain}\\\"
+  -DDYNAMIC_MSVCRT_DLL=\\\"vcruntime140.dll\\\"
+  -DGETTEXT_DLL=\\\"intl.dll\\\"
+  -DDYNAMIC_ICONV_DLL=\\\"iconv.dll\\\"
+)
+
+VIM_MAKE_FLAGS+=(
+  USERNAME="$name"
+  USERDOMAIN="$domain"
+
+  DEBUG=no
+  MAP=no
+
+  USE_MSVCRT=yes
+
+  VIMDLL=yes
+
+  DIRECTX=yes
+
+  TERMINAL=yes
+
+  IME=yes
+
+  DYNAMIC_LUA=yes
+  LUA_VER=51
+  LUA="$(cygpath -w "${ROOTDIR}/build/msvc/target/install-x64/include/lua")"
+
+  XPM="$(cygpath -w "${ROOTDIR}/build/msvc/target/install-x64")"
+
+  MIGEMO=yes
+
+  DEFINES="${defines[*]}"
+)
+
+# vim:set ft=sh:

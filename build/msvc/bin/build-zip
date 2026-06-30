@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(cd "$(dirname "$(readlink -f "$0")")" && pwd)/common"
+
+BUILDDIR="$ROOTDIR/build/msvc"
+DISTNAME="vim$VIM_VER_SHORT-kaoriya-win64"
+DISTDIR="$BUILDDIR/target/$DISTNAME"
+DISTZIP="$BUILDDIR/target/$DISTNAME-$VIM_VER-$PATCHSET_VER.zip"
+RUNTIMEDIR="vim$VIM_VER_SHORT"
+
+KAORIYADIR="$ROOTDIR/kaoriya"
+CONTRIBDIR="$ROOTDIR/contrib"
+PATCHDIR="$ROOTDIR/patches"
+
+INSTALL_DIR="$BUILDDIR/target/install-x64"
+
+MSVCRT_DLL="$(find "$(cygpath -u "$VCToolsRedistDir")x64" -type f -name vcruntime140.dll)"
+
+export PATH="$INSTALL_DIR/bin:$PATH"
+
+_mkdir() {
+  if [[ ! -d "$1" ]] ; then
+    mkdir -p "$1"
+    echo "mkdir $1"
+  fi
+}
+
+_rsync() {
+  rsync -a --exclude='.git*' --info=name2 "$@"
+}
+
+_helptags() {
+  "$VIMDIR/src/vim.exe" -nes -u NONE --noplugin -c "helptags $(cygpath -w "$1")" -c quit
+}
+
+_7z_a() {
+  echo 7z a -bso0 -bd -mx=7 "$@"
+  7z a -bso0 -bd -mx=7 "$@"
+}
+
+# Vim's original documents
+_mkdir "$DISTDIR/origdoc"
+_rsync "$VIMDIR/README.txt" "$VIMDIR/LICENSE" "$DISTDIR/origdoc"
+
+# Vim executables
+_mkdir "$DISTDIR"
+_rsync \
+  "$VIMDIR/src/vim64.dll" \
+  "$VIMDIR/src/vim.exe" \
+  "$VIMDIR/src/gvim.exe" \
+  "$VIMDIR/src/vimrun.exe" \
+  "$VIMDIR/src/xxd/xxd.exe" \
+  "$VIMDIR/src/tee/tee.exe" \
+  "$DISTDIR"
+
+# Install required DLLs
+_mkdir "$DISTDIR"
+_rsync \
+  "$INSTALL_DIR/bin/iconv.dll" \
+  "$INSTALL_DIR/bin/intl.dll" \
+  "$MSVCRT_DLL" \
+  "$DISTDIR"
+
+# Vim translation files.
+_mkdir "$DISTDIR/$RUNTIMEDIR"
+(
+  cd "$VIMDIR/src/po"
+
+  nmake -nologo -f Make_mvc.mak \
+    VIMRUNTIME="$(cygpath -w "$DISTDIR/$RUNTIMEDIR")" \
+    GETTEXT_PATH="$(cygpath -w "$INSTALL_DIR/bin")" \
+    install-all
+)
+
+# Vim runtime
+_mkdir "$DISTDIR/$RUNTIMEDIR"
+_rsync --exclude-from="$BUILDDIR/bin/exclude-runtime.txt" \
+  "$VIMDIR/runtime/" "$DISTDIR/$RUNTIMEDIR"
+_helptags "$DISTDIR/$RUNTIMEDIR/doc"
+
+# Lua resources
+_mkdir "$DISTDIR"
+_rsync \
+  "$INSTALL_DIR/bin/lua51.dll" \
+  "$INSTALL_DIR/bin/luajit.exe" \
+  "$INSTALL_DIR/include/lua" \
+  "$DISTDIR"
+
+# KaoriYa patches
+_mkdir "$DISTDIR/patch"
+_rsync --exclude='*~' --exclude=guards --exclude=status \
+  "$PATCHDIR/master/" "$DISTDIR/patch"
+
+# KaoriYa other files
+_mkdir "$DISTDIR"
+_rsync "$KAORIYADIR/doc/" "$DISTDIR"
+_rsync "$KAORIYADIR/vim/" "$DISTDIR"
+
+# Clean switches that have been experimentally enabled
+_mkdir "$DISTDIR/switches/enabled"
+rm -f "$DISTDIR/switches/enabled/*.vim"
+
+# Plugin - autofmt
+_mkdir "$DISTDIR/plugins"
+_rsync "$CONTRIBDIR/autofmt/" "$DISTDIR/plugins/autofmt"
+_helptags "$DISTDIR/plugins/autofmt/doc"
+
+# Plugin - vimdoc-ja
+_mkdir "$DISTDIR/plugins"
+_rsync "$CONTRIBDIR/vimdoc-ja/" "$DISTDIR/plugins/vimdoc-ja"
+_helptags "$DISTDIR/plugins/vimdoc-ja/doc"
+
+# Copy translated files: man pages, lang, and tutor from lang-ja
+(
+  LANG=C OLD_PO_FILE_INPUT=yes make -C "$CONTRIBDIR/lang-ja/src/po" \
+    update ja.mo ja.euc-jp.mo ja.sjis.mo
+
+  _mkdir "$DISTDIR/$RUNTIMEDIR/lang/ja/LC_MESSAGES"
+  _mkdir "$DISTDIR/$RUNTIMEDIR/doc"
+  _mkdir "$DISTDIR/$RUNTIMEDIR/tutor"
+  cp -vu "$CONTRIBDIR/lang-ja/src/po/ja.mo" "$DISTDIR/$RUNTIMEDIR/lang/ja/LC_MESSAGES"
+  cp -vu "$CONTRIBDIR/lang-ja/runtime/lang/"menu_ja*.vim "$DISTDIR/$RUNTIMEDIR/lang"
+  cp -vu "$CONTRIBDIR/lang-ja/runtime/doc/"*.UTF-8.1 "$DISTDIR/$RUNTIMEDIR/doc"
+  cp -vu "$CONTRIBDIR/lang-ja/runtime/tutor/"tutor*.ja "$DISTDIR/$RUNTIMEDIR/tutor"
+)
+
+rm -f "$DISTZIP"
+_7z_a -r "$(cygpath -w "$DISTZIP")" "$(cygpath -w "$DISTDIR")"
+
+
+# PDB archive
+PDB_DISTNAME="$DISTNAME-pdb"
+PDB_DISTDIR="$BUILDDIR/target/$PDB_DISTNAME"
+PDB_DISTZIP="$BUILDDIR/target/$DISTNAME-$VIM_VER-$PATCHSET_VER-pdb.zip"
+_mkdir "$PDB_DISTDIR"
+_rsync "$VIMDIR/src/vim64.pdb" "$PDB_DISTDIR"
+rm -f "$PDB_DISTZIP"
+_7z_a -r "$(cygpath -w "$PDB_DISTZIP")" "$(cygpath -w "$PDB_DISTDIR")"

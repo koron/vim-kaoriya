@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(cd "$(dirname "$(readlink -f "$0")")" && pwd)/common"
+
+(
+  cd "${VIMDIR}/src/testdir"
+
+  set +e
+
+  export PATH="$ROOTDIR/build/msvc/target/install-x64/bin:$PATH"
+  export SHELL=
+
+  nmake -nologo -f Make_mvc.mak "$@"
+)
+
+TESTLOG="${VIMDIR}/src/testdir/test_result.log"
+RESULTSDIR="target/test_result"
+if [[ -r "$TESTLOG" ]]; then
+  mkdir -p "$RESULTSDIR"
+  cp "$TESTLOG" "$RESULTSDIR/$(date -r "$TESTLOG" "+%Y%m%d_%H%M%S").log"
+fi
+
+taskkill -F -FI "IMAGENAME eq conhost.exe" -FI "MEMUSAGE gt 200000" > /dev/null

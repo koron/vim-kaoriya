@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BINDIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$BINDIR/common"
+
+CORENAME="vim${VIM_VER_SHORT}-kaoriya-win64"
+ZIPFILE="target/$CORENAME-${VIM_VER}-${PATCHSET_VER}.zip"
+
+YEAR=$(date +%Y)
+
+rsync -v "$ZIPFILE" "koron@files.kaoriya.net:htdocs/files.kaoriya.net/vim/$YEAR"

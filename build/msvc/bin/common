@@ -1,0 +1,29 @@
+export MSYS2_ARG_CONV_EXCL="*"
+
+ROOTDIR="$(realpath -s "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../../..")"
+
+source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' "$ROOTDIR/VERSION")
+
+VIMDIR="$ROOTDIR/vim"
+
+VIM_MAKE_FLAGS=()
+
+LICENSES=()
+
+if [[ -r "config" ]] ; then
+  source "config"
+fi
+
+_msg_info() {
+  echo "INFO: $@"
+}
+
+_msg_error() {
+  echo "[41;97mERROR: $@[0m"
+}
+
+_msg_ok() {
+  echo "[42;97mOK: $@[0m"
+}
+
+# vim:set ft=sh:

@@ -87,10 +87,10 @@ make -C ${CONTRIBDIR}/lang-ja \
   install
 
 # Gather license files
-_mkdir ${DISTDIR}/licenses
-for f in "${LICENSES[@]}" ; do
-  pkgname=$(basename "$(dirname $f)")
-  _rsync "$f" ${DISTDIR}/licenses/${pkgname}.txt
+_mkdir "$DISTDIR/licenses"
+for item in "${LICENSES[@]}" ; do
+  IFS=' ' read -r -a data <<< "$item"
+  cp -uv "${data[1]}" "$DISTDIR/licenses/${data[0]}.txt"
 done
 
 # Archive as a zip file

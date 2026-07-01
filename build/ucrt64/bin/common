@@ -1,9 +1,15 @@
 # Job parallelism is determined by the number of available logical cores.
 JOBS=$(grep processor /proc/cpuinfo | wc -l)
 
-source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' ../../VERSION)
+ROOTDIR="$(realpath -s "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../../..")"
 
-VIMDIR=../../vim
+source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' "$ROOTDIR/VERSION")
+
+VIMDIR="$ROOTDIR/vim"
+
+CONTRIBDIR="$ROOTDIR/contrib"
+KAORIYADIR="$ROOTDIR/kaoriya"
+PATCHDIR="$ROOTDIR/patches"
 
 VIM_MAKE_FLAGS=()
 

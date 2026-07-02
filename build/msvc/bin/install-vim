@@ -18,7 +18,7 @@ fi
 
 if [[ -e "$INSTALL_DIR" ]]; then
   _msg_info "Removing old directory: $INSTALL_DIR"
-  rm -r "$INSTALL_DIR"
+  uu-rm -r "$(cygpath -m "$INSTALL_DIR")"
 fi
 
 _msg_info "Extracting $ZIPFILE -> $PREFIX"

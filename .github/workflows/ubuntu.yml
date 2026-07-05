@@ -80,6 +80,8 @@ jobs:
       working-directory: vim/src/testdir
       run: |
         make -f Makefile
+      env:
+        VIM_CLIENTSERVER: socket
 
     - name: Upload test result
       uses: actions/upload-artifact@v6

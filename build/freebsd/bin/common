@@ -1,0 +1,35 @@
+# Job parallelism is determined by the number of available logical cores.
+JOBS=$(sysctl -n hw.ncpu)
+
+ROOTDIR="$(realpath "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../../..")"
+
+source <(sed 's/[[:space:]]*=[[:space:]]*/=/g' "$ROOTDIR/VERSION")
+
+VIMDIR="$ROOTDIR/vim"
+
+CONTRIBDIR="$ROOTDIR/contrib"
+KAORIYADIR="$ROOTDIR/kaoriya"
+PATCHDIR="$ROOTDIR/patches"
+
+VIM_MAKE_FLAGS=()
+
+LICENSES=(
+)
+
+if [[ -r "./config" ]] ; then
+  source "./config"
+fi
+
+_msg_info() {
+  echo "INFO: $@"
+}
+
+_msg_error() {
+  echo "[41;97mERROR: $@[0m"
+}
+
+_msg_ok() {
+  echo "[42;97mOK: $@[0m"
+}
+
+# vim:set ft=sh:

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BINDIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+source "$BINDIR/common"
+
+OSVERSION="$(freebsd-version -k | cut -d- -f1)"
+OS_TARGET="freebsd$OSVERSION"
+VIM_PKGFILE="vim$VIM_VER_SHORT-kaoriya-$OS_TARGET-$VIM_VER-$PATCHSET_VER.tar.bz2"
+
+if [[ ! -r "$VIM_PKGFILE" ]] ; then
+  _msg_error "Not found: $VIM_PKGFILE"
+fi
+
+# Install the Vim package as root.
+sudo tar xvf "$VIM_PKGFILE" -C /

@@ -108,3 +108,8 @@ govim-install:
 	    echo install: $$f ; \
 	    install -m 0666 $$f $(GOVIM_INSTDIR)/$$f || exit 1 ; \
 	  done
+
+##############################################################################
+
+install:
+	./bin/install-vim
